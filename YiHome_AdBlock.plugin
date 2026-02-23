@@ -1,0 +1,38 @@
+#!name=YI Home 去广告（小蚁摄像机）
+#!desc=去首页活动/横幅 + 关三方广告/开屏广告（Loon 插件）
+#!author=yourname
+#!homepage=https://github.com/yourname/yi-adblock-loon
+#!icon=https://raw.githubusercontent.com/yourname/yi-adblock-loon/main/icon.png
+
+[Rule]
+# === 三方广告 SDK（开屏/信息流） ===
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,pangle.io,REJECT
+DOMAIN-SUFFIX,csjdeveloper.com,REJECT
+
+DOMAIN-SUFFIX,kuaishou.cn,REJECT
+DOMAIN-SUFFIX,e.kuaishou.cn,REJECT
+DOMAIN-SUFFIX,adkwai.com,REJECT
+
+DOMAIN-SUFFIX,e.qq.com,REJECT
+DOMAIN-SUFFIX,gdt.qq.com,REJECT
+DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
+
+DOMAIN-SUFFIX,mobads.baidu.com,REJECT
+
+# 可选：常见统计上报（不影响主要功能）
+DOMAIN-SUFFIX,umeng.com,REJECT
+DOMAIN-SUFFIX,volceapplog.com,REJECT
+DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
+
+[Rewrite]
+# YI Home 配置下发：去活动入口 + 去 banner + 关三方广告
+^https:\/\/gw\.xiaoyi\.com\/v5\/app\/config script-response-body xiaoyi_remove_ads
+
+[Script]
+# ⚠️ 把下面 URL 改成你 GitHub 仓库中的 raw 链接
+xiaoyi_remove_ads = type=http-response,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/yourname/yi-adblock-loon/main/scripts/xiaoyi_remove_ads.js,timeout=10
+
+[MITM]
+hostname = gw.xiaoyi.com
