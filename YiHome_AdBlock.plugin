@@ -1,38 +1,56 @@
 #!name=YI Home 去广告（小蚁摄像机）
-#!desc=去首页活动/横幅 + 关三方广告/开屏广告（Loon 插件）
-#!author=yourname
-#!homepage=https://github.com/yourname/yi-adblock-loon
-#!icon=https://raw.githubusercontent.com/yourname/yi-adblock-loon/main/icon.png
+#!desc=去首页/设备页运营横幅与弹窗 + 关闭三方广告；通过重写“广告下发包”实现（新广告链接也显示不出来）
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
 
 [Rule]
 # === 三方广告 SDK（开屏/信息流） ===
+# 字节/穿山甲(Pangle)
 DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
 DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
 DOMAIN-SUFFIX,pangle.io,REJECT
 DOMAIN-SUFFIX,csjdeveloper.com,REJECT
 
+# 快手广告
 DOMAIN-SUFFIX,kuaishou.cn,REJECT
 DOMAIN-SUFFIX,e.kuaishou.cn,REJECT
 DOMAIN-SUFFIX,adkwai.com,REJECT
+DOMAIN-SUFFIX,kwai.com,REJECT
 
+# 腾讯广点通
 DOMAIN-SUFFIX,e.qq.com,REJECT
 DOMAIN-SUFFIX,gdt.qq.com,REJECT
 DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,gdtimg.com,REJECT
+DOMAIN-SUFFIX,adsmind.gdtimg.com,REJECT
 
+# 百度广告
 DOMAIN-SUFFIX,mobads.baidu.com,REJECT
+DOMAIN-SUFFIX,baidustatic.com,REJECT
 
-# 可选：常见统计上报（不影响主要功能）
+# （可选）常见统计上报：想更“干净”可以保留；若担心误伤可删
 DOMAIN-SUFFIX,umeng.com,REJECT
 DOMAIN-SUFFIX,volceapplog.com,REJECT
 DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
 
 [Rewrite]
-# YI Home 配置下发：去活动入口 + 去 banner + 关三方广告
-^https:\/\/gw\.xiaoyi\.com\/v5\/app\/config script-response-body xiaoyi_remove_ads
+# === 官方“配置/广告/运营下发包”：命中后净化 JSON（推荐，不直接 REJECT） ===
+
+# 全局配置
+^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/config script-response-body xiaoyi_ad_sanitizer
+
+# 设备播放页/设备卡片广告位（bannerList02）
+^https:\/\/gw\.xiaoyi\.com\/vas\/v\d+\/equipment\/play\/bannerList02 script-response-body xiaoyi_ad_sanitizer
+
+# 首页弹窗/顶部横幅（getPopupWindow）
+^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-response-body xiaoyi_ad_sanitizer
+
+# （可选兜底）后续若冒出启动/开屏/广告相关接口，可取消注释：
+# ^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/(startup|launch|boot|init).* script-response-body xiaoyi_ad_sanitizer
+# ^https:\/\/gw\.xiaoyi\.com\/v\d+\/(ad|ads|marketing|banner|splash)\/.* script-response-body xiaoyi_ad_sanitizer
 
 [Script]
-# ⚠️ 把下面 URL 改成你 GitHub 仓库中的 raw 链接
-xiaoyi_remove_ads = type=http-response,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/hahapkpk/js/refs/heads/main/xiaoyi_remove_ads.js,timeout=10
+xiaoyi_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js
 
 [MITM]
 hostname = gw.xiaoyi.com
