@@ -1,0 +1,27 @@
+#!name=腾讯文档去广告
+#!desc=拦截腾讯文档广告下发接口（天枢广告）并清空广告返回；可选拦截广点通广告域名
+#!author=ChatGPT
+#!homepage=https://github.com/hahapkpk/js
+
+[Rule]
+# === 可选：广点通/GDT广告域名（建议先启用，通常不影响文档功能） ===
+DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,rpt.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,t.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,nc.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,p.l.qq.com,REJECT
+DOMAIN-SUFFIX,c.l.qq.com,REJECT
+DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
+
+# （可选）如果发现文档内活动页仍有广告跳转，可按需加：
+# URL-REGEX,^https:\/\/docs\.qq\.com\/vip\/new-act\/,REJECT
+
+[Rewrite]
+# 腾讯文档广告下发（天枢广告）——清空广告返回，避免直接REJECT带来容错问题
+^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-response-body tencent_docs_ad_sanitizer
+
+[Script]
+tencent_docs_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tencent_docs_ad_sanitizer.js
+
+[MITM]
+hostname = docs.qq.com
