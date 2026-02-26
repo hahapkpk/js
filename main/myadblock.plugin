@@ -1,0 +1,49 @@
+#!name=我的loon去广告（合并版）
+#!desc=小蚁：去开屏/弹窗/横幅 + 设备页广告；腾讯文档：清空天枢广告下发（开屏/启动广告）；尽量避免启动变慢
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js/main
+
+[Rule]
+# ===== 可选：第三方广告 SDK（核心广告域名，通常不影响功能） =====
+# 字节/穿山甲(Pangle)
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,pangle.io,REJECT
+DOMAIN-SUFFIX,csjdeveloper.com,REJECT
+
+# 腾讯广点通（腾讯文档里常见）
+DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,rpt.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,t.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,nc.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,p.l.qq.com,REJECT
+DOMAIN-SUFFIX,c.l.qq.com,REJECT
+DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
+
+[Rewrite]
+# ===== 小蚁摄像机（gw.xiaoyi.com）=====
+# 全局配置（首页/活动/广告开关等）
+^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/config script-response-body xiaoyi_ad_sanitizer
+
+# 设备页广告位（“看广告得蚁豆/免费云存”等常在这里）
+^https:\/\/gw\.xiaoyi\.com\/vas\/v\d+\/equipment\/play\/bannerList02 script-response-body xiaoyi_ad_sanitizer
+
+# 开屏/弹窗/顶部横幅（你日志里 screen/闪屏.png 在这里）
+^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-response-body yi_splash_cleaner
+
+# ===== 腾讯文档（docs.qq.com）=====
+# 天枢广告下发：清空广告列表（开屏/启动/运营广告入口）
+^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-response-body tdocs_ad_cleaner
+
+[Script]
+# 小蚁：全局配置/设备广告净化
+xiaoyi_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js
+
+# 小蚁：专杀开屏/弹窗/横幅（getPopupWindow）
+yi_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js
+
+# 腾讯文档：清空天枢广告
+tdocs_ad_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js
+
+[MITM]
+hostname = gw.xiaoyi.com, docs.qq.com
