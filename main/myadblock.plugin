@@ -6,10 +6,10 @@
 [Rule]
 # ===== 可选：第三方广告 SDK（核心广告域名，通常不影响功能） =====
 # 字节/穿山甲(Pangle)
-DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
-DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
-DOMAIN-SUFFIX,pangle.io,REJECT
-DOMAIN-SUFFIX,csjdeveloper.com,REJECT
+# DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+# DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+# DOMAIN-SUFFIX,pangle.io,REJECT
+# DOMAIN-SUFFIX,csjdeveloper.com,REJECT
 
 # 腾讯广点通（腾讯文档里常见）
 DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
@@ -19,6 +19,11 @@ DOMAIN-SUFFIX,nc.gdt.qq.com,REJECT
 DOMAIN-SUFFIX,p.l.qq.com,REJECT
 DOMAIN-SUFFIX,c.l.qq.com,REJECT
 DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
+DOMAIN-SUFFIX,adkwai.com,REJECT          # 快手广告素材/投放
+DOMAIN,nadvideo.baidu.com,REJECT         # 百度广告素材
+DOMAIN-SUFFIX,beizi.biz,REJECT           # beizi广告
+DOMAIN-SUFFIX,medproad.com,REJECT        # medproad广告/追踪/配置
+DOMAIN-SUFFIX,fancyapi.com,REJECT        # fancyapi 广告/追踪
 
 
 # === 第三方开屏/广告素材与广告SDK（本次日志明确命中） ===
