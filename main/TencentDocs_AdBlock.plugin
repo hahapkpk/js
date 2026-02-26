@@ -19,9 +19,11 @@ DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
 [Rewrite]
 # 腾讯文档广告下发（天枢广告）——清空广告返回，避免直接REJECT带来容错问题
 ^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-response-body tencent_docs_ad_sanitizer
+^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-response-body tdocs_ad_cleaner
 
 [Script]
 tencent_docs_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tencent_docs_ad_sanitizer.js
+tdocs_ad_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js
 
 [MITM]
 hostname = docs.qq.com
