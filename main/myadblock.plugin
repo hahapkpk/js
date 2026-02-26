@@ -20,6 +20,20 @@ DOMAIN-SUFFIX,p.l.qq.com,REJECT
 DOMAIN-SUFFIX,c.l.qq.com,REJECT
 DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
 
+
+# === 第三方开屏/广告素材与广告SDK（本次日志明确命中） ===
+DOMAIN,adtracker.medproad.com,REJECT
+DOMAIN,qcwx.medproad.com,REJECT
+DOMAIN-SUFFIX,medproad.com,REJECT  # 如果你想一把梭可用这条，但更激进
+
+DOMAIN-SUFFIX,beizi.biz,REJECT
+
+DOMAIN,nadvideo.baidu.com,REJECT
+DOMAIN-SUFFIX,adkwai.com,REJECT
+
+DOMAIN-SUFFIX,fancyapi.com,REJECT
+
+
 [Rewrite]
 # ===== 小蚁摄像机（gw.xiaoyi.com）=====
 # 全局配置（首页/活动/广告开关等）
