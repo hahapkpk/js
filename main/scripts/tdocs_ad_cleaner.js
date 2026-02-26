@@ -1,3 +1,5 @@
+// tdocs_ad_cleaner.js
+// 目标：清空腾讯文档 /api/advertise/tianshu/getads 的广告列表
 let body = $response.body;
 
 try {
@@ -6,9 +8,10 @@ try {
 
   if (mapAds && typeof mapAds === "object") {
     for (const posId of Object.keys(mapAds)) {
-      if (Array.isArray(mapAds[posId]?.lst)) mapAds[posId].lst = [];
-      if (typeof mapAds[posId]?.count === "number") mapAds[posId].count = 0;
-      if (typeof mapAds[posId]?.total === "number") mapAds[posId].total = 0;
+      const slot = mapAds[posId];
+      if (slot && Array.isArray(slot.lst)) slot.lst = [];
+      if (slot && typeof slot.count === "number") slot.count = 0;
+      if (slot && typeof slot.total === "number") slot.total = 0;
     }
   }
 
