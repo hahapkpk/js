@@ -35,17 +35,19 @@ DOMAIN-SUFFIX,deliver.ifeng.com,REJECT
 DOMAIN,api.newad.ifeng.com,REJECT
 
 [Rewrite]
-# ── 开屏广告数据接口 → 返回空数组，APP 认为无广告直接跳过 ──
-^https:\/\/nine\.ifeng\.com\/startUpAdd reject-array
-# ── 开屏广告预缓存列表 ──
-^https:\/\/nine\.ifeng\.com\/startUpAdPrestrainList reject-array
-# ── 广告预加载 ──
-^https:\/\/nine\.ifeng\.com\/adPreload reject-dict
-# ── 信息流视频广告插片配置 ──
-^https:\/\/nine\.ifeng\.com\/advideopatchconfig reject-dict
+# ── 开屏广告数据接口 & 预缓存列表 → 返回空数组 ──
+^https:\/\/nine\.ifeng\.com\/startUpAdd script-response-body ifeng_splash_cleaner
+^https:\/\/nine\.ifeng\.com\/startUpAdPrestrainList script-response-body ifeng_splash_cleaner
+# ── 广告预加载 & 视频广告插片配置 → 清空广告数据 ──
+^https:\/\/nine\.ifeng\.com\/adPreload script-response-body ifeng_ad_empty_dict
+^https:\/\/nine\.ifeng\.com\/advideopatchconfig script-response-body ifeng_ad_empty_dict
 # ── 广告曝光 & 点击上报 ──
 ^https:\/\/iis\d+[^\.]*\.deliver\.ifeng\.com\/(tr|i|c)\? reject
 ^https:\/\/iis\d+g\.deliver\.ifeng\.com\/LogReceiver reject
+
+[Script]
+ifeng_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_splash_cleaner.js
+ifeng_ad_empty_dict = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_ad_empty_dict.js
 
 [MITM]
 hostname = nine.ifeng.com, *.deliver.ifeng.com, api.newad.ifeng.com
