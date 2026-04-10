@@ -41,9 +41,6 @@ DOMAIN,api.newad.ifeng.com,REJECT
 # ── 广告预加载 & 视频广告插片配置 → 清空广告数据 ──
 ^https:\/\/nine\.ifeng\.com\/adPreload script-response-body ifeng_ad_empty_dict
 ^https:\/\/nine\.ifeng\.com\/advideopatchconfig script-response-body ifeng_ad_empty_dict
-# ── 广告曝光 & 点击上报 ──
-^https:\/\/iis\d+[^\.]*\.deliver\.ifeng\.com\/(tr|i|c)\? reject
-^https:\/\/iis\d+g\.deliver\.ifeng\.com\/LogReceiver reject
 
 [Script]
 ifeng_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_splash_cleaner.js
