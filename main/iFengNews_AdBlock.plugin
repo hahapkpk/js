@@ -1,0 +1,55 @@
+#!name=凤凰新闻去广告
+#!desc=屏蔽凤凰新闻 APP 开屏广告、信息流广告及第三方广告 SDK。适配 ifengNews 7.97.x（iOS）。需开启 MITM。
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js/main
+
+[Rule]
+# ── 穿山甲（字节跳动）广告 SDK ──
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,bytescm.com,REJECT
+DOMAIN,toblog.ctobsnssdk.com,REJECT
+DOMAIN,adsmind.ugdtimg.com,REJECT
+DOMAIN,webcast-open.douyin.com,REJECT
+DOMAIN,mssdk.volces.com,REJECT
+DOMAIN,apmplus.volces.com,REJECT
+DOMAIN,tnc3-alisc1.zijieapi.com,REJECT
+# ── 腾讯优量汇 ──
+DOMAIN,sdk.e.qq.com,REJECT
+DOMAIN,mi.gdt.qq.com,REJECT
+DOMAIN,v.gdt.qq.com,REJECT
+DOMAIN,mazu.m.qq.com,REJECT
+DOMAIN,pgdt.ugdtimg.com,REJECT
+# ── 拼多多广告（开屏广告素材主要来源）──
+DOMAIN,images.pinduoduo.com,REJECT
+DOMAIN,t-dsp.pinduoduo.com,REJECT
+DOMAIN-SUFFIX,5hte21mz.com,REJECT
+# ── 第三方 SSP 竞价广告 ──
+DOMAIN,ssp.1rtb.com,REJECT
+# ── 设备指纹 / 广告追踪 SDK ──
+DOMAIN,fp-it.fengkongcloud.com,REJECT
+DOMAIN-SUFFIX,shuzilm.cn,REJECT
+# ── 凤凰广告曝光投递 & 内部广告接口 ──
+DOMAIN-SUFFIX,deliver.ifeng.com,REJECT
+DOMAIN,api.newad.ifeng.com,REJECT
+
+[Rewrite]
+# ── 开屏广告数据接口 → 返回空数组，APP 认为无广告直接跳过 ──
+^https:\/\/nine\.ifeng\.com\/startUpAdd script-response-body ifeng_splash_cleaner
+# ── 开屏广告预缓存列表 ──
+^https:\/\/nine\.ifeng\.com\/startUpAdPrestrainList script-response-body ifeng_splash_cleaner
+# ── 广告预加载 ──
+^https:\/\/nine\.ifeng\.com\/adPreload script-response-body ifeng_ad_empty_dict
+# ── 信息流视频广告插片配置 ──
+^https:\/\/nine\.ifeng\.com\/advideopatchconfig script-response-body ifeng_ad_empty_dict
+# ── 广告曝光 & 点击上报 ──
+^https:\/\/iis\d+[^\.]*\.deliver\.ifeng\.com\/(tr|i|c)\? - reject
+^https:\/\/iis\d+g\.deliver\.ifeng\.com\/LogReceiver - reject
+
+[Script]
+ifeng_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/ifeng_splash_cleaner.js
+ifeng_ad_empty_dict = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/ifeng_ad_empty_dict.js
+
+[MITM]
+hostname = nine.ifeng.com, *.deliver.ifeng.com, api.newad.ifeng.com
