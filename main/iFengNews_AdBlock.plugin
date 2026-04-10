@@ -43,8 +43,8 @@ DOMAIN,api.newad.ifeng.com,REJECT
 ^https:\/\/nine\.ifeng\.com\/advideopatchconfig script-response-body ifeng_ad_empty_dict
 
 [Script]
-ifeng_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_splash_cleaner.js
-ifeng_ad_empty_dict = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_ad_empty_dict.js
+ifeng_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/ifeng_splash_cleaner.js
+ifeng_ad_empty_dict = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/ifeng_ad_empty_dict.js
 
 [MITM]
 hostname = nine.ifeng.com, *.deliver.ifeng.com, api.newad.ifeng.com
