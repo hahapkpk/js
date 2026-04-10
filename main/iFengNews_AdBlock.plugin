@@ -1,0 +1,97 @@
+#!name=凤凰新闻去广告
+#!desc=去除凤凰新闻 APP 的开屏广告、信息流广告及第三方广告 SDK，屏蔽广告追踪与设备指纹上报。适用于 ifengNews 7.97.x+
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/09/5f/8f/095f8f7a-e0f9-db32-2fa7-5ac26ca3c3b6/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/460x0w.webp
+
+# ==============================
+# 开屏广告（Splash Ad）
+# ==============================
+# nine.ifeng.com/startUpAddAd     — 开屏广告主接口（返回广告数据）
+# nine.ifeng.com/adPreload         — 广告资源预加载
+# nine.ifeng.com/startUpAdPrestrainList — 开屏广告预缓存列表
+
+# ==============================
+# 第三方广告 SDK
+# ==============================
+# api-access.pangolin-sdk-toutiao.com  — 穿山甲（字节）广告请求
+# sdk.e.qq.com / mi.gdt.qq.com        — 腾讯优量汇
+# ssp.1rtb.com                         — 第三方 SSP 广告竞价
+# adsmind.ugdtimg.com                  — 广告视频素材 CDN
+# api.newad.ifeng.com                  — 凤凰内部广告接口
+# iis1.deliver.ifeng.com               — 广告曝光 & 点击上报
+# iis3g.deliver.ifeng.com              — 广告日志上报
+
+# ==============================
+# 广告追踪 / 设备指纹 SDK
+# ==============================
+# fp-it.fengkongcloud.com              — 数美风控（设备指纹）
+# *.shuzilm.cn                         — 数知了广告追踪 SDK
+# mssdk.volces.com                     — 火山引擎广告 SDK
+
+[Rule]
+# ---------- 开屏广告 ----------
+URL-REGEX,^https?://nine\.ifeng\.com/startUpAdd,REJECT
+URL-REGEX,^https?://nine\.ifeng\.com/adPreload,REJECT
+URL-REGEX,^https?://nine\.ifeng\.com/startUpAdPrestrainList,REJECT
+URL-REGEX,^https?://nine\.ifeng\.com/advideopatchconfig,REJECT
+URL-REGEX,^https?://nine\.ifeng\.com/jump2detail,REJECT
+
+# ---------- 凤凰内部广告接口 ----------
+DOMAIN,api.newad.ifeng.com,REJECT
+DOMAIN-SUFFIX,deliver.ifeng.com,REJECT
+
+# ---------- 穿山甲（字节跳动）广告 SDK ----------
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,bytescm.com,REJECT
+DOMAIN,adsmind.ugdtimg.com,REJECT
+DOMAIN,toblog.ctobsnssdk.com,REJECT
+DOMAIN,webcast-open.douyin.com,REJECT
+DOMAIN,mssdk.volces.com,REJECT
+DOMAIN,apmplus.volces.com,REJECT
+
+# ---------- 腾讯优量汇 ----------
+DOMAIN,sdk.e.qq.com,REJECT
+DOMAIN,mi.gdt.qq.com,REJECT
+DOMAIN,v.gdt.qq.com,REJECT
+DOMAIN,mazu.m.qq.com,REJECT
+
+# ---------- 第三方 SSP 广告 ----------
+DOMAIN,ssp.1rtb.com,REJECT
+DOMAIN,t-dsp.pinduoduo.com,REJECT
+
+# ---------- 设备指纹 / 广告追踪 SDK ----------
+DOMAIN,fp-it.fengkongcloud.com,REJECT
+DOMAIN-SUFFIX,shuzilm.cn,REJECT
+
+# ---------- 广告曝光追踪（通配）----------
+URL-REGEX,^https?://iis\d+.*\.deliver\.ifeng\.com,REJECT
+
+[URL Rewrite]
+# 开屏广告：返回空 JSON，令 APP 认为无广告
+^https?://nine\.ifeng\.com/startUpAddAd _ reject
+^https?://nine\.ifeng\.com/adPreload _ reject
+^https?://nine\.ifeng\.com/startUpAdPrestrainList _ reject
+^https?://nine\.ifeng\.com/advideopatchconfig _ reject
+
+# 凤凰广告投递追踪
+^https?://iis\d[^/]*\.deliver\.ifeng\.com/(tr|i)\? _ reject
+
+# 第三方广告 SDK
+^https?://sdk\.e\.qq\.com/ _ reject
+^https?://mi\.gdt\.qq\.com/ _ reject
+^https?://v\.gdt\.qq\.com/ _ reject
+^https?://(api-access|log-api)\.pangolin-sdk-toutiao[^/]*\.com/ _ reject
+^https?://adsmind\.ugdtimg\.com/ _ reject
+^https?://ssp\.1rtb\.com/ _ reject
+
+# 数美风控
+^https?://fp-it\.fengkongcloud\.com/ _ reject
+
+# 数知了追踪
+^https?://(ipv4|ipv6|iudd|caid)\.shuzilm\.cn/ _ reject
+
+[MITM]
+hostname = nine.ifeng.com, api.newad.ifeng.com, *.deliver.ifeng.com, fp-it.fengkongcloud.com, *.shuzilm.cn, sdk.e.qq.com, mi.gdt.qq.com, v.gdt.qq.com, *.pangolin-sdk-toutiao.com, *.pangolin-sdk-toutiao1.com, adsmind.ugdtimg.com, ssp.1rtb.com, mssdk.volces.com, apmplus.volces.com, webcast-open.douyin.com
