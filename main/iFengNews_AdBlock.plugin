@@ -1,7 +1,7 @@
 #!name=凤凰新闻去广告
 #!desc=屏蔽凤凰新闻 APP 开屏广告、信息流广告及第三方广告 SDK。适配 ifengNews 7.97.x（iOS）。需开启 MITM。
 #!author=hahapkpk
-#!homepage=https://github.com/hahapkpk/js/main
+#!homepage=https://github.com/hahapkpk/js/blob/main
 
 [Rule]
 # ── 穿山甲（字节跳动）广告 SDK ──
@@ -36,16 +36,16 @@ DOMAIN,api.newad.ifeng.com,REJECT
 
 [Rewrite]
 # ── 开屏广告数据接口 → 返回空数组，APP 认为无广告直接跳过 ──
-^https:\/\/nine\.ifeng\.com\/startUpAdd - reject-array
+^https:\/\/nine\.ifeng\.com\/startUpAdd reject-array
 # ── 开屏广告预缓存列表 ──
-^https:\/\/nine\.ifeng\.com\/startUpAdPrestrainList - reject-array
+^https:\/\/nine\.ifeng\.com\/startUpAdPrestrainList reject-array
 # ── 广告预加载 ──
-^https:\/\/nine\.ifeng\.com\/adPreload - reject-dict
+^https:\/\/nine\.ifeng\.com\/adPreload reject-dict
 # ── 信息流视频广告插片配置 ──
-^https:\/\/nine\.ifeng\.com\/advideopatchconfig - reject-dict
+^https:\/\/nine\.ifeng\.com\/advideopatchconfig reject-dict
 # ── 广告曝光 & 点击上报 ──
-^https:\/\/iis\d+[^\.]*\.deliver\.ifeng\.com\/(tr|i|c)\? - reject
-^https:\/\/iis\d+g\.deliver\.ifeng\.com\/LogReceiver - reject
+^https:\/\/iis\d+[^\.]*\.deliver\.ifeng\.com\/(tr|i|c)\? reject
+^https:\/\/iis\d+g\.deliver\.ifeng\.com\/LogReceiver reject
 
 [MITM]
 hostname = nine.ifeng.com, *.deliver.ifeng.com, api.newad.ifeng.com
