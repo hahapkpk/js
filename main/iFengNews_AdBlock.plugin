@@ -1,0 +1,78 @@
+#!name=凤凰新闻去广告
+#!desc=屏蔽凤凰新闻 APP 开屏广告、信息流广告、第三方广告 SDK 及追踪上报。适配 ifengNews 7.97.x（iOS）。需开启 MITM。
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/09/5f/8f/095f8f7a-e0f9-db32-2fa7-5ac26ca3c3b6/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/460x0w.webp
+
+# ============================================================
+# 说明
+# ============================================================
+# 【开屏广告】nine.ifeng.com/startUpAddAd 返回广告 JSON 数组
+#   → reject-array 返回空数组 []，APP 直接跳过广告展示
+# 【信息流广告】adPreload / advideopatchconfig 等接口同步屏蔽
+# 【纯广告域名】直接 REJECT（无需 MITM，DNS 层拦截）
+# 【广告素材 CDN】拒绝加载广告图片/视频资源
+# ============================================================
+
+[Rule]
+# ── 穿山甲（字节跳动）广告 SDK ──
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+DOMAIN-SUFFIX,pglstatp-toutiao.com,REJECT
+DOMAIN-SUFFIX,bytescm.com,REJECT
+DOMAIN,toblog.ctobsnssdk.com,REJECT
+DOMAIN,adsmind.ugdtimg.com,REJECT
+DOMAIN,webcast-open.douyin.com,REJECT
+DOMAIN,mssdk.volces.com,REJECT
+DOMAIN,apmplus.volces.com,REJECT
+DOMAIN,tnc3-alisc1.zijieapi.com,REJECT
+
+# ── 腾讯优量汇 ──
+DOMAIN,sdk.e.qq.com,REJECT
+DOMAIN,mi.gdt.qq.com,REJECT
+DOMAIN,v.gdt.qq.com,REJECT
+DOMAIN,mazu.m.qq.com,REJECT
+DOMAIN,pgdt.ugdtimg.com,REJECT
+
+# ── 拼多多广告（开屏广告主要素材来源）──
+DOMAIN,images.pinduoduo.com,REJECT
+DOMAIN,t-dsp.pinduoduo.com,REJECT
+DOMAIN-SUFFIX,5hte21mz.com,REJECT
+
+# ── 第三方 SSP 竞价广告 ──
+DOMAIN,ssp.1rtb.com,REJECT
+
+# ── 设备指纹 / 广告追踪 SDK ──
+DOMAIN,fp-it.fengkongcloud.com,REJECT
+DOMAIN-SUFFIX,shuzilm.cn,REJECT
+
+# ── 广告曝光投递（凤凰内部）──
+DOMAIN-SUFFIX,deliver.ifeng.com,REJECT
+
+# ── 凤凰内部广告接口 ──
+DOMAIN,api.newad.ifeng.com,REJECT
+
+[URL Rewrite]
+# ── 开屏广告数据接口 → 返回空数组，APP 直接跳过广告 ──
+^https?://nine\.ifeng\.com/startUpAdd - reject-array
+
+# ── 广告预加载（让 APP 认为没有待加载广告）──
+^https?://nine\.ifeng\.com/adPreload - reject-dict
+
+# ── 信息流广告视频插片配置 ──
+^https?://nine\.ifeng\.com/advideopatchconfig - reject-dict
+
+# ── 开屏广告预缓存列表 ──
+^https?://nine\.ifeng\.com/startUpAdPrestrainList - reject-array
+
+# ── 广告跳转接口（拦截广告落地页跳转）──
+^https?://nine\.ifeng\.com/jump2detail.*adAid - reject-dict
+
+# ── 凤凰广告曝光 & 点击上报 ──
+^https?://iis\d+[^/]*\.deliver\.ifeng\.com/(tr|i|c)\? - reject
+
+# ── 凤凰广告日志上报 ──
+^https?://iis\d+g\.deliver\.ifeng\.com/LogReceiver - reject
+
+[MITM]
+hostname = nine.ifeng.com, api.newad.ifeng.com, *.deliver.ifeng.com
