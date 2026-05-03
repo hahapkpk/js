@@ -1,0 +1,46 @@
+#!name=小蚁摄像机 + 腾讯文档 去广告（合并版 v2）
+#!desc=小蚁：重写下发包去广告并尽量提升启动速度；腾讯文档：清空天枢广告 + 拦第三方开屏链路
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
+
+[Rule]
+# ===== 腾讯文档开屏：第三方广告链路（抓包日志命中） =====
+DOMAIN-SUFFIX,adkwai.com,REJECT
+DOMAIN,nadvideo.baidu.com,REJECT
+DOMAIN-SUFFIX,beizi.biz,REJECT
+DOMAIN-SUFFIX,medproad.com,REJECT
+DOMAIN-SUFFIX,fancyapi.com,REJECT
+
+# ===== 腾讯广点通（腾讯文档常见） =====
+DOMAIN-SUFFIX,win.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,rpt.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,t.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,nc.gdt.qq.com,REJECT
+DOMAIN-SUFFIX,p.l.qq.com,REJECT
+DOMAIN-SUFFIX,c.l.qq.com,REJECT
+DOMAIN-SUFFIX,pgdt.gtimg.cn,REJECT
+
+# ===== 小蚁：为提升启动速度，默认不拦穿山甲（靠下发包重写去广告） =====
+# DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
+# DOMAIN-SUFFIX,pangolin-sdk-toutiao1.com,REJECT
+# DOMAIN-SUFFIX,pangle.io,REJECT
+# DOMAIN-SUFFIX,csjdeveloper.com,REJECT
+
+[Rewrite]
+# ===== 小蚁（gw.xiaoyi.com）===== 
+^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/config script-response-body xiaoyi_ad_sanitizer
+^https:\/\/gw\.xiaoyi\.com\/vas\/v\d+\/equipment\/play\/bannerList02 script-response-body xiaoyi_ad_sanitizer
+^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-response-body yi_splash_cleaner
+
+# ===== 腾讯文档（docs.qq.com）===== 
+^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-response-body tdocs_ad_cleaner
+
+[Script]
+xiaoyi_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js
+
+yi_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js
+
+tdocs_ad_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js
+
+[MITM]
+hostname = gw.xiaoyi.com, docs.qq.com
