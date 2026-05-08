@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         夸克网盘空间占用目录树
 // @name:en      Quark Cloud Disk Space Tree Analyzer
-// @version      1.2
+// @version      1.3
 // @description  分析夸克网盘当前目录空间占用，并使用可展开目录树展示。
 // @description:en Analyze Quark Cloud Disk space usage and display with an expandable directory tree.
 // @license      LGPL-3.0
@@ -160,6 +160,36 @@
             return data.data.list;
         }
         throw new Error('API 返回格式异常');
+    }
+
+    async function deleteQuarkFolder(node) {
+        if (!node || !node.isDir || !node.fid || node.fid === '0') {
+            throw new Error('根目录或无效目录不能删除');
+        }
+        const params = {
+            pr: 'ucpro',
+            fr: 'pc',
+            uc_param_str: ''
+        };
+        const url = 'https://drive-pc.quark.cn/1/clouddrive/file/delete?' + new URLSearchParams(params);
+        const response = await fetch(url, {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action_type: 2,
+                exclude_fids: [],
+                filelist: [{ fid: node.fid, file_name: node.name }]
+            })
+        });
+        if (!response.ok) {
+            throw new Error('删除请求失败: ' + response.status + ' ' + response.statusText);
+        }
+        const data = await response.json();
+        if (data && data.status === 200 && data.code === 0) {
+            return data.data;
+        }
+        throw new Error((data && (data.message || data.error_msg)) || '删除接口返回异常');
     }
 
     async function listAllFiles(fid) {
@@ -378,6 +408,45 @@
         });
     }
 
+    function removeNodeByFid(parent, fid) {
+        if (!parent || !Array.isArray(parent.children)) return false;
+        const index = parent.children.findIndex((child) => child.fid === fid);
+        if (index >= 0) {
+            parent.children.splice(index, 1);
+            return true;
+        }
+        return parent.children.some((child) => removeNodeByFid(child, fid));
+    }
+
+    async function handleDeleteFolder(node, button) {
+        if (!node || !node.isDir || node.fid === '0') return;
+        const firstConfirm = confirm('确认删除目录：' + node.path + '\n\n该操作会调用夸克网盘删除接口，请确认该目录可以删除。');
+        if (!firstConfirm) return;
+        const typed = prompt('再次确认删除，请输入目录名：' + node.name);
+        if (typed !== node.name) {
+            alert('目录名不匹配，已取消删除。');
+            return;
+        }
+
+        const oldText = button.textContent;
+        button.disabled = true;
+        button.textContent = '删除中';
+        try {
+            await deleteQuarkFolder(node);
+            if (currentResult && currentResult[0]) {
+                removeNodeByFid(currentResult[0], node.fid);
+                recalculateNode(currentResult[0]);
+                if (activePathInfo) cacheScanResult(activePathInfo, currentResult);
+                renderTreeView(currentResult);
+            }
+            updateProgress('已删除目录: ' + node.path);
+        } catch (error) {
+            button.disabled = false;
+            button.textContent = oldText;
+            alert('删除失败: ' + error.message);
+        }
+    }
+
     function createTreeNode(node, depth) {
         const children = getSortedChildren(node);
         const hasChildren = children.length > 0;
@@ -433,6 +502,24 @@
         });
         row.appendChild(copyPathButton);
 
+        if (node.isDir && node.fid && node.fid !== '0') {
+            const deleteFolderButton = document.createElement('button');
+            deleteFolderButton.type = 'button';
+            deleteFolderButton.className = 'quark-tree-delete';
+            deleteFolderButton.textContent = '删除';
+            deleteFolderButton.title = '删除该目录';
+            deleteFolderButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                handleDeleteFolder(node, deleteFolderButton);
+            });
+            row.appendChild(deleteFolderButton);
+        } else {
+            const deletePlaceholder = document.createElement('span');
+            deletePlaceholder.className = 'quark-tree-delete-placeholder';
+            row.appendChild(deletePlaceholder);
+        }
+
         item.appendChild(row);
 
         if (hasChildren) {
@@ -449,6 +536,10 @@
                 item.classList.toggle('collapsed');
                 toggle.textContent = item.classList.contains('collapsed') ? '>' : 'v';
             });
+            if (depth > 0) {
+                item.classList.add('collapsed');
+                toggle.textContent = '>';
+            }
         }
 
         return item;
@@ -814,7 +905,7 @@
         flex-wrap: wrap;
         justify-content: flex-end;
     }
-    .quark-tree-actions button, .quark-tree-copy {
+    .quark-tree-actions button, .quark-tree-copy, .quark-tree-delete {
         height: 28px;
         padding: 0 9px;
         border: 1px solid #c9d2df;
@@ -858,7 +949,7 @@
     .quark-tree-row {
         min-height: 32px;
         display: grid;
-        grid-template-columns: 22px 34px minmax(180px, 1fr) 96px 100px 56px;
+        grid-template-columns: 22px 34px minmax(180px, 1fr) 96px 100px 56px 56px;
         align-items: center;
         column-gap: 8px;
         border-bottom: 1px solid #edf1f7;
@@ -897,10 +988,23 @@
         text-align: right;
         white-space: nowrap;
     }
-    .quark-tree-copy {
+    .quark-tree-copy, .quark-tree-delete {
         height: 24px;
         padding: 0 6px;
+    }
+    .quark-tree-delete {
+        color: #b91c1c;
+        border-color: #fecaca;
         margin-right: 8px;
+    }
+    .quark-tree-delete:hover {
+        background: #fef2f2;
+        border-color: #fca5a5;
+    }
+    .quark-tree-delete-placeholder {
+        display: block;
+        width: 1px;
+        height: 1px;
     }
     .quark-tree-item.collapsed > .quark-tree-children {
         display: none;
