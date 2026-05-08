@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         夸克网盘空间占用目录树
 // @name:en      Quark Cloud Disk Space Tree Analyzer
-// @version      1.3
+// @version      1.4
 // @description  分析夸克网盘当前目录空间占用，并使用可展开目录树展示。
 // @description:en Analyze Quark Cloud Disk space usage and display with an expandable directory tree.
 // @license      LGPL-3.0
@@ -179,7 +179,7 @@
             body: JSON.stringify({
                 action_type: 2,
                 exclude_fids: [],
-                filelist: [{ fid: node.fid, file_name: node.name }]
+                filelist: [node.fid]
             })
         });
         if (!response.ok) {
@@ -420,13 +420,8 @@
 
     async function handleDeleteFolder(node, button) {
         if (!node || !node.isDir || node.fid === '0') return;
-        const firstConfirm = confirm('确认删除目录：' + node.path + '\n\n该操作会调用夸克网盘删除接口，请确认该目录可以删除。');
-        if (!firstConfirm) return;
-        const typed = prompt('再次确认删除，请输入目录名：' + node.name);
-        if (typed !== node.name) {
-            alert('目录名不匹配，已取消删除。');
-            return;
-        }
+        const confirmed = confirm('确认删除目录：' + node.path + '\n\n该操作会调用夸克网盘删除接口。');
+        if (!confirmed) return;
 
         const oldText = button.textContent;
         button.disabled = true;
