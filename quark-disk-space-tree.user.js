@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         夸克网盘空间占用目录树
 // @name:en      Quark Cloud Disk Space Tree Analyzer
-// @version      1.6
+// @version      1.7
 // @description  分析夸克网盘当前目录空间占用，并使用可展开目录树展示。
 // @description:en Analyze Quark Cloud Disk space usage and display with an expandable directory tree.
 // @license      LGPL-3.0
@@ -251,6 +251,16 @@
         return Number(record.size || record.file_size || 0);
     }
 
+    function getModifiedAt(record) {
+        return Number(record.updated_at || record.last_update_at || record.modify_time || record.created_at || 0);
+    }
+
+    function formatModifiedTime(value) {
+        if (!value) return '-';
+        const timestamp = String(value).length === 10 ? value * 1000 : value;
+        return parseTime(new Date(timestamp));
+    }
+
     function makeFileNode(record, path) {
         const name = getFileName(record);
         const size = getFileSize(record);
@@ -261,11 +271,12 @@
             path: path + '/' + name,
             isDir: false,
             fid: record.fid || '',
+            modifiedAt: getModifiedAt(record),
             children: []
         };
     }
 
-    function makeDirNode(name, path, fid) {
+    function makeDirNode(name, path, fid, record = {}) {
         return {
             name,
             value: 0,
@@ -273,6 +284,7 @@
             path,
             isDir: true,
             fid,
+            modifiedAt: getModifiedAt(record),
             children: []
         };
     }
@@ -312,7 +324,7 @@
             const fileName = getFileName(file);
             if (isDirectory(file)) {
                 const childPath = task.path === '/' ? '/' + fileName : task.path + '/' + fileName;
-                const childNode = makeDirNode(fileName, childPath, file.fid || file.file_fid || '');
+                const childNode = makeDirNode(fileName, childPath, file.fid || file.file_fid || '', file);
                 task.node.children.push(childNode);
                 tasks.push({ fid: childNode.fid, node: childNode, path: childPath });
             } else {
@@ -439,6 +451,8 @@
             if (a.isDir !== b.isDir) return a.isDir ? -1 : 1;
             if (currentSort === 'name-asc') return String(a.name).localeCompare(String(b.name), 'zh-Hans-CN');
             if (currentSort === 'count-desc') return (b.file_count || 0) - (a.file_count || 0);
+            if (currentSort === 'updated-desc') return (b.modifiedAt || 0) - (a.modifiedAt || 0);
+            if (currentSort === 'updated-asc') return (a.modifiedAt || 0) - (b.modifiedAt || 0);
             return (b.value || 0) - (a.value || 0);
         });
     }
@@ -487,6 +501,28 @@
         });
     }
 
+    function handleSaveCache() {
+        if (!activePathInfo || !currentResult) {
+            alert('当前没有可保存的扫描结果。');
+            return;
+        }
+        cacheScanResult(activePathInfo, currentResult);
+        updateProgress('已手动保存当前扫描缓存。');
+        alert('已保存缓存。');
+    }
+
+    function handleLoadCache() {
+        activePathInfo = getCurrentPathInfo();
+        const cached = loadCachedResult(activePathInfo);
+        if (!cached || !cached.result) {
+            alert('当前目录没有可用缓存。');
+            return;
+        }
+        selectedFids.clear();
+        renderTreeView(cached.result, { fromCache: true, savedAt: cached.savedAt });
+        updateProgress('已手动读取缓存。');
+    }
+
     function removeSelectedFids(fids) {
         fids.forEach((fid) => selectedFids.delete(fid));
     }
@@ -507,7 +543,6 @@
                 removeNodeByFid(currentResult[0], node.fid);
                 selectedFids.delete(node.fid);
                 recalculateNode(currentResult[0]);
-                if (activePathInfo) cacheScanResult(activePathInfo, currentResult);
                 renderTreeView(currentResult, { expandedPaths });
             }
             updateProgress('已删除' + nodeType + ': ' + node.path);
@@ -544,7 +579,6 @@
                 fids.forEach((fid) => removeNodeByFid(currentResult[0], fid));
                 removeSelectedFids(fids);
                 recalculateNode(currentResult[0]);
-                if (activePathInfo) cacheScanResult(activePathInfo, currentResult);
                 renderTreeView(currentResult, { expandedPaths, clearDeletedSelection: true });
             }
             updateProgress('已批量删除 ' + fids.length + ' 项');
@@ -621,6 +655,11 @@
         size.className = 'quark-tree-size';
         size.textContent = formatSize(node.value || 0);
         row.appendChild(size);
+
+        const modified = document.createElement('span');
+        modified.className = 'quark-tree-modified';
+        modified.textContent = formatModifiedTime(node.modifiedAt);
+        row.appendChild(modified);
 
         const copyPathButton = document.createElement('button');
         copyPathButton.type = 'button';
@@ -750,6 +789,20 @@
         });
         actions.appendChild(collapseAllButton);
 
+        const saveCacheButton = document.createElement('button');
+        saveCacheButton.type = 'button';
+        saveCacheButton.id = 'saveCacheButton';
+        saveCacheButton.textContent = '保存缓存';
+        saveCacheButton.addEventListener('click', handleSaveCache);
+        actions.appendChild(saveCacheButton);
+
+        const loadCacheButton = document.createElement('button');
+        loadCacheButton.type = 'button';
+        loadCacheButton.id = 'loadCacheButton';
+        loadCacheButton.textContent = '读取缓存';
+        loadCacheButton.addEventListener('click', handleLoadCache);
+        actions.appendChild(loadCacheButton);
+
         const selectedCountLabel = document.createElement('span');
         selectedCountLabel.id = 'selectedCountLabel';
         selectedCountLabel.className = 'quark-tree-selected-count';
@@ -847,7 +900,7 @@
         filters.appendChild(minSizeInput);
 
         const sortSelect = document.createElement('select');
-        sortSelect.innerHTML = '<option value="size-desc">按大小降序</option><option value="name-asc">按名称升序</option><option value="count-desc">按文件数降序</option>';
+        sortSelect.innerHTML = '<option value="size-desc">按大小降序</option><option value="updated-desc">按修改日期降序</option><option value="updated-asc">按修改日期升序</option><option value="name-asc">按名称升序</option><option value="count-desc">按文件数降序</option>';
         sortSelect.value = currentSort;
         filters.appendChild(sortSelect);
 
@@ -923,11 +976,6 @@
 
         activePathInfo = getCurrentPathInfo();
         selectedFids.clear();
-        const cached = !forceRefresh ? loadCachedResult(activePathInfo) : null;
-        if (cached && cached.result) {
-            renderTreeView(cached.result, { fromCache: true, savedAt: cached.savedAt });
-            return;
-        }
 
         removeElement('chartcontainer');
         ensureProgressPanel();
@@ -940,7 +988,6 @@
             await collectFiles(activePathInfo.fid, activePathInfo.name, result, activePathInfo.fullPath, true);
             processing = false;
             renderTreeView(result);
-            cacheScanResult(activePathInfo, result);
             updateProgress('已完成对目录: "' + activePathInfo.fullPath + '" 的扫描！');
         } catch (error) {
             processing = false;
@@ -1127,7 +1174,7 @@
     .quark-tree-row {
         min-height: 32px;
         display: grid;
-        grid-template-columns: 24px 22px 34px minmax(180px, 1fr) 96px 100px 56px 56px;
+        grid-template-columns: 24px 22px 34px minmax(180px, 1fr) 96px 100px 152px 56px 56px;
         align-items: center;
         column-gap: 8px;
         border-bottom: 1px solid #edf1f7;
@@ -1175,6 +1222,12 @@
         font-weight: 600;
         text-align: right;
         white-space: nowrap;
+    }
+    .quark-tree-modified {
+        color: #64748b;
+        text-align: right;
+        white-space: nowrap;
+        font-size: 12px;
     }
     .quark-tree-copy, .quark-tree-delete {
         height: 24px;

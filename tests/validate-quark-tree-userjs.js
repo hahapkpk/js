@@ -32,12 +32,20 @@ assertContains('runConcurrentTasks', 'scanner should use a concurrent task queue
 assertContains('updateProgress', 'scanner should expose live progress updates');
 assertContains('cacheScanResult', 'scanner should cache completed scan results');
 assertContains('loadCachedResult', 'scanner should read cached scan results');
+assertContains('saveCacheButton', 'cache saving should be manual');
+assertContains('loadCacheButton', 'cache loading should be manual');
+assertContains('handleSaveCache', 'manual cache save handler should exist');
+assertContains('handleLoadCache', 'manual cache load handler should exist');
 assertContains('retryFailedButton', 'UI should allow retrying failed directories');
 assertContains('expandAllButton', 'tree UI should include expand all');
 assertContains('collapseAllButton', 'tree UI should include collapse all');
 assertContains('searchInput', 'tree UI should include search');
 assertContains('minSizeInput', 'tree UI should include minimum size filtering');
 assertContains('sortSelect', 'tree UI should include sort control');
+assertContains('modifiedAt', 'tree nodes should retain modified time');
+assertContains('quark-tree-modified', 'tree should display modified time');
+assertContains('updated-desc', 'sort control should support modified date descending');
+assertContains('updated-asc', 'sort control should support modified date ascending');
 assertContains('copyPathButton', 'tree UI should allow copying paths');
 assertContains('quark-tree-icon', 'tree should show file and folder icons');
 assertContains('deleteFolderButton', 'folder rows should expose delete action');
@@ -71,5 +79,7 @@ assertNotContains('GM_xmlhttpRequest', 'script should not request unused GM_xmlh
 assertNotContains('jquery-latest.js', 'script should not depend on jQuery CDN');
 assertNotContains('waitForJQuery', 'script should not wait for jQuery');
 assertNotContains('$(', 'script should not depend on jQuery helpers');
+assertNotContains('const cached = !forceRefresh ? loadCachedResult(activePathInfo) : null;', 'scan should not auto-load cache');
+assertNotContains('cacheScanResult(activePathInfo, result);', 'scan should not auto-save cache after scanning');
 
 console.log('quark tree userscript validation passed');
