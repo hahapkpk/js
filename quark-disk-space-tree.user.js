@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         夸克网盘空间占用目录树
 // @name:en      Quark Cloud Disk Space Tree Analyzer
-// @version      1.5
+// @version      1.6
 // @description  分析夸克网盘当前目录空间占用，并使用可展开目录树展示。
 // @description:en Analyze Quark Cloud Disk space usage and display with an expandable directory tree.
 // @license      LGPL-3.0
@@ -31,7 +31,9 @@
     let buttonAdded = false;
     let currentResult = null;
     let currentSort = 'size-desc';
+    let currentRenderOptions = {};
     let failedDirs = [];
+    let selectedFids = new Set();
     let activePathInfo = null;
     let progressState = createProgressState();
 
@@ -190,6 +192,39 @@
             return data.data;
         }
         throw new Error((data && (data.message || data.error_msg)) || '删除接口返回异常');
+    }
+
+    async function deleteQuarkNodes(nodes) {
+        const fids = nodes
+            .filter((node) => node && node.fid && node.fid !== '0')
+            .map((node) => node.fid);
+        if (fids.length === 0) {
+            throw new Error('没有可删除的文件或目录');
+        }
+        const params = {
+            pr: 'ucpro',
+            fr: 'pc',
+            uc_param_str: ''
+        };
+        const url = 'https://drive-pc.quark.cn/1/clouddrive/file/delete?' + new URLSearchParams(params);
+        const response = await fetch(url, {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action_type: 2,
+                exclude_fids: [],
+                filelist: fids
+            })
+        });
+        if (!response.ok) {
+            throw new Error('批量删除请求失败: ' + response.status + ' ' + response.statusText);
+        }
+        const data = await response.json();
+        if (data && data.status === 200 && data.code === 0) {
+            return data.data;
+        }
+        throw new Error((data && (data.message || data.error_msg)) || '批量删除接口返回异常');
     }
 
     async function listAllFiles(fid) {
@@ -418,6 +453,44 @@
         return parent.children.some((child) => removeNodeByFid(child, fid));
     }
 
+    function findNodeByFid(parent, fid) {
+        if (!parent) return null;
+        if (parent.fid === fid) return parent;
+        for (const child of parent.children || []) {
+            const found = findNodeByFid(child, fid);
+            if (found) return found;
+        }
+        return null;
+    }
+
+    function getSelectedNodes() {
+        if (!currentResult || !currentResult[0]) return [];
+        return Array.from(selectedFids)
+            .map((fid) => findNodeByFid(currentResult[0], fid))
+            .filter(Boolean);
+    }
+
+    function getExpandedPaths() {
+        return new Set(Array.from(document.querySelectorAll('.quark-tree-item:not(.collapsed)'))
+            .map((item) => item.dataset.path)
+            .filter(Boolean));
+    }
+
+    function updateSelectionUI() {
+        const selectedCountLabel = document.getElementById('selectedCountLabel');
+        const batchDeleteButton = document.getElementById('batchDeleteButton');
+        const count = selectedFids.size;
+        if (selectedCountLabel) selectedCountLabel.textContent = '已选 ' + count + ' 项';
+        if (batchDeleteButton) batchDeleteButton.disabled = count === 0;
+        document.querySelectorAll('.quark-tree-select').forEach((checkbox) => {
+            checkbox.checked = selectedFids.has(checkbox.dataset.fid);
+        });
+    }
+
+    function removeSelectedFids(fids) {
+        fids.forEach((fid) => selectedFids.delete(fid));
+    }
+
     async function handleDeleteNode(node, button) {
         if (!node || !node.fid || node.fid === '0') return;
         const nodeType = node.isDir ? '目录' : '文件';
@@ -427,19 +500,60 @@
         const oldText = button.textContent;
         button.disabled = true;
         button.textContent = '删除中';
+        const expandedPaths = getExpandedPaths();
         try {
             await deleteQuarkNode(node);
             if (currentResult && currentResult[0]) {
                 removeNodeByFid(currentResult[0], node.fid);
+                selectedFids.delete(node.fid);
                 recalculateNode(currentResult[0]);
                 if (activePathInfo) cacheScanResult(activePathInfo, currentResult);
-                renderTreeView(currentResult);
+                renderTreeView(currentResult, { expandedPaths });
             }
             updateProgress('已删除' + nodeType + ': ' + node.path);
         } catch (error) {
             button.disabled = false;
             button.textContent = oldText;
             alert('删除失败: ' + error.message);
+        }
+    }
+
+    async function handleBatchDelete() {
+        const selectedNodes = getSelectedNodes();
+        const nodes = selectedNodes.filter((node) => {
+            return !selectedNodes.some((other) => {
+                return other !== node && other.isDir && node.path && node.path.startsWith(other.path + '/');
+            });
+        });
+        if (nodes.length === 0) return;
+        const skipped = selectedNodes.length - nodes.length;
+        const confirmed = confirm('确认删除已选 ' + nodes.length + ' 项？' + (skipped > 0 ? '\n已自动跳过 ' + skipped + ' 个位于已选目录内的子项。' : '') + '\n\n该操作会调用夸克网盘删除接口。');
+        if (!confirmed) return;
+
+        const expandedPaths = getExpandedPaths();
+        const fids = nodes.map((node) => node.fid);
+        const batchDeleteButton = document.getElementById('batchDeleteButton');
+        const oldText = batchDeleteButton ? batchDeleteButton.textContent : '';
+        if (batchDeleteButton) {
+            batchDeleteButton.disabled = true;
+            batchDeleteButton.textContent = '删除中';
+        }
+        try {
+            await deleteQuarkNodes(nodes);
+            if (currentResult && currentResult[0]) {
+                fids.forEach((fid) => removeNodeByFid(currentResult[0], fid));
+                removeSelectedFids(fids);
+                recalculateNode(currentResult[0]);
+                if (activePathInfo) cacheScanResult(activePathInfo, currentResult);
+                renderTreeView(currentResult, { expandedPaths, clearDeletedSelection: true });
+            }
+            updateProgress('已批量删除 ' + fids.length + ' 项');
+        } catch (error) {
+            if (batchDeleteButton) {
+                batchDeleteButton.disabled = false;
+                batchDeleteButton.textContent = oldText;
+            }
+            alert('批量删除失败: ' + error.message);
         }
     }
 
@@ -455,6 +569,30 @@
         const row = document.createElement('div');
         row.className = 'quark-tree-row';
         row.style.paddingLeft = (depth * 18 + 10) + 'px';
+
+        const selectCell = document.createElement('span');
+        selectCell.className = 'quark-tree-select-cell';
+        if (node.fid && node.fid !== '0') {
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'quark-tree-select';
+            checkbox.dataset.fid = node.fid;
+            checkbox.checked = selectedFids.has(node.fid);
+            checkbox.title = '勾选用于批量删除';
+            checkbox.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            checkbox.addEventListener('change', function() {
+                if (checkbox.checked) {
+                    selectedFids.add(node.fid);
+                } else {
+                    selectedFids.delete(node.fid);
+                }
+                updateSelectionUI();
+            });
+            selectCell.appendChild(checkbox);
+        }
+        row.appendChild(selectCell);
 
         const toggle = document.createElement('button');
         toggle.type = 'button';
@@ -532,7 +670,9 @@
                 item.classList.toggle('collapsed');
                 toggle.textContent = item.classList.contains('collapsed') ? '>' : 'v';
             });
-            if (depth > 0) {
+            const expandedPaths = currentRenderOptions.expandedPaths;
+            const shouldRestoreExpanded = expandedPaths && expandedPaths.has(node.path);
+            if (depth > 0 && !shouldRestoreExpanded) {
                 item.classList.add('collapsed');
                 toggle.textContent = '>';
             }
@@ -561,6 +701,8 @@
         }
 
         currentResult = result;
+        currentRenderOptions = options;
+        selectedFids = new Set(Array.from(selectedFids).filter((fid) => findNodeByFid(result[0], fid)));
         removeElement('chartcontainer');
 
         const container = document.createElement('div');
@@ -607,6 +749,44 @@
             });
         });
         actions.appendChild(collapseAllButton);
+
+        const selectedCountLabel = document.createElement('span');
+        selectedCountLabel.id = 'selectedCountLabel';
+        selectedCountLabel.className = 'quark-tree-selected-count';
+        selectedCountLabel.textContent = '已选 ' + selectedFids.size + ' 项';
+        actions.appendChild(selectedCountLabel);
+
+        const selectVisibleButton = document.createElement('button');
+        selectVisibleButton.type = 'button';
+        selectVisibleButton.id = 'selectVisibleButton';
+        selectVisibleButton.textContent = '选择可见';
+        selectVisibleButton.addEventListener('click', function() {
+            document.querySelectorAll('.quark-tree-item').forEach((item) => {
+                if (item.style.display === 'none' || item.getClientRects().length === 0) return;
+                const checkbox = item.querySelector(':scope > .quark-tree-row .quark-tree-select');
+                if (checkbox && checkbox.dataset.fid) selectedFids.add(checkbox.dataset.fid);
+            });
+            updateSelectionUI();
+        });
+        actions.appendChild(selectVisibleButton);
+
+        const clearSelectionButton = document.createElement('button');
+        clearSelectionButton.type = 'button';
+        clearSelectionButton.id = 'clearSelectionButton';
+        clearSelectionButton.textContent = '清空选择';
+        clearSelectionButton.addEventListener('click', function() {
+            selectedFids.clear();
+            updateSelectionUI();
+        });
+        actions.appendChild(clearSelectionButton);
+
+        const batchDeleteButton = document.createElement('button');
+        batchDeleteButton.type = 'button';
+        batchDeleteButton.id = 'batchDeleteButton';
+        batchDeleteButton.textContent = '删除已选';
+        batchDeleteButton.disabled = selectedFids.size === 0;
+        batchDeleteButton.addEventListener('click', handleBatchDelete);
+        actions.appendChild(batchDeleteButton);
 
         const downloadButton = document.createElement('button');
         downloadButton.type = 'button';
@@ -687,6 +867,7 @@
             tree.innerHTML = '';
             tree.appendChild(createTreeNode(root, 0));
             applyTreeFilters(searchInput.value, minSizeInput.value);
+            updateSelectionUI();
         }
 
         searchInput.addEventListener('input', function() {
@@ -741,6 +922,7 @@
         }
 
         activePathInfo = getCurrentPathInfo();
+        selectedFids.clear();
         const cached = !forceRefresh ? loadCachedResult(activePathInfo) : null;
         if (cached && cached.result) {
             renderTreeView(cached.result, { fromCache: true, savedAt: cached.savedAt });
@@ -945,7 +1127,7 @@
     .quark-tree-row {
         min-height: 32px;
         display: grid;
-        grid-template-columns: 22px 34px minmax(180px, 1fr) 96px 100px 56px 56px;
+        grid-template-columns: 24px 22px 34px minmax(180px, 1fr) 96px 100px 56px 56px;
         align-items: center;
         column-gap: 8px;
         border-bottom: 1px solid #edf1f7;
@@ -962,6 +1144,16 @@
         cursor: pointer;
         padding: 0;
         line-height: 20px;
+    }
+    .quark-tree-select-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quark-tree-select {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
     }
     .quark-tree-icon {
         color: #64748b;
@@ -994,6 +1186,22 @@
         margin-right: 8px;
     }
     .quark-tree-delete:hover {
+        background: #fef2f2;
+        border-color: #fca5a5;
+    }
+    .quark-tree-selected-count {
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 6px;
+        color: #475569;
+        white-space: nowrap;
+    }
+    #batchDeleteButton {
+        color: #b91c1c;
+        border-color: #fecaca;
+    }
+    #batchDeleteButton:not(:disabled):hover {
         background: #fef2f2;
         border-color: #fca5a5;
     }
