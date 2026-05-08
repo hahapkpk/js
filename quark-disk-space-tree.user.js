@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         夸克网盘空间占用目录树
 // @name:en      Quark Cloud Disk Space Tree Analyzer
-// @version      1.4
+// @version      1.5
 // @description  分析夸克网盘当前目录空间占用，并使用可展开目录树展示。
 // @description:en Analyze Quark Cloud Disk space usage and display with an expandable directory tree.
 // @license      LGPL-3.0
@@ -162,9 +162,9 @@
         throw new Error('API 返回格式异常');
     }
 
-    async function deleteQuarkFolder(node) {
-        if (!node || !node.isDir || !node.fid || node.fid === '0') {
-            throw new Error('根目录或无效目录不能删除');
+    async function deleteQuarkNode(node) {
+        if (!node || !node.fid || node.fid === '0') {
+            throw new Error('根目录或无效节点不能删除');
         }
         const params = {
             pr: 'ucpro',
@@ -418,23 +418,24 @@
         return parent.children.some((child) => removeNodeByFid(child, fid));
     }
 
-    async function handleDeleteFolder(node, button) {
-        if (!node || !node.isDir || node.fid === '0') return;
-        const confirmed = confirm('确认删除目录：' + node.path + '\n\n该操作会调用夸克网盘删除接口。');
+    async function handleDeleteNode(node, button) {
+        if (!node || !node.fid || node.fid === '0') return;
+        const nodeType = node.isDir ? '目录' : '文件';
+        const confirmed = confirm('确认删除' + nodeType + '：' + node.path + '\n\n该操作会调用夸克网盘删除接口。');
         if (!confirmed) return;
 
         const oldText = button.textContent;
         button.disabled = true;
         button.textContent = '删除中';
         try {
-            await deleteQuarkFolder(node);
+            await deleteQuarkNode(node);
             if (currentResult && currentResult[0]) {
                 removeNodeByFid(currentResult[0], node.fid);
                 recalculateNode(currentResult[0]);
                 if (activePathInfo) cacheScanResult(activePathInfo, currentResult);
                 renderTreeView(currentResult);
             }
-            updateProgress('已删除目录: ' + node.path);
+            updateProgress('已删除' + nodeType + ': ' + node.path);
         } catch (error) {
             button.disabled = false;
             button.textContent = oldText;
@@ -497,16 +498,16 @@
         });
         row.appendChild(copyPathButton);
 
-        if (node.isDir && node.fid && node.fid !== '0') {
+        if (node.fid && node.fid !== '0') {
             const deleteFolderButton = document.createElement('button');
             deleteFolderButton.type = 'button';
             deleteFolderButton.className = 'quark-tree-delete';
             deleteFolderButton.textContent = '删除';
-            deleteFolderButton.title = '删除该目录';
+            deleteFolderButton.title = node.isDir ? '删除该目录' : '删除该文件';
             deleteFolderButton.addEventListener('click', function(e) {
                 e.preventDefault();
                 e.stopPropagation();
-                handleDeleteFolder(node, deleteFolderButton);
+                handleDeleteNode(node, deleteFolderButton);
             });
             row.appendChild(deleteFolderButton);
         } else {
