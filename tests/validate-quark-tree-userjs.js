@@ -22,6 +22,11 @@ assertContains('@namespace    https://github.com/hahapkpk/js', 'namespace should
 assertContains('@homepage     https://github.com/hahapkpk/js', 'homepage should point to the maintained repo');
 assertContains('@supportURL   https://github.com/hahapkpk/js/issues', 'support URL should point to repo issues');
 assertContains('renderTreeView(result)', 'script should render the scan result as a tree view');
+assertContains('openAnalyzerPanel', 'entry button should open panel instead of auto scanning');
+assertContains('renderEmptyPanel', 'panel should show an empty state when no cache exists');
+assertContains('手动扫描', 'panel should expose manual scan action');
+assertContains('minimizeButton', 'panel should expose minimize action');
+assertContains('quark-panel-body', 'panel body should be hideable for minimize');
 assertContains('createTreeNode(node, depth)', 'script should build expandable tree nodes');
 assertContains('quark-tree-toggle', 'tree nodes should expose expand/collapse controls');
 assertContains('quark-tree-size', 'tree nodes should show formatted size');
@@ -81,5 +86,6 @@ assertNotContains('waitForJQuery', 'script should not wait for jQuery');
 assertNotContains('$(', 'script should not depend on jQuery helpers');
 assertNotContains('const cached = !forceRefresh ? loadCachedResult(activePathInfo) : null;', 'scan should not auto-load cache');
 assertNotContains('cacheScanResult(activePathInfo, result);', 'scan should not auto-save cache after scanning');
+assertNotContains('function initButtonEvent() {\n        startScan(false);\n    }', 'entry button should not auto scan');
 
 console.log('quark tree userscript validation passed');

@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         夸克网盘空间占用目录树
 // @name:en      Quark Cloud Disk Space Tree Analyzer
-// @version      1.7
+// @version      1.8
 // @description  分析夸克网盘当前目录空间占用，并使用可展开目录树展示。
 // @description:en Analyze Quark Cloud Disk space usage and display with an expandable directory tree.
 // @license      LGPL-3.0
@@ -733,36 +733,96 @@
         document.body.removeChild(input);
     }
 
-    function renderTreeView(result, options = {}) {
-        if (!result || result.length === 0) {
-            updateProgress('扫描结果为空，请重试！');
-            return;
-        }
-
-        currentResult = result;
-        currentRenderOptions = options;
-        selectedFids = new Set(Array.from(selectedFids).filter((fid) => findNodeByFid(result[0], fid)));
+    function createPanelShell(titleText, options = {}) {
         removeElement('chartcontainer');
-
         const container = document.createElement('div');
         container.id = 'chartcontainer';
-        container.innerHTML = '<div id="diskusage"></div>';
+        container.innerHTML = '<div id="diskusage"><div class="quark-panel-body"></div></div>';
         document.body.prepend(container);
 
-        const root = result[0];
         const diskUsage = document.getElementById('diskusage');
+        const panelBody = diskUsage.querySelector('.quark-panel-body');
 
         const toolbar = document.createElement('div');
         toolbar.className = 'quark-tree-toolbar';
 
         const title = document.createElement('div');
         title.className = 'quark-tree-title';
-        title.textContent = root.name + ' 的空间占用';
+        title.textContent = titleText;
         toolbar.appendChild(title);
 
         const actions = document.createElement('div');
         actions.className = 'quark-tree-actions';
 
+        const manualScanButton = document.createElement('button');
+        manualScanButton.type = 'button';
+        manualScanButton.id = 'manualScanButton';
+        manualScanButton.textContent = '手动扫描';
+        manualScanButton.addEventListener('click', function() {
+            startScan(true);
+        });
+        actions.appendChild(manualScanButton);
+
+        const minimizeButton = document.createElement('button');
+        minimizeButton.type = 'button';
+        minimizeButton.id = 'minimizeButton';
+        minimizeButton.textContent = '最小化';
+        minimizeButton.addEventListener('click', function() {
+            container.classList.toggle('minimize');
+            minimizeButton.textContent = container.classList.contains('minimize') ? '还原' : '最小化';
+        });
+        actions.appendChild(minimizeButton);
+
+        const closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.id = 'closeButton';
+        closeButton.textContent = '关闭';
+        closeButton.addEventListener('click', function() {
+            processing = false;
+            removeElement('chartcontainer');
+            removeElement('process_text_container');
+        });
+        actions.appendChild(closeButton);
+
+        const maximizeButton = document.createElement('button');
+        maximizeButton.type = 'button';
+        maximizeButton.textContent = '最大化';
+        maximizeButton.addEventListener('click', function() {
+            container.classList.toggle('maximize');
+            maximizeButton.textContent = container.classList.contains('maximize') ? '还原' : '最大化';
+        });
+        actions.appendChild(maximizeButton);
+
+        toolbar.appendChild(actions);
+        diskUsage.insertBefore(toolbar, panelBody);
+
+        return { container, diskUsage, panelBody, actions };
+    }
+
+    function renderEmptyPanel(pathInfo, message) {
+        currentResult = null;
+        currentRenderOptions = {};
+        selectedFids.clear();
+        const shell = createPanelShell((pathInfo ? pathInfo.name : '当前目录') + ' 的空间占用');
+
+        const empty = document.createElement('div');
+        empty.className = 'quark-tree-empty';
+        empty.innerHTML = '<div class="quark-tree-empty-title">' + (message || '当前目录没有缓存。') + '</div><div class="quark-tree-empty-subtitle">点击“手动扫描”后才会重新扫描；需要保留结果时再点击“保存缓存”。</div>';
+        shell.panelBody.appendChild(empty);
+    }
+
+    function openAnalyzerPanel() {
+        activePathInfo = getCurrentPathInfo();
+        selectedFids.clear();
+        const cached = loadCachedResult(activePathInfo);
+        if (cached && cached.result) {
+            renderTreeView(cached.result, { fromCache: true, savedAt: cached.savedAt });
+            return;
+        }
+        renderEmptyPanel(activePathInfo, '当前目录没有缓存。');
+    }
+
+    function addTreeActions(actions, result, options) {
         const expandAllButton = document.createElement('button');
         expandAllButton.type = 'button';
         expandAllButton.textContent = '全部展开';
@@ -855,36 +915,23 @@
         retryFailedButton.disabled = failedDirs.length === 0;
         retryFailedButton.addEventListener('click', retryFailedDirectories);
         actions.appendChild(retryFailedButton);
+    }
 
-        const rescanButton = document.createElement('button');
-        rescanButton.type = 'button';
-        rescanButton.textContent = options.fromCache ? '重新扫描' : '刷新扫描';
-        rescanButton.addEventListener('click', function() {
-            startScan(true);
-        });
-        actions.appendChild(rescanButton);
+    function renderTreeView(result, options = {}) {
+        if (!result || result.length === 0) {
+            updateProgress('扫描结果为空，请重试！');
+            return;
+        }
 
-        const maximizeButton = document.createElement('button');
-        maximizeButton.type = 'button';
-        maximizeButton.textContent = '最大化';
-        maximizeButton.addEventListener('click', function() {
-            container.classList.toggle('maximize');
-            maximizeButton.textContent = container.classList.contains('maximize') ? '还原' : '最大化';
-        });
-        actions.appendChild(maximizeButton);
+        currentResult = result;
+        currentRenderOptions = options;
+        selectedFids = new Set(Array.from(selectedFids).filter((fid) => findNodeByFid(result[0], fid)));
 
-        const closeButton = document.createElement('button');
-        closeButton.type = 'button';
-        closeButton.textContent = '关闭';
-        closeButton.addEventListener('click', function() {
-            processing = false;
-            removeElement('chartcontainer');
-            removeElement('process_text_container');
-        });
-        actions.appendChild(closeButton);
+        const root = result[0];
+        const shell = createPanelShell(root.name + ' 的空间占用', options);
+        const panelBody = shell.panelBody;
+        addTreeActions(shell.actions, result, options);
 
-        toolbar.appendChild(actions);
-        diskUsage.appendChild(toolbar);
 
         const filters = document.createElement('div');
         filters.className = 'quark-tree-filters';
@@ -904,17 +951,17 @@
         sortSelect.value = currentSort;
         filters.appendChild(sortSelect);
 
-        diskUsage.appendChild(filters);
+        panelBody.appendChild(filters);
 
         const summary = document.createElement('div');
         summary.className = 'quark-tree-summary';
         const cacheText = options.fromCache ? ' / 缓存时间 ' + parseTime(options.savedAt) : '';
         summary.textContent = '共 ' + (root.file_count || 0) + ' 个文件，占用 ' + formatSize(root.value || 0) + cacheText;
-        diskUsage.appendChild(summary);
+        panelBody.appendChild(summary);
 
         const tree = document.createElement('div');
         tree.className = 'quark-tree';
-        diskUsage.appendChild(tree);
+        panelBody.appendChild(tree);
 
         function rebuildTree() {
             tree.innerHTML = '';
@@ -992,12 +1039,13 @@
         } catch (error) {
             processing = false;
             updateProgress('扫描失败: ' + error.message);
+            renderEmptyPanel(activePathInfo, '扫描失败: ' + error.message);
             console.error(error);
         }
     }
 
     function initButtonEvent() {
-        startScan(false);
+        openAnalyzerPanel();
     }
 
     function removeElement(id) {
@@ -1093,6 +1141,13 @@
         height: 100%;
         border-radius: 0;
     }
+    #chartcontainer.minimize {
+        width: 520px;
+        height: 54px;
+    }
+    #chartcontainer.minimize .quark-panel-body {
+        display: none;
+    }
     #diskusage {
         width: 100%;
         height: 100%;
@@ -1102,6 +1157,12 @@
         flex-direction: column;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         font-size: 13px;
+    }
+    .quark-panel-body {
+        min-height: 0;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
     }
     .quark-tree-toolbar, .quark-tree-filters {
         flex: 0 0 auto;
@@ -1114,6 +1175,7 @@
     }
     .quark-tree-toolbar {
         justify-content: space-between;
+        align-items: flex-start;
     }
     .quark-tree-title {
         min-width: 0;
@@ -1124,11 +1186,12 @@
         white-space: nowrap;
     }
     .quark-tree-actions {
-        flex: 0 0 auto;
+        flex: 1 1 auto;
         display: flex;
         gap: 6px;
         flex-wrap: wrap;
         justify-content: flex-end;
+        min-width: 0;
     }
     .quark-tree-actions button, .quark-tree-copy, .quark-tree-delete {
         height: 28px;
@@ -1165,6 +1228,26 @@
         color: #4b5563;
         background: #f1f5f9;
         border-bottom: 1px solid #d8dde6;
+    }
+    .quark-tree-empty {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: #64748b;
+        background: #fff;
+        text-align: center;
+        padding: 32px;
+    }
+    .quark-tree-empty-title {
+        color: #1f2937;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .quark-tree-empty-subtitle {
+        font-size: 13px;
     }
     .quark-tree {
         flex: 1 1 auto;
