@@ -1,19 +1,26 @@
 #!name=微信公众号去广告
-#!desc=去除微信公众号文章内广告组件上报、文章底部相关推荐流广告开关，并清理部分推荐流广告项。根据本次日志生成。
+#!desc=去除微信公众号文章内广告组件上报、文章底部相关推荐流广告、腾讯广告/GDT 视频素材。根据日志增强。
 #!author=ChatGPT
 #!homepage=https://github.com/hahapkpk/js
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WeChat.png
 
 [MITM]
-hostname = mp.weixin.qq.com
+hostname = mp.weixin.qq.com, adsmind.gdtimg.com, *.tfogc.com
 
 [URL Rewrite]
 # 公众号文章内广告组件上报：日志中命中 report_id=ad_widget_100009
 ^https?:\/\/mp\.weixin\.qq\.com\/tp\/datareport\/report reject-dict
 
+# 公众号 masonryfeed 广告曝光/点击上报
+^https?:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed_report reject-dict
+
+# 腾讯广告/GDT 视频广告素材：日志中出现 adsmind.gdtimg.com/ads_svp_video_*.mp4
+^https?:\/\/adsmind\.gdtimg\.com\/ads_ reject
+^https?:\/\/[^\/]+\.tfogc\.com(?::\d+)?\/adsmind\.gdtimg\.com\/ads_ reject
+
 [Script]
 # 公众号文章底部/相关推荐流：请求中 is_need_ad=1，改为 0
 http-request ^https?:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed\? script-path=https://raw.githubusercontent.com/hahapkpk/js/main/wechat_mp_ad_sanitizer.js, requires-body=true, timeout=10, tag=微信公众号推荐流去广告-请求
 
-# 公众号文章底部/相关推荐流：响应中清理疑似广告推荐项
+# 公众号文章底部/相关推荐流：响应中清理广告创意/推广/疑似广告项
 http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed\? script-path=https://raw.githubusercontent.com/hahapkpk/js/main/wechat_mp_ad_sanitizer.js, requires-body=true, timeout=10, tag=微信公众号推荐流去广告-响应
