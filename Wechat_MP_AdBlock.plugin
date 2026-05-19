@@ -1,5 +1,5 @@
 #!name=微信公众号去广告
-#!desc=过滤微信公众号正文广告、商品 CPS、短剧/小程序推广、相关推荐、搜索推荐词、腾讯广告/GDT 视频素材。融合日志分析与 Map Local 空响应策略。
+#!desc=过滤微信公众号正文广告、商品 CPS、短剧/小程序推广、相关推荐、搜索推荐词、腾讯广告/GDT 视频素材。融合日志分析、Map Local 空响应与 reject-dict 严格兜底策略。
 #!author=ChatGPT
 #!homepage=https://github.com/hahapkpk/js
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WeChat.png
@@ -23,6 +23,10 @@ DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed_report data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [URL Rewrite]
+# 公众号广告接口严格兜底：如果 Map Local 未命中，则 reject-dict
+^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? reject-dict
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword reject-dict
+
 # 腾讯广告/GDT 视频广告素材
 ^https?:\/\/adsmind\.gdtimg\.com\/ads_ reject
 ^https?:\/\/wxsmw\.wxs\.qq\.com\/.*\/ads_svp_video_ reject
