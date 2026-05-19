@@ -1,9 +1,10 @@
 /***********************************
  * 微信公众号去广告 - Loon Script
- * 优化版：
+ * 进阶优化版：
  * 1. masonryfeed 推荐流广告过滤
- * 2. 公众号正文广告容器整体删除
- * 3. 修复接口被拦后残留灰色问号框/空广告框
+ * 2. 公众号正文 /s? /s/ 广告容器整体删除
+ * 3. 公众号主页/历史消息页 profile_ext 广告容器删除
+ * 4. 修复接口被拦后残留灰色问号框/空白广告框
  ***********************************/
 
 const url = $request.url || "";
@@ -53,14 +54,13 @@ if (/\/mp\/masonryfeed\?/.test(url)) {
   }
 }
 
-// 公众号正文 HTML：删除广告容器，避免灰色问号框/空白广告框残留
-if (/https?:\/\/mp\.weixin\.qq\.com\/s\?/.test(url) && !isRequest) {
+// 公众号正文页 / 公众号主页历史页 HTML：删除广告容器，避免空白框残留
+if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url) && !isRequest) {
   let body = $response.body || "";
   if (!body || !body.includes("</body>")) return done({ body });
 
   const inject = `
 <style id="wechat-mp-adblock-style">
-/* 直接隐藏已知广告容器 */
 .js_ad_link,
 .js_ad_area,
 .js_ad_card,
@@ -82,7 +82,9 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/s\?/.test(url) && !isRequest) {
 [class*="mini_drama"],
 [id*="mini_drama"],
 [class*="promotion"],
-[id*="promotion"] {
+[id*="promotion"],
+[class*="ad_area"],
+[id*="ad_area"] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -96,64 +98,75 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/s\?/.test(url) && !isRequest) {
 (function () {
   'use strict';
 
-  var KEYWORDS = [
-    '广告', '推广', '了解更多', '下载游戏', '领取优惠', '去观看',
-    '精品优售', '广告创意', 'adsmind', 'gdtimg', 'getappmsgad',
-    'cps_product_info', 'mini_drama_info', 'WxaDramaCoverImage',
-    'ads_svp_video', 'wxsmw.wxs.qq.com'
-  ];
+  var BTN_RE = /下载游戏|领取优惠|立即购买|去观看|查看|了解更多|点击了解更多|精品优售|福利|优惠|换购|折抵优惠/;
+  var AD_RE = /广告|推广|广告创意|adsmind|gdtimg|getappmsgad|cps_product_info|mini_drama_info|WxaDramaCoverImage|ads_svp_video|wxsmw\.wxs\.qq\.com/;
+  var CLASS_RE = /js_ad|advert|mpad|cps|mini_drama|promotion|adsmind|gdtimg|wxsmw|ads_svp_video|ad_area|ad_card/i;
 
-  function hasAdText(el) {
-    if (!el) return false;
-    var text = '';
-    try { text = (el.innerText || el.textContent || '') + ' ' + (el.innerHTML || ''); } catch (e) {}
-    if (!text) return false;
-    return KEYWORDS.some(function (k) { return text.indexOf(k) !== -1; });
+  function textOf(el) {
+    try { return (el.innerText || el.textContent || '') + ' ' + (el.innerHTML || ''); } catch (e) { return ''; }
   }
 
-  function isAdElement(el) {
-    if (!el || el.nodeType !== 1) return false;
+  function rectOf(el) {
+    try { return el.getBoundingClientRect(); } catch (e) { return { width: 0, height: 0, top: 0 }; }
+  }
+
+  function markOf(el) {
+    if (!el || el.nodeType !== 1) return '';
     var id = el.id || '';
-    var cls = el.className || '';
+    var cls = '';
+    try { cls = typeof el.className === 'string' ? el.className : ''; } catch (e) {}
     var html = '';
     try { html = el.outerHTML || ''; } catch (e) {}
-    var mark = (id + ' ' + cls + ' ' + html).toLowerCase();
+    return id + ' ' + cls + ' ' + html;
+  }
 
-    if (/js_ad|advert|mpad|cps|mini_drama|promotion|adsmind|gdtimg|wxsmw|ads_svp_video/.test(mark)) return true;
-    if (hasAdText(el) && /广告|推广|了解更多|下载游戏|领取优惠|去观看|精品优售/.test(el.innerText || el.textContent || '')) return true;
+  function isProbablyAd(el) {
+    if (!el || el.nodeType !== 1) return false;
+    var text = textOf(el);
+    var mark = markOf(el);
+    if (CLASS_RE.test(mark)) return true;
+    if (/src=["'][^"']*(adsmind|gdtimg|ads_svp_video|WxaDramaCoverImage|getappmsgad|cps_product_info|mini_drama_info)/i.test(mark)) return true;
+    if (AD_RE.test(text) && BTN_RE.test(text)) return true;
+    if (/广告/.test(text)) {
+      var r = rectOf(el);
+      // 截图里的广告卡片通常宽度接近屏宽，高度 120-600；普通文字段落不会这么大
+      if (r.width > 240 && r.height > 60 && r.height < 900) return true;
+    }
     return false;
   }
 
-  function findCard(el) {
+  function findBestCard(el) {
     var cur = el;
-    var article = document.getElementById('js_content') || document.body;
-    for (var i = 0; cur && cur !== article && i < 8; i++) {
-      var r = cur.getBoundingClientRect ? cur.getBoundingClientRect() : { width: 0, height: 0 };
-      var text = cur.innerText || cur.textContent || '';
-      // 选取完整广告卡片，不要扩大到整篇正文
-      if ((r.width > 240 && r.height > 80 && r.height < 900) || /广告|推广|下载游戏|领取优惠|去观看|了解更多/.test(text)) {
-        return cur;
-      }
+    var root = document.getElementById('js_content') || document.getElementById('js_profile') || document.body;
+    var best = el;
+    for (var i = 0; cur && cur !== root && cur !== document.body && i < 10; i++) {
+      var r = rectOf(cur);
+      var text = textOf(cur);
+      var looksLikeCard = r.width > 260 && r.height > 80 && r.height < 900;
+      var hasAdSignal = /广告|推广/.test(text) || BTN_RE.test(text) || CLASS_RE.test(markOf(cur));
+      if (looksLikeCard && hasAdSignal) best = cur;
+      // 到达包含普通文章正文过多文字的大容器时停止，防止误删整篇文章
+      if (r.height > 900 || text.length > 1200) break;
       cur = cur.parentElement;
     }
-    return el;
+    return best || el;
   }
 
-  function removeNode(el) {
+  function removeCard(el) {
     if (!el || !el.parentNode) return;
-    var card = findCard(el);
-    if (card && card.parentNode) {
-      card.style.setProperty('display', 'none', 'important');
-      card.style.setProperty('height', '0', 'important');
-      card.style.setProperty('min-height', '0', 'important');
-      card.style.setProperty('margin', '0', 'important');
-      card.style.setProperty('padding', '0', 'important');
-      card.style.setProperty('overflow', 'hidden', 'important');
-      try { card.remove(); } catch (e) { card.parentNode.removeChild(card); }
-    }
+    var card = findBestCard(el);
+    if (!card || !card.parentNode) return;
+    card.style.setProperty('display', 'none', 'important');
+    card.style.setProperty('visibility', 'hidden', 'important');
+    card.style.setProperty('height', '0', 'important');
+    card.style.setProperty('min-height', '0', 'important');
+    card.style.setProperty('margin', '0', 'important');
+    card.style.setProperty('padding', '0', 'important');
+    card.style.setProperty('overflow', 'hidden', 'important');
+    try { card.remove(); } catch (e) { try { card.parentNode.removeChild(card); } catch (e2) {} }
   }
 
-  function cleanAds() {
+  function cleanBySelectors() {
     var selectors = [
       '[class*="js_ad"]', '[id*="js_ad"]',
       '[class*="advert"]', '[id*="advert"]',
@@ -161,42 +174,62 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/s\?/.test(url) && !isRequest) {
       '[class*="cps"]', '[id*="cps"]',
       '[class*="mini_drama"]', '[id*="mini_drama"]',
       '[class*="promotion"]', '[id*="promotion"]',
+      '[class*="ad_area"]', '[id*="ad_area"]',
       'iframe[src*="getappmsgad"]', 'iframe[src*="cps_product_info"]',
-      'iframe[src*="mini_drama_info"]', 'iframe[src*="ad"]',
+      'iframe[src*="mini_drama_info"]', 'iframe[src*="/ad"]',
       'img[src*="adsmind"]', 'img[src*="gdtimg"]', 'img[src*="WxaDramaCoverImage"]',
       'video[src*="ads_svp_video"]', 'source[src*="ads_svp_video"]'
     ];
-
     selectors.forEach(function (sel) {
-      try {
-        document.querySelectorAll(sel).forEach(removeNode);
-      } catch (e) {}
+      try { document.querySelectorAll(sel).forEach(removeCard); } catch (e) {}
     });
+  }
 
-    // 处理截图里的“灰色问号广告框”：资源被拦后，容器仍有“广告”角标和按钮文案
-    var nodes = document.querySelectorAll('section, div, p, span');
+  function cleanByText() {
+    var nodes = document.querySelectorAll('section, div, li, article');
     nodes.forEach(function (el) {
       if (!el || !el.parentNode) return;
-      var text = el.innerText || el.textContent || '';
-      if (!text) return;
-      if (/广告/.test(text) && /下载游戏|领取优惠|去观看|了解更多|精品优售|福利|优惠/.test(text)) {
-        removeNode(el);
-        return;
-      }
-      if (/广告/.test(text)) {
-        var box = findCard(el);
-        var r = box && box.getBoundingClientRect ? box.getBoundingClientRect() : { width: 0, height: 0 };
-        if (r.width > 250 && r.height > 80 && r.height < 900) removeNode(box);
+      if (isProbablyAd(el)) removeCard(el);
+    });
+  }
+
+  function cleanBrokenAdBoxes() {
+    // 处理资源已被拦截后显示“?”图标但广告容器仍在的情况
+    var nodes = document.querySelectorAll('section, div, li');
+    nodes.forEach(function (el) {
+      if (!el || !el.parentNode) return;
+      var text = textOf(el);
+      var r = rectOf(el);
+      if (r.width > 260 && r.height > 120 && r.height < 900 && /广告/.test(text)) {
+        removeCard(el);
       }
     });
+  }
+
+  function cleanProfileAds() {
+    // 公众号主页/历史消息流中的广告卡片：常表现为 Apple 等品牌卡片 + 广告角标 + 大块空白
+    var nodes = document.querySelectorAll('div, li');
+    nodes.forEach(function (el) {
+      if (!el || !el.parentNode) return;
+      var text = textOf(el);
+      var r = rectOf(el);
+      if (r.width > 280 && r.height > 120 && r.height < 900 && /广告/.test(text)) {
+        removeCard(el);
+      }
+    });
+  }
+
+  function cleanAds() {
+    cleanBySelectors();
+    cleanByText();
+    cleanBrokenAdBoxes();
+    cleanProfileAds();
   }
 
   cleanAds();
   document.addEventListener('DOMContentLoaded', cleanAds);
   window.addEventListener('load', cleanAds);
-  setTimeout(cleanAds, 500);
-  setTimeout(cleanAds, 1500);
-  setTimeout(cleanAds, 3000);
+  [300, 800, 1500, 3000, 5000, 8000].forEach(function (t) { setTimeout(cleanAds, t); });
 
   var observer = new MutationObserver(function () { cleanAds(); });
   observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
