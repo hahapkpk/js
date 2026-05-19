@@ -1,28 +1,29 @@
 #!name=微信公众号去广告
-#!desc=去除微信公众号正文广告、评论区广告、短剧/小程序推广、商品 CPS、腾讯广告/GDT 视频素材。根据截图与日志增强。
+#!desc=过滤微信公众号正文广告、商品 CPS、短剧/小程序推广、相关推荐、搜索推荐词、腾讯广告/GDT 视频素材。融合日志分析与 Map Local 空响应策略。
 #!author=ChatGPT
 #!homepage=https://github.com/hahapkpk/js
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WeChat.png
 
-[MITM]
-hostname = mp.weixin.qq.com, adsmind.gdtimg.com, wxsmw.wxs.qq.com, wxaintpcos.wxqcloud.qq.com.cn, *.tfogc.com
+[Rule]
+# 微信广告素材域名，日志中出现 wxsmw.wxs.qq.com/ads_svp_video
+DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
+
+[Map Local]
+# 公众号正文广告核心接口：用空 JSON 替代 reject，避免微信前端回退或显示异常占位
+^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|getappmsgad|jsmonitor|masonryfeed|relatedarticle)\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 公众号相关文章搜索词/推荐词
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 公众号短剧/小程序推广：日志中出现 mini_drama_info?action=play_info/link
+^https:\/\/mp\.weixin\.qq\.com\/mp\/mini_drama_info data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+
+# 公众号广告上报与曝光统计
+^https:\/\/mp\.weixin\.qq\.com\/tp\/datareport\/report data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+^https:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed_report data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
 [URL Rewrite]
-# 公众号文章内广告组件上报：日志中命中 report_id=ad_widget_100009
-^https?:\/\/mp\.weixin\.qq\.com\/tp\/datareport\/report reject-dict
-
-# 公众号正文商品/CPS 广告：日志中出现 cps_product_info、insert_goods_iframe_js_version、ad_publisher_iframe_tag
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/cps_product_info reject-dict
-
-# 公众号正文短剧/小程序推广广告：日志中出现 mini_drama_info?action=play_info/link
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/mini_drama_info reject-dict
-
-# 公众号常见广告接口兜底
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad reject-dict
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/ad_ reject-dict
-^https?:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed_report reject-dict
-
-# 腾讯广告/GDT 视频广告素材：日志中出现 adsmind.gdtimg.com 与 wxsmw.wxs.qq.com 的 ads_svp_video
+# 腾讯广告/GDT 视频广告素材
 ^https?:\/\/adsmind\.gdtimg\.com\/ads_ reject
 ^https?:\/\/wxsmw\.wxs\.qq\.com\/.*\/ads_svp_video_ reject
 ^https?:\/\/[^\/]+\.tfogc\.com(?::\d+)?\/adsmind\.gdtimg\.com\/ads_ reject
@@ -31,11 +32,8 @@ hostname = mp.weixin.qq.com, adsmind.gdtimg.com, wxsmw.wxs.qq.com, wxaintpcos.wx
 ^https?:\/\/wxaintpcos\.wxqcloud\.qq\.com\.cn\/public\/[^\/]+\/WxaDramaCoverImage\/ reject
 
 [Script]
-# 公众号文章底部/相关推荐流：请求中 is_need_ad=1，改为 0
-http-request ^https?:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed\? script-path=https://raw.githubusercontent.com/hahapkpk/js/main/wechat_mp_ad_sanitizer.js, requires-body=true, timeout=10, tag=微信公众号推荐流去广告-请求
-
-# 公众号文章底部/相关推荐流：响应中清理广告创意/推广/疑似广告项
-http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/masonryfeed\? script-path=https://raw.githubusercontent.com/hahapkpk/js/main/wechat_mp_ad_sanitizer.js, requires-body=true, timeout=10, tag=微信公众号推荐流去广告-响应
-
 # 公众号正文 HTML 兜底：注入隐藏规则，处理已嵌入正文/评论区的广告卡片
 http-response ^https?:\/\/mp\.weixin\.qq\.com\/s\? script-path=https://raw.githubusercontent.com/hahapkpk/js/main/wechat_mp_ad_sanitizer.js, requires-body=true, timeout=10, tag=微信公众号正文广告隐藏
+
+[MITM]
+hostname = %APPEND% mp.weixin.qq.com, adsmind.gdtimg.com, wxsmw.wxs.qq.com, wxaintpcos.wxqcloud.qq.com.cn, *.tfogc.com
