@@ -1,10 +1,10 @@
 /***********************************
  * 微信公众号去广告 - Loon Script
- * 进阶优化版：
+ * 反馈链路增强版：
  * 1. masonryfeed 推荐流广告过滤
  * 2. 公众号正文 /s? /s/ 广告容器整体删除
  * 3. 公众号主页/历史消息页 profile_ext 广告容器删除
- * 4. 修复接口被拦后残留灰色问号框/空白广告框
+ * 4. 利用 feedback.html / feedback_icon / ad_widget 特征删除广告卡片
  ***********************************/
 
 const url = $request.url || "";
@@ -40,7 +40,7 @@ if (/\/mp\/masonryfeed\?/.test(url)) {
         if (/"ad_info"\s*:/i.test(text)) return false;
         if (/"ad_pos"\s*:/i.test(text)) return false;
         if (/"ads"\s*:/i.test(text)) return false;
-        if (/adsmind|gdtimg|wechatad|promotion|promote|mini_drama|cps/i.test(text)) return false;
+        if (/adsmind|gdtimg|wechatad|promotion|promote|mini_drama|cps|feedback\.html|ad_widget/i.test(text)) return false;
         if ((/广告|推广|商业推广|营销/.test(text)) && /masonryfeed|related|recommend|interest/.test(text)) return false;
         return true;
       });
@@ -84,7 +84,14 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
 [class*="promotion"],
 [id*="promotion"],
 [class*="ad_area"],
-[id*="ad_area"] {
+[id*="ad_area"],
+[href*="feedback.html"],
+[src*="feedback_icon"],
+[style*="feedback_icon"],
+[data-url*="feedback.html"],
+[onclick*="feedback"],
+[class*="feedback"],
+[id*="feedback"] {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
@@ -98,9 +105,9 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
 (function () {
   'use strict';
 
-  var BTN_RE = /下载游戏|领取优惠|立即购买|去观看|查看|了解更多|点击了解更多|精品优售|福利|优惠|换购|折抵优惠/;
-  var AD_RE = /广告|推广|广告创意|adsmind|gdtimg|getappmsgad|cps_product_info|mini_drama_info|WxaDramaCoverImage|ads_svp_video|wxsmw\.wxs\.qq\.com/;
-  var CLASS_RE = /js_ad|advert|mpad|cps|mini_drama|promotion|adsmind|gdtimg|wxsmw|ads_svp_video|ad_area|ad_card/i;
+  var BTN_RE = /下载游戏|领取优惠|立即购买|立即下载|去观看|查看|了解更多|点击了解更多|精品优售|福利|优惠|换购|折抵优惠|不感兴趣|与我无关|重复收到多次|内容太差|反馈问题/;
+  var AD_RE = /广告|推广|广告创意|adsmind|gdtimg|getappmsgad|cps_product_info|mini_drama_info|WxaDramaCoverImage|ads_svp_video|wxsmw\.wxs\.qq\.com|feedback\.html|feedback_icon|ad_widget/;
+  var CLASS_RE = /js_ad|advert|mpad|cps|mini_drama|promotion|adsmind|gdtimg|wxsmw|ads_svp_video|ad_area|ad_card|feedback|ad_widget/i;
 
   function textOf(el) {
     try { return (el.innerText || el.textContent || '') + ' ' + (el.innerHTML || ''); } catch (e) { return ''; }
@@ -120,17 +127,23 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
     return id + ' ' + cls + ' ' + html;
   }
 
+  function hasFeedbackSignal(el) {
+    var mark = markOf(el);
+    return /feedback\.html|feedback_icon|ad_widget|不感兴趣|与我无关|重复收到多次|内容太差|反馈问题/i.test(mark + ' ' + textOf(el));
+  }
+
   function isProbablyAd(el) {
     if (!el || el.nodeType !== 1) return false;
     var text = textOf(el);
     var mark = markOf(el);
     if (CLASS_RE.test(mark)) return true;
-    if (/src=["'][^"']*(adsmind|gdtimg|ads_svp_video|WxaDramaCoverImage|getappmsgad|cps_product_info|mini_drama_info)/i.test(mark)) return true;
+    if (hasFeedbackSignal(el)) return true;
+    if (/src=["'][^"']*(adsmind|gdtimg|ads_svp_video|WxaDramaCoverImage|getappmsgad|cps_product_info|mini_drama_info|feedback_icon)/i.test(mark)) return true;
+    if (/href=["'][^"']*feedback\.html/i.test(mark)) return true;
     if (AD_RE.test(text) && BTN_RE.test(text)) return true;
     if (/广告/.test(text)) {
       var r = rectOf(el);
-      // 截图里的广告卡片通常宽度接近屏宽，高度 120-600；普通文字段落不会这么大
-      if (r.width > 240 && r.height > 60 && r.height < 900) return true;
+      if (r.width > 220 && r.height > 50 && r.height < 1000) return true;
     }
     return false;
   }
@@ -139,14 +152,14 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
     var cur = el;
     var root = document.getElementById('js_content') || document.getElementById('js_profile') || document.body;
     var best = el;
-    for (var i = 0; cur && cur !== root && cur !== document.body && i < 10; i++) {
+    for (var i = 0; cur && cur !== root && cur !== document.body && i < 12; i++) {
       var r = rectOf(cur);
       var text = textOf(cur);
-      var looksLikeCard = r.width > 260 && r.height > 80 && r.height < 900;
-      var hasAdSignal = /广告|推广/.test(text) || BTN_RE.test(text) || CLASS_RE.test(markOf(cur));
+      var mark = markOf(cur);
+      var looksLikeCard = r.width > 240 && r.height > 60 && r.height < 1000;
+      var hasAdSignal = /广告|推广/.test(text) || BTN_RE.test(text) || CLASS_RE.test(mark) || /feedback\.html|feedback_icon|ad_widget/.test(mark);
       if (looksLikeCard && hasAdSignal) best = cur;
-      // 到达包含普通文章正文过多文字的大容器时停止，防止误删整篇文章
-      if (r.height > 900 || text.length > 1200) break;
+      if (r.height > 1100 || text.length > 1600) break;
       cur = cur.parentElement;
     }
     return best || el;
@@ -175,6 +188,9 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
       '[class*="mini_drama"]', '[id*="mini_drama"]',
       '[class*="promotion"]', '[id*="promotion"]',
       '[class*="ad_area"]', '[id*="ad_area"]',
+      '[class*="feedback"]', '[id*="feedback"]',
+      'a[href*="feedback.html"]', '[data-url*="feedback.html"]', '[onclick*="feedback"]',
+      'img[src*="feedback_icon"]', '[style*="feedback_icon"]',
       'iframe[src*="getappmsgad"]', 'iframe[src*="cps_product_info"]',
       'iframe[src*="mini_drama_info"]', 'iframe[src*="/ad"]',
       'img[src*="adsmind"]', 'img[src*="gdtimg"]', 'img[src*="WxaDramaCoverImage"]',
@@ -194,26 +210,12 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
   }
 
   function cleanBrokenAdBoxes() {
-    // 处理资源已被拦截后显示“?”图标但广告容器仍在的情况
     var nodes = document.querySelectorAll('section, div, li');
     nodes.forEach(function (el) {
       if (!el || !el.parentNode) return;
       var text = textOf(el);
       var r = rectOf(el);
-      if (r.width > 260 && r.height > 120 && r.height < 900 && /广告/.test(text)) {
-        removeCard(el);
-      }
-    });
-  }
-
-  function cleanProfileAds() {
-    // 公众号主页/历史消息流中的广告卡片：常表现为 Apple 等品牌卡片 + 广告角标 + 大块空白
-    var nodes = document.querySelectorAll('div, li');
-    nodes.forEach(function (el) {
-      if (!el || !el.parentNode) return;
-      var text = textOf(el);
-      var r = rectOf(el);
-      if (r.width > 280 && r.height > 120 && r.height < 900 && /广告/.test(text)) {
+      if (r.width > 240 && r.height > 100 && r.height < 1000 && (/广告/.test(text) || hasFeedbackSignal(el))) {
         removeCard(el);
       }
     });
@@ -223,16 +225,15 @@ if (/https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?)/.test(url)
     cleanBySelectors();
     cleanByText();
     cleanBrokenAdBoxes();
-    cleanProfileAds();
   }
 
   cleanAds();
   document.addEventListener('DOMContentLoaded', cleanAds);
   window.addEventListener('load', cleanAds);
-  [300, 800, 1500, 3000, 5000, 8000].forEach(function (t) { setTimeout(cleanAds, t); });
+  [100, 300, 800, 1500, 3000, 5000, 8000, 12000].forEach(function (t) { setTimeout(cleanAds, t); });
 
   var observer = new MutationObserver(function () { cleanAds(); });
-  observer.observe(document.documentElement || document.body, { childList: true, subtree: true });
+  observer.observe(document.documentElement || document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'src', 'href'] });
 })();
 </script>
 `;
