@@ -1,20 +1,20 @@
 #!name=微信公众号去广告
-#!desc=过滤微信公众号正文广告、主页/历史列表广告、商品 CPS、短剧/小程序推广、相关推荐、搜索推荐词、腾讯广告/GDT 视频素材。融合 Map Local 空响应、getappmsgad 响应脚本、reject-dict 兜底与 DOM 容器删除策略。
+#!desc=过滤微信公众号正文广告、主页/历史列表广告、商品 CPS、短剧/小程序推广、文末推荐、搜索推荐词、腾讯广告/GDT 素材。融合 Map Local 结构化空响应、getappmsgad 响应脚本、reject-dict 兜底与 DOM 容器删除策略。
 #!author=ChatGPT
 #!homepage=https://github.com/hahapkpk/js
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/WeChat.png
-
-[Rule]
-# 微信广告素材域名，日志中出现 wxsmw.wxs.qq.com/ads_svp_video
-DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
 
 [Map Local]
 # 公众号正文广告核心接口：用空 JSON 替代 reject，避免微信前端回退或显示异常占位
 # getappmsgad 单独交给 wxgzhad.js 处理，不放入 Map Local，避免脚本不执行
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\? data-type=text data="{}" status-code=200 header="Content-Type:application/json"
 
-# 公众号相关文章搜索词/推荐词
-^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword data-type=text data="{}" status-code=200 header="Content-Type:application/json"
+# 公众号文末推荐文章：实测 getainfo 返回 ainfos 列表
+^https:\/\/mp\.weixin\.qq\.com\/mp\/getainfo(?:\?|$) data-type=text data="{\"base_resp\":{\"ret\":0},\"ainfos\":[]}" status-code=200 header="Content-Type:application/json"
+
+# 公众号相关文章搜索词/推荐词：按实测响应结构返回空列表
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword\?.*action=getimagekeyword data-type=text data="{\"base_resp\":{\"exportkey_token\":\"\",\"ret\":0},\"hit_expt\":true,\"items\":[]}" status-code=200 header="Content-Type:application/json"
+^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword\?.*action=getsearchword data-type=text data="{\"base_resp\":{\"exportkey_token\":\"\",\"ret\":0},\"list\":[],\"product_item_list\":[]}" status-code=200 header="Content-Type:application/json"
 
 # 公众号短剧/小程序推广：日志中出现 mini_drama_info?action=play_info/link
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/mini_drama_info data-type=text data="{}" status-code=200 header="Content-Type:application/json"
@@ -27,12 +27,14 @@ DOMAIN-SUFFIX,wxs.qq.com,REJECT,extended-matching,pre-matching
 # 公众号广告接口严格兜底：如果 Map Local 未命中，则 reject-dict
 # getappmsgad 单独交给 wxgzhad.js 处理，不在这里 reject
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/(cps_product_info|jsmonitor|masonryfeed|relatedarticle)\? reject-dict
+^https:\/\/mp\.weixin\.qq\.com\/mp\/getainfo(?:\?|$) reject-dict
 ^https:\/\/mp\.weixin\.qq\.com\/mp\/relatedsearchword reject-dict
 
-# 腾讯广告/GDT 视频广告素材
+# 腾讯广告/GDT 素材：只拦广告路径，避免误杀正常 wxs.qq.com 模板和图片
 ^https?:\/\/adsmind\.gdtimg\.com\/ads_ reject
 ^https?:\/\/wxsmw\.wxs\.qq\.com\/.*\/ads_svp_video_ reject
 ^https?:\/\/[^\/]+\.tfogc\.com(?::\d+)?\/adsmind\.gdtimg\.com\/ads_ reject
+^https?:\/\/canvas-cdn\.gdt\.qq\.com\/canvas\/ reject
 
 # 短剧推广封面图：日志中出现 WxaDramaCoverImage
 ^https?:\/\/wxaintpcos\.wxqcloud\.qq\.com\.cn\/public\/[^\/]+\/WxaDramaCoverImage\/ reject
@@ -45,4 +47,4 @@ http-response ^https?:\/\/mp\.weixin\.qq\.com\/mp\/getappmsgad script-path=https
 http-response ^https?:\/\/mp\.weixin\.qq\.com\/(?:s(?:\/|\?)|mp\/profile_ext\?) script-path=https://raw.githubusercontent.com/hahapkpk/js/main/wechat_mp_ad_sanitizer.js, requires-body=true, timeout=10, tag=微信公众号HTML广告容器删除
 
 [MITM]
-hostname = %APPEND% mp.weixin.qq.com, adsmind.gdtimg.com, wxsmw.wxs.qq.com, wxaintpcos.wxqcloud.qq.com.cn, *.tfogc.com
+hostname = %APPEND% mp.weixin.qq.com, adsmind.gdtimg.com, wxsmw.wxs.qq.com, canvas-cdn.gdt.qq.com, wxaintpcos.wxqcloud.qq.com.cn, *.tfogc.com
