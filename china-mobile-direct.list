@@ -1,14 +1,18 @@
 # China Mobile / 10086 Direct Routing Rules
-# 中国移动 / 10086 直连分流规则
+# 中国移动 / 10086 / 中国移动支付 直连分流规则
 #
-# 用途：减少中国移动 APP、10086、咪咕、139 邮箱等中国移动相关服务被代理/VPN 误判。
+# 用途：减少中国移动 APP、10086、咪咕、139 邮箱、中国移动支付等服务被代理/VPN 误判。
 # 原则：相关域名全部 DIRECT，不走 PROXY。
 # 适用：Loon / Surge / Shadowrocket / Stash / Clash Meta(mihomo) 等常见规则格式。
+#
+# 重要说明：
+# iOS 上如果 App 直接检测“系统 VPN 是否开启”，即使域名已 DIRECT，仍可能提示 VPN。
+# 这种情况只能临时关闭 Loon/VPN，或通过快捷指令在打开该支付 App 前关闭 VPN。
 #
 # 建议放置位置：
 # 1. 放在广告拦截、国外代理规则之前；
 # 2. 放在 FINAL / MATCH 兜底规则之前；
-# 3. 如果客户端支持分应用代理，Android 可额外将中国移动 APP 设为绕过代理。
+# 3. 中国移动支付、10086 等 App 使用时，建议关闭相关域名的 MitM、Rewrite、Script。
 
 # 中国移动核心入口
 DOMAIN-SUFFIX,10086.cn,DIRECT
@@ -25,6 +29,14 @@ DOMAIN-SUFFIX,cmcc-cs.cn,DIRECT
 DOMAIN-SUFFIX,cmcc.com,DIRECT
 DOMAIN-SUFFIX,cmcc.net,DIRECT
 DOMAIN-SUFFIX,cmccapp.cn,DIRECT
+
+# 中国移动支付 / 和包 / 中移金科相关，按需补充
+DOMAIN-SUFFIX,cmpay.com,DIRECT
+DOMAIN-SUFFIX,cmpay.com.cn,DIRECT
+DOMAIN-SUFFIX,cmccpay.cn,DIRECT
+DOMAIN-SUFFIX,cmpay.10086.cn,DIRECT
+DOMAIN-SUFFIX,tyrz.10086.cn,DIRECT
+DOMAIN-SUFFIX,wap.cmpay.com,DIRECT
 
 # 咪咕系服务
 DOMAIN-SUFFIX,migu.cn,DIRECT
