@@ -1,0 +1,51 @@
+# China Mobile / 10086 Direct Routing Rules
+# 中国移动 / 10086 直连分流规则
+#
+# 用途：减少中国移动 APP、10086、咪咕、139 邮箱等中国移动相关服务被代理/VPN 误判。
+# 原则：相关域名全部 DIRECT，不走 PROXY。
+# 适用：Loon / Surge / Shadowrocket / Stash / Clash Meta(mihomo) 等常见规则格式。
+#
+# 建议放置位置：
+# 1. 放在广告拦截、国外代理规则之前；
+# 2. 放在 FINAL / MATCH 兜底规则之前；
+# 3. 如果客户端支持分应用代理，Android 可额外将中国移动 APP 设为绕过代理。
+
+# 中国移动核心入口
+DOMAIN-SUFFIX,10086.cn,DIRECT
+DOMAIN-SUFFIX,10085.cn,DIRECT
+DOMAIN-SUFFIX,10080.cn,DIRECT
+DOMAIN-SUFFIX,chinamobile.com,DIRECT
+DOMAIN-SUFFIX,chinamobileltd.com,DIRECT
+DOMAIN-SUFFIX,cmdc.chinamobile.com,DIRECT
+DOMAIN-SUFFIX,cmiot.chinamobile.com,DIRECT
+
+# 中国移动统一认证 / 手机号登录相关
+DOMAIN-SUFFIX,cmpassport.com,DIRECT
+DOMAIN-SUFFIX,cmcc-cs.cn,DIRECT
+DOMAIN-SUFFIX,cmcc.com,DIRECT
+DOMAIN-SUFFIX,cmcc.net,DIRECT
+DOMAIN-SUFFIX,cmccapp.cn,DIRECT
+
+# 咪咕系服务
+DOMAIN-SUFFIX,migu.cn,DIRECT
+DOMAIN-SUFFIX,miguvideo.com,DIRECT
+DOMAIN-SUFFIX,miguvideo.com.cn,DIRECT
+DOMAIN-SUFFIX,migumusic.com,DIRECT
+DOMAIN-SUFFIX,migutv.com,DIRECT
+DOMAIN-SUFFIX,mgc-games.com,DIRECT
+
+# 139 邮箱 / 和飞信 / 和家亲等移动系服务
+DOMAIN-SUFFIX,139.com,DIRECT
+DOMAIN-SUFFIX,andfx.cn,DIRECT
+DOMAIN-SUFFIX,hejiaqin.com,DIRECT
+DOMAIN-SUFFIX,hjq.komect.com,DIRECT
+DOMAIN-SUFFIX,fetion-portal.com,DIRECT
+
+# 移动云 / 政企云 / CDN 相关，按需保留
+DOMAIN-SUFFIX,ecloud.10086.cn,DIRECT
+DOMAIN-SUFFIX,cmdic.cn,DIRECT
+DOMAIN-SUFFIX,cmvideo.cn,DIRECT
+DOMAIN-SUFFIX,cmread.com,DIRECT
+
+# 常见国内兜底：如你的主配置已有 GEOIP,CN,DIRECT，可不重复添加
+# GEOIP,CN,DIRECT
