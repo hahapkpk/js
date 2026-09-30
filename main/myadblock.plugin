@@ -39,30 +39,13 @@ DOMAIN-SUFFIX,adkwai.com,REJECT
 DOMAIN-SUFFIX,fancyapi.com,REJECT
 
 
-[Rewrite]
-# ===== 小蚁摄像机（gw.xiaoyi.com）=====
-# 全局配置（首页/活动/广告开关等）
-^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/config script-response-body xiaoyi_ad_sanitizer
-
-# 设备页广告位（“看广告得蚁豆/免费云存”等常在这里）
-^https:\/\/gw\.xiaoyi\.com\/vas\/v\d+\/equipment\/play\/bannerList02 script-response-body xiaoyi_ad_sanitizer
-
-# 开屏/弹窗/顶部横幅（你日志里 screen/闪屏.png 在这里）
-^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-response-body yi_splash_cleaner
-
-# ===== 腾讯文档（docs.qq.com）=====
-# 天枢广告下发：清空广告列表（开屏/启动/运营广告入口）
-^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-response-body tdocs_ad_cleaner
-
 [Script]
 # 小蚁：全局配置/设备广告净化
-xiaoyi_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js
-
+http-response ^https:\/\/gw\.xiaoyi\.com\/(?:v\d+\/app\/config|vas\/v\d+\/equipment\/play\/bannerList02) script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js,requires-body=true,timeout=10,tag=小蚁配置广告清理
 # 小蚁：专杀开屏/弹窗/横幅（getPopupWindow）
-yi_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js
-
+http-response ^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js,requires-body=true,timeout=10,tag=小蚁开屏弹窗清理
 # 腾讯文档：清空天枢广告
-tdocs_ad_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js
+http-response ^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js,requires-body=true,timeout=10,tag=腾讯文档广告清理
 
 [MITM]
 hostname = gw.xiaoyi.com, docs.qq.com

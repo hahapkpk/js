@@ -3,6 +3,7 @@
 // 保留正常字段结构，仅清空广告数据，避免 APP 报错
 
 let body = $response.body;
+let result;
 
 try {
   let json = JSON.parse(body);
@@ -14,15 +15,16 @@ try {
 
   // 清空 advideopatchconfig 的广告配置（通常是顶层数组或 data 字段）
   if (Array.isArray(json)) {
-    $done({ body: "[]" });
-    return;
-  }
-  if (json.data && Array.isArray(json.data)) {
+    result = { body: "[]" };
+  } else if (json.data && Array.isArray(json.data)) {
     json.data = [];
+    result = { body: JSON.stringify(json) };
+  } else {
+    result = { body: JSON.stringify(json) };
   }
-
-  $done({ body: JSON.stringify(json) });
 } catch (e) {
   // 解析失败时返回通用空字典
-  $done({ body: '{"code":0,"msg":"OK","data":{}}' });
+  result = { body: '{"code":0,"msg":"OK","data":{}}' };
 }
+
+$done(result);

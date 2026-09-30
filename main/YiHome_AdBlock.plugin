@@ -33,25 +33,11 @@ DOMAIN-SUFFIX,umeng.com,REJECT
 DOMAIN-SUFFIX,volceapplog.com,REJECT
 DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
 
-[Rewrite]
-# === 官方“配置/广告/运营下发包”：命中后净化 JSON（推荐，不直接 REJECT） ===
-
-^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-response-body yi_splash_cleaner
-# 全局配置
-^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/config script-response-body xiaoyi_ad_sanitizer
-
-# 设备播放页/设备卡片广告位（bannerList02）
-^https:\/\/gw\.xiaoyi\.com\/vas\/v\d+\/equipment\/play\/bannerList02 script-response-body xiaoyi_ad_sanitizer
-
-# 首页弹窗/顶部横幅（getPopupWindow）
-^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-response-body xiaoyi_ad_sanitizer
-
-# （可选兜底）后续若冒出启动/开屏/广告相关接口，可取消注释：
-# ^https:\/\/gw\.xiaoyi\.com\/v\d+\/app\/(startup|launch|boot|init).* script-response-body xiaoyi_ad_sanitizer
-# ^https:\/\/gw\.xiaoyi\.com\/v\d+\/(ad|ads|marketing|banner|splash)\/.* script-response-body xiaoyi_ad_sanitizer
-
 [Script]
-xiaoyi_ad_sanitizer = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js
-yi_splash_cleaner = type=http-response,requires-body=1,max-size=0,timeout=10,script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js
+# 官方“配置/广告/运营下发包”：命中后净化 JSON（推荐，不直接 REJECT）
+http-response ^https:\/\/gw\.xiaoyi\.com\/(?:v\d+\/app\/config|vas\/v\d+\/equipment\/play\/bannerList02) script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js,requires-body=true,timeout=10,tag=小蚁配置广告清理
+http-response ^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js,requires-body=true,timeout=10,tag=小蚁开屏弹窗清理
+
+# （可选兜底）后续若冒出启动/开屏/广告相关接口，可按上面的完整 http-response 格式新增匹配规则。
 [MITM]
 hostname = gw.xiaoyi.com
