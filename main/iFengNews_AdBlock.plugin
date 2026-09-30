@@ -36,9 +36,9 @@ DOMAIN,api.newad.ifeng.com,REJECT
 
 [Script]
 # ── 开屏广告数据接口 & 预缓存列表 → 返回空数组 ──
-http-response ^https:\/\/nine\.ifeng\.com\/(?:startUpAdd|startUpAdPrestrainList) script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_splash_cleaner.js,requires-body=true,timeout=10,tag=凤凰新闻开屏广告清理
+response if ${url} ~= /^https:\/\/nine\.ifeng\.com\/(?:startUpAdd|startUpAdPrestrainList)/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_splash_cleaner.js") with requires_body=true, timeout=10, tag="凤凰新闻开屏广告清理"
 # ── 广告预加载 & 视频广告插片配置 → 清空广告数据 ──
-http-response ^https:\/\/nine\.ifeng\.com\/(?:adPreload|advideopatchconfig) script-path=https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_ad_empty_dict.js,requires-body=true,timeout=10,tag=凤凰新闻插片广告清理
+response if ${url} ~= /^https:\/\/nine\.ifeng\.com\/(?:adPreload|advideopatchconfig)/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/main/scripts/ifeng_ad_empty_dict.js") with requires_body=true, timeout=10, tag="凤凰新闻插片广告清理"
 
 [MITM]
 hostname = nine.ifeng.com, *.deliver.ifeng.com, api.newad.ifeng.com

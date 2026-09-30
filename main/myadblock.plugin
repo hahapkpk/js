@@ -41,11 +41,11 @@ DOMAIN-SUFFIX,fancyapi.com,REJECT
 
 [Script]
 # 小蚁：全局配置/设备广告净化
-http-response ^https:\/\/gw\.xiaoyi\.com\/(?:v\d+\/app\/config|vas\/v\d+\/equipment\/play\/bannerList02) script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js,requires-body=true,timeout=10,tag=小蚁配置广告清理
+response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/(?:v\d+\/app\/config|vas\/v\d+\/equipment\/play\/bannerList02)/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js") with requires_body=true, timeout=10, tag="小蚁配置广告清理"
 # 小蚁：专杀开屏/弹窗/横幅（getPopupWindow）
-http-response ^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js,requires-body=true,timeout=10,tag=小蚁开屏弹窗清理
+response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js") with requires_body=true, timeout=10, tag="小蚁开屏弹窗清理"
 # 腾讯文档：清空天枢广告
-http-response ^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads script-path=https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js,requires-body=true,timeout=10,tag=腾讯文档广告清理
+response if ${url} ~= /^https:\/\/docs\.qq\.com\/api\/advertise\/tianshu\/getads/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/tdocs_ad_cleaner.js") with requires_body=true, timeout=10, tag="腾讯文档广告清理"
 
 [MITM]
 hostname = gw.xiaoyi.com, docs.qq.com

@@ -46,7 +46,7 @@ for (const [relativePath, expectedCount] of plugins) {
   const seenPatterns = new Set();
   for (const entry of entries) {
     const match = entry.match(
-      /^http-response\s+(\S+)\s+script-path=(https:\/\/[^,]+\.js),requires-body=true,timeout=(\d+),tag=(.+)$/,
+      /^response if \$\{url\} ~= \/(.+)\/ then script\("(https:\/\/[^" ]+\.js)"\) with requires_body=true, timeout=(\d+), tag="([^"]+)"$/,
     );
     if (!match) throw new Error(`${relativePath}: invalid Loon script entry: ${entry}`);
 
