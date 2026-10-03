@@ -1,5 +1,5 @@
 #!name=Telegram App 分流
-#!desc=完整保留用户提供的48条Telegram及相关客户端规则。安装后将插件PROXY映射到Telegram策略组或所需代理节点；不自动创建策略组，无需MitM。
+#!desc=完整保留用户提供的49条Telegram及相关客户端规则。安装后将插件PROXY映射到Telegram策略组或所需代理节点；不自动创建策略组，无需MitM。
 #!author=hahapkpk
 #!homepage=https://github.com/hahapkpk/js
 #!icon=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png
@@ -48,6 +48,7 @@ IP-CIDR,5.28.192.0/18,PROXY,no-resolve
 IP-CIDR,109.239.140.0/24,PROXY,no-resolve
 IP-CIDR,139.59.210.98/32,PROXY,no-resolve
 IP-CIDR,196.55.216.167/32,PROXY,no-resolve
+IP-CIDR,194.221.250.50/32,PROXY,no-resolve
 IP-CIDR6,2001:67c:4e8::/48,PROXY,no-resolve
 IP-CIDR6,2001:b28:f23c::/47,PROXY,no-resolve
 IP-CIDR6,2001:b28:f23d::/48,PROXY,no-resolve
