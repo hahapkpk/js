@@ -1,0 +1,47 @@
+name: 更新英文杂志目录
+
+on:
+  schedule:
+    - cron: '25 0,12 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/update_magazines.py
+      - tests/test_magazine_catalog.py
+      - .github/workflows/update-magazines.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: magazine-catalog
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 验证目录逻辑
+        run: python -m unittest discover -s tests -p test_magazine_catalog.py
+      - name: 检查两个来源
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/update_magazines.py
+      - name: 提交目录变化
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add magazines/README.md magazines/catalog.json
+          if ! git diff --cached --quiet; then
+            git commit -m '更新英文杂志下载目录'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi

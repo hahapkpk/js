@@ -1,0 +1,1861 @@
+{
+  "updated_at": "2026-10-25 13:10:06",
+  "sources": [
+    {
+      "id": "economist",
+      "name": "📗 经济学人 · The Economist",
+      "repo": "hehonghui/awesome-english-ebooks",
+      "branch": "master",
+      "prefix": "01_economist/",
+      "issues": [
+        {
+          "date": "2026-10-24",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.10.24/TheEconomist.2026.10.24.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.10.24/TheEconomist.2026.10.24.epub",
+              "sha": "ff4a1b38e92e1559606c5406329301850f8a9ecd",
+              "size": 7496821
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.10.24/TheEconomist.2026.10.24.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.10.24/TheEconomist.2026.10.24.pdf",
+              "sha": "00de484f6245c25ca98cae6ca0e25ef921f8d61f",
+              "size": 9828985
+            }
+          }
+        },
+        {
+          "date": "2026-10-17",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.10.17/TheEconomist.2026.10.17.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.10.17/TheEconomist.2026.10.17.epub",
+              "sha": "8149a943f5423b699953afa9288ca2079ac8ae91",
+              "size": 6690356
+            }
+          }
+        },
+        {
+          "date": "2026-10-10",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.10.10/TheEconomist.2026.10.10.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.10.10/TheEconomist.2026.10.10.epub",
+              "sha": "35b19c6ad4269781c11bd1ac3f23c5391a1de34d",
+              "size": 6179760
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.10.10/TheEconomist.2026.10.10.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.10.10/TheEconomist.2026.10.10.pdf",
+              "sha": "8fb5025ae09ff8f1360e540d2c1cb616093d5b8e",
+              "size": 8649722
+            }
+          }
+        },
+        {
+          "date": "2026-10-03",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.10.03/TheEconomist.2026.10.03.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.10.03/TheEconomist.2026.10.03.epub",
+              "sha": "c2a09e76beefdb08e20fd9047280532e4a1e6931",
+              "size": 6007654
+            }
+          }
+        },
+        {
+          "date": "2026-09-26",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.26/TheEconomist.2026.09.26.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.26/TheEconomist.2026.09.26.epub",
+              "sha": "eef2b31efc902b6e42195485600f470da1e17da5",
+              "size": 6063213
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.26/TheEconomist.2026.09.26.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.26/TheEconomist.2026.09.26.pdf",
+              "sha": "9d24e921bed3e58fa8a10235e1fd95e9e84e9d65",
+              "size": 8747450
+            }
+          }
+        },
+        {
+          "date": "2026-09-19",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.19/TheEconomist.2026.09.19.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.19/TheEconomist.2026.09.19.epub",
+              "sha": "f8440c39d78225002185ef2c3b26aba307492613",
+              "size": 6303524
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.19/TheEconomist.2026.09.19.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.19/TheEconomist.2026.09.19.pdf",
+              "sha": "70f6fe01ec1042c865e9ed44e6829850d032665a",
+              "size": 9028963
+            }
+          }
+        },
+        {
+          "date": "2026-09-12",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.12/TheEconomist.2026.09.12.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.12/TheEconomist.2026.09.12.epub",
+              "sha": "1b0c85879085d9f70af5be2b9ecede0c20f0bc59",
+              "size": 6917751
+            }
+          }
+        },
+        {
+          "date": "2026-09-05",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.05/TheEconomist.2026.09.05.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.05/TheEconomist.2026.09.05.epub",
+              "sha": "59a24fbb7535ac3fa4d909763039f572161bb440",
+              "size": 7606256
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.09.05/TheEconomist.2026.09.05.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.09.05/TheEconomist.2026.09.05.pdf",
+              "sha": "c16ffb1f6b1b098247253ff76a2cc0e8c24ffa01",
+              "size": 10205741
+            }
+          }
+        },
+        {
+          "date": "2026-08-29",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.29/TheEconomist.2026.08.29.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.29/TheEconomist.2026.08.29.epub",
+              "sha": "5c4c39c0ef948ee7286f60be32e1ec9572583bc7",
+              "size": 6344346
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.29/TheEconomist.2026.08.29.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.29/TheEconomist.2026.08.29.pdf",
+              "sha": "dc74523b8e5b7c8b85eba3df7fbdc126d546d1b5",
+              "size": 8892958
+            }
+          }
+        },
+        {
+          "date": "2026-08-22",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.22/TheEconomist.2026.08.22.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.22/TheEconomist.2026.08.22.epub",
+              "sha": "d8d4a0464d086410428de491ff24ae8847f4ea60",
+              "size": 6047231
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.22/TheEconomist.2026.08.22.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.22/TheEconomist.2026.08.22.pdf",
+              "sha": "16b869fd602650a06d6b22abac822a87bb4ae852",
+              "size": 8418900
+            }
+          }
+        },
+        {
+          "date": "2026-08-15",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.15/TheEconomist.2026.08.15.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.15/TheEconomist.2026.08.15.epub",
+              "sha": "7a6e60f677ad846846d40126e7864f1a0ffe0133",
+              "size": 6345415
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.15/TheEconomist.2026.08.15.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.15/TheEconomist.2026.08.15.pdf",
+              "sha": "f4516396ad63055ea16fa58d059daf9797948bc1",
+              "size": 8797513
+            }
+          }
+        },
+        {
+          "date": "2026-08-08",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.08/TheEconomist.2026.08.08.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.08/TheEconomist.2026.08.08.epub",
+              "sha": "0f5824219e821d243229563ee1a01d4e51aecd27",
+              "size": 8159338
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.08/TheEconomist.2026.08.08.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.08/TheEconomist.2026.08.08.pdf",
+              "sha": "f056a309f5b7bc8ec5a5150d66adbc92f3bf55bc",
+              "size": 8852703
+            }
+          }
+        },
+        {
+          "date": "2026-08-01",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.01/TheEconomist.2026.08.01.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.01/TheEconomist.2026.08.01.epub",
+              "sha": "d5dea42e7040e865ae5d5f9ad64274dbc98e3ad7",
+              "size": 6858161
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.08.01/TheEconomist.2026.08.01.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.08.01/TheEconomist.2026.08.01.pdf",
+              "sha": "3e4dbd1fb0f7690bc59676f8f0788761d3900e7f",
+              "size": 9672543
+            }
+          }
+        },
+        {
+          "date": "2026-07-25",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.25/TheEconomist.2026.07.25.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.25/TheEconomist.2026.07.25.epub",
+              "sha": "b90cc59187b37e4e7bfa595a1f6f4be0b6acd85a",
+              "size": 7253407
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.25/TheEconomist.2026.07.25.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.25/TheEconomist.2026.07.25.pdf",
+              "sha": "6427f9ce7ae642e647d318e376de12172469c63a",
+              "size": 9880122
+            }
+          }
+        },
+        {
+          "date": "2026-07-18",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.18/TheEconomist.2026.07.18.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.18/TheEconomist.2026.07.18.epub",
+              "sha": "7052da498999e95fa48a86c1dd590c23a4a20d9b",
+              "size": 6151311
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.18/TheEconomist.2026.07.18.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.18/TheEconomist.2026.07.18.pdf",
+              "sha": "6bb83566a1f7d4737613506aed74b8e908bca41b",
+              "size": 8500885
+            }
+          }
+        },
+        {
+          "date": "2026-07-11",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.11/TheEconomist.2026.07.11.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.11/TheEconomist.2026.07.11.epub",
+              "sha": "4feafc54c803697cfb08eb0a65abe7c85f85423e",
+              "size": 7160725
+            }
+          }
+        },
+        {
+          "date": "2026-07-04",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.04/TheEconomist.2026.07.04.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.04/TheEconomist.2026.07.04.epub",
+              "sha": "3a40f89e21e36bd96edf472b20b783105d29c325",
+              "size": 6607506
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.07.04/TheEconomist.2026.07.04.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.07.04/TheEconomist.2026.07.04.pdf",
+              "sha": "10d77ec62f9985b18116870cd0a6b6c849f646ef",
+              "size": 9239969
+            }
+          }
+        },
+        {
+          "date": "2026-06-27",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.27/TheEconomist.2026.06.27.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.27/TheEconomist.2026.06.27.epub",
+              "sha": "c6a29f622e2f704bf1573f96d28749df5a880565",
+              "size": 6816352
+            }
+          }
+        },
+        {
+          "date": "2026-06-20",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.20/TheEconomist.2026.06.20.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.20/TheEconomist.2026.06.20.epub",
+              "sha": "700e5e4cd6d78b48106a55125d9b5b7d523c2751",
+              "size": 6214766
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.20/TheEconomist.2026.06.20.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.20/TheEconomist.2026.06.20.pdf",
+              "sha": "b5216b0b034f212fc3953a273057e0cf56bc167c",
+              "size": 8713920
+            }
+          }
+        },
+        {
+          "date": "2026-06-13",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.13/TheEconomist.2026.06.13.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.13/TheEconomist.2026.06.13.epub",
+              "sha": "258bbe1b9cf1a977126f7d7c1f9045093c22f396",
+              "size": 6866384
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.13/TheEconomist.2026.06.13.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.13/TheEconomist.2026.06.13.pdf",
+              "sha": "e14995afa8790f1c701152b1fea8b2578506b6e2",
+              "size": 9483039
+            }
+          }
+        },
+        {
+          "date": "2026-06-06",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.06/TheEconomist.2026.06.06.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.06/TheEconomist.2026.06.06.epub",
+              "sha": "42e0ad3d1366d16694c25fa468da125b41cc998d",
+              "size": 5791021
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.06.06/TheEconomist.2026.06.06.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.06.06/TheEconomist.2026.06.06.pdf",
+              "sha": "12739206a30e7c57a8e1b9920b1786fac3d739d3",
+              "size": 8600263
+            }
+          }
+        },
+        {
+          "date": "2026-05-30",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.30/TheEconomist.2026.05.30.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.30/TheEconomist.2026.05.30.epub",
+              "sha": "e2d7ff0fcf6162bf38ce8b70768d9e96588c6335",
+              "size": 5672806
+            }
+          }
+        },
+        {
+          "date": "2026-05-23",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.23/TheEconomist.2026.05.23.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.23/TheEconomist.2026.05.23.epub",
+              "sha": "d1702873a53789b11bc55d6b65a9411f00a8c6c5",
+              "size": 6129881
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.23/TheEconomist.2026.05.23.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.23/TheEconomist.2026.05.23.pdf",
+              "sha": "b3736a7451fb42d1ea4a97203ff50d4e4737ff92",
+              "size": 8626224
+            }
+          }
+        },
+        {
+          "date": "2026-05-16",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.16/TheEconomist.2026.05.16.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.16/TheEconomist.2026.05.16.epub",
+              "sha": "2f8074fecb180606b14c5a1940303c2f2e603505",
+              "size": 6548094
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.16/TheEconomist.2026.05.16.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.16/TheEconomist.2026.05.16.pdf",
+              "sha": "90205447baec2395d2980ac8dfae77cb462edd07",
+              "size": 9167510
+            }
+          }
+        },
+        {
+          "date": "2026-05-09",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.09/TheEconomist.2026.05.09.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.09/TheEconomist.2026.05.09.epub",
+              "sha": "46186f8ae210d474c6011e0d8066e9854aceffa4",
+              "size": 5984939
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.09/TheEconomist.2026.05.09.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.09/TheEconomist.2026.05.09.pdf",
+              "sha": "71627adeb7c2af05f01068238fb14cd4cffca88f",
+              "size": 8331823
+            }
+          }
+        },
+        {
+          "date": "2026-05-02",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.02/TheEconomist.2026.05.02.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.02/TheEconomist.2026.05.02.epub",
+              "sha": "5736b632c13206f922844366e19c6a2f975d016a",
+              "size": 6341893
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.05.02/TheEconomist.2026.05.02.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.05.02/TheEconomist.2026.05.02.pdf",
+              "sha": "83487d9e5c9d28fa60339760f59f8f3783ee8e7e",
+              "size": 8756242
+            }
+          }
+        },
+        {
+          "date": "2026-04-25",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.25/TheEconomist.2026.04.25.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.25/TheEconomist.2026.04.25.epub",
+              "sha": "df7694b273ab1e77ac11d6706601ceddf10db247",
+              "size": 6819132
+            }
+          }
+        },
+        {
+          "date": "2026-04-18",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.18/TheEconomist.2026.04.18.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.18/TheEconomist.2026.04.18.epub",
+              "sha": "5fe38ac8158fef4d7f72b3a1177ed173bf7036bd",
+              "size": 6234548
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.18/TheEconomist.2026.04.18.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.18/TheEconomist.2026.04.18.pdf",
+              "sha": "d72ecb43836b999b10f7c7c5c67df92c84a6ba25",
+              "size": 8863573
+            }
+          }
+        },
+        {
+          "date": "2026-04-11",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.11/TheEconomist.2026.04.11.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.11/TheEconomist.2026.04.11.epub",
+              "sha": "1b8d0991d37b0e6426d3238da3300517643ce56b",
+              "size": 5354661
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.11/TheEconomist.2026.04.11.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.11/TheEconomist.2026.04.11.pdf",
+              "sha": "d8cc87a99050f8bbd4131c997a87ceebee469f6c",
+              "size": 7777842
+            }
+          }
+        },
+        {
+          "date": "2026-04-04",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.04/TheEconomist.2026.04.04.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.04/TheEconomist.2026.04.04.epub",
+              "sha": "6fd0fc9a3af8d40d1b97914aa309448284b549aa",
+              "size": 6131151
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.04.04/TheEconomist.2026.04.04.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.04.04/TheEconomist.2026.04.04.pdf",
+              "sha": "d4802741df4f8fe1596257e1034cd90bb61596f6",
+              "size": 8580245
+            }
+          }
+        },
+        {
+          "date": "2026-03-28",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.28/TheEconomist.2026.03.28.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.28/TheEconomist.2026.03.28.epub",
+              "sha": "046e7508886619524f6153e862fb2ac523b6cbba",
+              "size": 6402748
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.28/TheEconomist.2026.03.28.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.28/TheEconomist.2026.03.28.pdf",
+              "sha": "cdd779acf5d256246a1ef93ca3faff0d658ba273",
+              "size": 8972920
+            }
+          }
+        },
+        {
+          "date": "2026-03-21",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.21/TheEconomist.2026.03.21.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.21/TheEconomist.2026.03.21.epub",
+              "sha": "484e2451807eeae370457573e7790201c4c6f22f",
+              "size": 6513555
+            }
+          }
+        },
+        {
+          "date": "2026-03-14",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.14/TheEconomist.2026.03.14.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.14/TheEconomist.2026.03.14.epub",
+              "sha": "b517a7245f76125b0956214c07dd414db6b5e22e",
+              "size": 6645921
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.14/TheEconomist.2026.03.14.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.14/TheEconomist.2026.03.14.pdf",
+              "sha": "5442fe7c902cd4da7199d954f25d4d60b9c49ecc",
+              "size": 9321110
+            }
+          }
+        },
+        {
+          "date": "2026-03-07",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.07/TheEconomist.2026.03.07.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.07/TheEconomist.2026.03.07.epub",
+              "sha": "1e5199558716e321d4fcaf22219c3c70c37c8756",
+              "size": 5980050
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.03.07/TheEconomist.2026.03.07.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.03.07/TheEconomist.2026.03.07.pdf",
+              "sha": "10162eba618504e9264f392730dd09d7af28dc0b",
+              "size": 8372900
+            }
+          }
+        },
+        {
+          "date": "2026-02-28",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.28/TheEconomist.2026.02.28.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.28/TheEconomist.2026.02.28.epub",
+              "sha": "dd19fcbf6537e869ab3a158a3e495f2b71f5df06",
+              "size": 7158161
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.28/TheEconomist.2026.02.28.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.28/TheEconomist.2026.02.28.pdf",
+              "sha": "a033e9c16dcef126ef6596c26c397a7a4ce0d84e",
+              "size": 12464884
+            }
+          }
+        },
+        {
+          "date": "2026-02-21",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.21/TheEconomist.2026.02.21.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.21/TheEconomist.2026.02.21.epub",
+              "sha": "afb00e6653eac6c18df9e08a989fd9e676cdc936",
+              "size": 7660748
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.21/TheEconomist.2026.02.21.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.21/TheEconomist.2026.02.21.pdf",
+              "sha": "a58f8d329c60693018976aa349e806dac9da1208",
+              "size": 10418318
+            }
+          }
+        },
+        {
+          "date": "2026-02-14",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.14/TheEconomist.2026.02.14.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.14/TheEconomist.2026.02.14.epub",
+              "sha": "f0ec7931e3a1535f3176703169332e46e5758eae",
+              "size": 6547891
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.14/TheEconomist.2026.02.14.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.14/TheEconomist.2026.02.14.pdf",
+              "sha": "db363fdf5848de5135041262475122ae24683c97",
+              "size": 9212505
+            }
+          }
+        },
+        {
+          "date": "2026-02-07",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.07/TheEconomist.2026.02.07.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.07/TheEconomist.2026.02.07.epub",
+              "sha": "3c78d1284a2a4817ce36095973a2bcea2c42c004",
+              "size": 6796613
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.02.07/TheEconomist.2026.02.07.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.02.07/TheEconomist.2026.02.07.pdf",
+              "sha": "f891ddaa2a595557ff2ab873250fd50af6bc2fde",
+              "size": 9570965
+            }
+          }
+        },
+        {
+          "date": "2026-01-31",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.31/TheEconomist.2026.01.31.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.31/TheEconomist.2026.01.31.epub",
+              "sha": "4391441a07fbee4b6199bc7c35787df6bc879154",
+              "size": 7107588
+            }
+          }
+        },
+        {
+          "date": "2026-01-24",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.24/TheEconomist.2026.01.24.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.24/TheEconomist.2026.01.24.epub",
+              "sha": "64c05081dab95a1a3f4625db877053fb35489ebf",
+              "size": 6758890
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.24/TheEconomist.2026.01.24.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.24/TheEconomist.2026.01.24.pdf",
+              "sha": "259516f887dc350237c76082169d3c8068e13f5e",
+              "size": 9384852
+            }
+          }
+        },
+        {
+          "date": "2026-01-17",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.17/TheEconomist.2026.01.17.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.17/TheEconomist.2026.01.17.epub",
+              "sha": "3a27936a81e1a8ac6b28d0c4c11bbc762e30829c",
+              "size": 6184848
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.17/TheEconomist.2026.01.17.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.17/TheEconomist.2026.01.17.pdf",
+              "sha": "929efcde8dc94aad7cee1345d03a3a9c17474fd5",
+              "size": 8711079
+            }
+          }
+        },
+        {
+          "date": "2026-01-10",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.10/TheEconomist.2026.01.10.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.10/TheEconomist.2026.01.10.epub",
+              "sha": "b3ea41fce170f21fdfca60e00298fa75c8b41e19",
+              "size": 6574013
+            }
+          }
+        },
+        {
+          "date": "2026-01-03",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.03/TheEconomist.2026.01.03.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.03/TheEconomist.2026.01.03.epub",
+              "sha": "4a2f50ca04a8b5463e83a7212839c927557d1336",
+              "size": 5650971
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.01.03/TheEconomist.2026.01.03.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.01.03/TheEconomist.2026.01.03.pdf",
+              "sha": "8da062198df156be0b1358bea151a081a90a99c4",
+              "size": 7951916
+            }
+          }
+        },
+        {
+          "date": "2025-12-27",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.27/TheEconomist.2025.12.27.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.27/TheEconomist.2025.12.27.epub",
+              "sha": "ff203a33ac2aae2f81573411a6f84ea4c9a20182",
+              "size": 7124098
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.27/TheEconomist.2025.12.27.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.27/TheEconomist.2025.12.27.pdf",
+              "sha": "4d5c39a69ca126ad55d64cc4321dbca8c641cfb7",
+              "size": 7289399
+            }
+          }
+        },
+        {
+          "date": "2025-12-20",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.20/TheEconomist.2025.12.20.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.20/TheEconomist.2025.12.20.epub",
+              "sha": "a013c6788ee405a352ebc6b669d3cf7e9c8f0014",
+              "size": 8698945
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.20/TheEconomist.2025.12.20.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.20/TheEconomist.2025.12.20.pdf",
+              "sha": "286868bfc4689b5048dba55f265e76d7f9df47f2",
+              "size": 11052714
+            }
+          }
+        },
+        {
+          "date": "2025-12-13",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.13/TheEconomist.2025.12.13.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.13/TheEconomist.2025.12.13.epub",
+              "sha": "8b07348d120d7a445f713f6cf9a90c26e77ebb40",
+              "size": 7090740
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.13/TheEconomist.2025.12.13.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.13/TheEconomist.2025.12.13.pdf",
+              "sha": "97c80258cf42ae604a397397119b7b4b927b3872",
+              "size": 9577133
+            }
+          }
+        },
+        {
+          "date": "2025-12-06",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.06/TheEconomist.2025.12.06.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.06/TheEconomist.2025.12.06.epub",
+              "sha": "3c2b50abc66d07857f7e18f493fba247399b0d28",
+              "size": 6089665
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.12.06/TheEconomist.2025.12.06.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.12.06/TheEconomist.2025.12.06.pdf",
+              "sha": "07f4d4f57cc14d88d24eb269158f7da8e3a63c4a",
+              "size": 8789990
+            }
+          }
+        },
+        {
+          "date": "2025-11-29",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.29/TheEconomist.2025.11.29.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.29/TheEconomist.2025.11.29.epub",
+              "sha": "a47ebc6e07c6e07db400447a4b995b2983c2f547",
+              "size": 6606731
+            }
+          }
+        },
+        {
+          "date": "2025-11-22",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.22/TheEconomist.2025.11.22.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.22/TheEconomist.2025.11.22.epub",
+              "sha": "eecca39e3d894cce8eadbc4f7183f44a953b80bf",
+              "size": 5521061
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.22/TheEconomist.2025.11.22.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.22/TheEconomist.2025.11.22.pdf",
+              "sha": "f113e270a7269297fac3a19d7f47e1363a439d8f",
+              "size": 7869661
+            }
+          }
+        },
+        {
+          "date": "2025-11-15",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.15/TheEconomist.2025.11.15.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.15/TheEconomist.2025.11.15.epub",
+              "sha": "f371481be3c6578f89b717282f0c47f170c0cc00",
+              "size": 6536501
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.15/TheEconomist.2025.11.15.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.15/TheEconomist.2025.11.15.pdf",
+              "sha": "9cbe60ba569f91045bf7d0b9ff7f3c737cf66722",
+              "size": 9288143
+            }
+          }
+        },
+        {
+          "date": "2025-11-08",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.08/TheEconomist.2025.11.08.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.08/TheEconomist.2025.11.08.epub",
+              "sha": "abc46cccacb9b17aa73c9ac1f5d1af27ddd442d3",
+              "size": 7433495
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.08/TheEconomist.2025.11.08.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.08/TheEconomist.2025.11.08.pdf",
+              "sha": "f00fb3ac5acb1e6317dc752e3653679f3d53e547",
+              "size": 10485773
+            }
+          }
+        },
+        {
+          "date": "2025-11-01",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.01/TheEconomist.2025.11.01.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.01/TheEconomist.2025.11.01.epub",
+              "sha": "85649d673eb0d1b3cfdad898ee79b15d0d2081c9",
+              "size": 6399753
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.11.01/TheEconomist.2025.11.01.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.11.01/TheEconomist.2025.11.01.pdf",
+              "sha": "a00bc61a02a8a8a5d389c41d0942877b9dfd25b7",
+              "size": 9090492
+            }
+          }
+        },
+        {
+          "date": "2025-10-25",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.25/TheEconomist.2025.10.25.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.25/TheEconomist.2025.10.25.epub",
+              "sha": "322844027b454ccaaaffb1c969f3df68e084410f",
+              "size": 7119634
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.25/TheEconomist.2025.10.25.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.25/TheEconomist.2025.10.25.pdf",
+              "sha": "4d0f320942dc5aeb1188fcac9023d377c2f654fe",
+              "size": 9606777
+            }
+          }
+        },
+        {
+          "date": "2025-10-18",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.18/TheEconomist.2025.10.18.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.18/TheEconomist.2025.10.18.epub",
+              "sha": "ec9d9b41226aae13d2608bf39ea91fa04155515c",
+              "size": 6580743
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.18/TheEconomist.2025.10.18.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.18/TheEconomist.2025.10.18.pdf",
+              "sha": "25d2326cbedc6638053c9841e1eea03f176ede33",
+              "size": 9136847
+            }
+          }
+        },
+        {
+          "date": "2025-10-11",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.11/TheEconomist.2025.10.11.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.11/TheEconomist.2025.10.11.epub",
+              "sha": "f6aae0365b75603487ac8b0ba1c640c2197d349b",
+              "size": 6896386
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.11/TheEconomist.2025.10.11.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.11/TheEconomist.2025.10.11.pdf",
+              "sha": "71c5b38a7d3f19954c3e1135042083a9a1587a19",
+              "size": 9610233
+            }
+          }
+        },
+        {
+          "date": "2025-10-04",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.04/TheEconomist.2025.10.04.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.04/TheEconomist.2025.10.04.epub",
+              "sha": "0ed566a860013080f3436e5e7b9d286d6356aa5c",
+              "size": 6263308
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.10.04/TheEconomist.2025.10.04.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.10.04/TheEconomist.2025.10.04.pdf",
+              "sha": "f68f7a65f661c3ad9e6def8883acc57fe6ba4c1d",
+              "size": 8598071
+            }
+          }
+        },
+        {
+          "date": "2025-09-27",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.27/TheEconomist.2025.09.27.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.27/TheEconomist.2025.09.27.epub",
+              "sha": "78649a4a7ebdc2222455639501b20002b9d912f5",
+              "size": 6002969
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.27/TheEconomist.2025.09.27.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.27/TheEconomist.2025.09.27.pdf",
+              "sha": "e6402f9006888183a124c9ae6f30d7d84a3d7c02",
+              "size": 8407621
+            }
+          }
+        },
+        {
+          "date": "2025-09-20",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.20/TheEconomist.2025.09.20.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.20/TheEconomist.2025.09.20.epub",
+              "sha": "84aa963b4af23e3bf38f4104705b38c2d99ce0a2",
+              "size": 6756947
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.20/TheEconomist.2025.09.20.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.20/TheEconomist.2025.09.20.pdf",
+              "sha": "4f3d4ee64bb0b0b954febdacee7fe5f3553f3b51",
+              "size": 9147398
+            }
+          }
+        },
+        {
+          "date": "2025-09-13",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.13/TheEconomist.2025.09.13.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.13/TheEconomist.2025.09.13.epub",
+              "sha": "c3d9de54d8c83b160a6aaf32d0501151ebf29ddc",
+              "size": 6398933
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.13/TheEconomist.2025.09.13.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.13/TheEconomist.2025.09.13.pdf",
+              "sha": "fda8e194d9b3fe1d2080fb948282d011f0e40d0f",
+              "size": 9014450
+            }
+          }
+        },
+        {
+          "date": "2025-09-06",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.06/TheEconomist.2025.09.06.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.06/TheEconomist.2025.09.06.epub",
+              "sha": "585b1e1819df1e1edd06ddcf30f6ca443c80bf2a",
+              "size": 6015724
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.09.06/TheEconomist.2025.09.06.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.09.06/TheEconomist.2025.09.06.pdf",
+              "sha": "ae18191cce8faffde3c46f050578d3a7f3e380f2",
+              "size": 8549797
+            }
+          }
+        },
+        {
+          "date": "2025-08-30",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.30/TheEconomist.2025.08.30.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.30/TheEconomist.2025.08.30.epub",
+              "sha": "28ddfcc8ca6590ebd26cf1b4584a495cf82d59bc",
+              "size": 6501838
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.30/TheEconomist.2025.08.30.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.30/TheEconomist.2025.08.30.pdf",
+              "sha": "0ca6d8cec1af9c2eedde96adb70a0bc2a7c97689",
+              "size": 8930710
+            }
+          }
+        },
+        {
+          "date": "2025-08-23",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.23/TheEconomist.2025.08.23.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.23/TheEconomist.2025.08.23.epub",
+              "sha": "77167d6ed170bb3ef0b25dc48d612702e0d01fa5",
+              "size": 6483856
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.23/TheEconomist.2025.08.23.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.23/TheEconomist.2025.08.23.pdf",
+              "sha": "859393de1424cadd75f97a17bdea2e0462bb20b3",
+              "size": 8783693
+            }
+          }
+        },
+        {
+          "date": "2025-08-16",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.16/TheEconomist.2025.08.16.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.16/TheEconomist.2025.08.16.epub",
+              "sha": "88ec270d04d89a49c85ef462cf780a084f25d23a",
+              "size": 6879176
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.16/TheEconomist.2025.08.16.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.16/TheEconomist.2025.08.16.pdf",
+              "sha": "d421b63a068e81efdd61946d642968a6fc53836f",
+              "size": 9200287
+            }
+          }
+        },
+        {
+          "date": "2025-08-09",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.09/TheEconomist.2025.08.09.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.09/TheEconomist.2025.08.09.epub",
+              "sha": "1a8c4e62cc541a7fd54fc9bca8bb67d0dea4bd6f",
+              "size": 5793463
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.09/TheEconomist.2025.08.09.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.09/TheEconomist.2025.08.09.pdf",
+              "sha": "a7ac6b2aa526bbb6ac29ad1db05c8b863b06d868",
+              "size": 8143290
+            }
+          }
+        },
+        {
+          "date": "2025-08-02",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.02/TheEconomist.2025.08.02.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.02/TheEconomist.2025.08.02.epub",
+              "sha": "6d40d2f3f64eee20b267a800641c3b37e9db03e4",
+              "size": 6247590
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.08.02/TheEconomist.2025.08.02.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.08.02/TheEconomist.2025.08.02.pdf",
+              "sha": "4e9c20731a9168b915b17176e5af4ebbd1c5e323",
+              "size": 8694480
+            }
+          }
+        },
+        {
+          "date": "2025-07-26",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.26/TheEconomist.2025.07.26.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.26/TheEconomist.2025.07.26.epub",
+              "sha": "065bdac32cb8114890c613f6c482a092b2883b39",
+              "size": 12227820
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.26/TheEconomist.2025.07.26.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.26/TheEconomist.2025.07.26.pdf",
+              "sha": "16a970be316920dd23e43f5575a1fd7391d4aaf8",
+              "size": 15145041
+            }
+          }
+        },
+        {
+          "date": "2025-07-19",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.19/TheEconomist.2025.07.19.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.19/TheEconomist.2025.07.19.epub",
+              "sha": "df83345c705d2315aec66b68e2d9d371124c02ef",
+              "size": 6426307
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.19/TheEconomist.2025.07.19.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.19/TheEconomist.2025.07.19.pdf",
+              "sha": "3b638f71238248d88ff60afd507a5aba808a4f1d",
+              "size": 8871988
+            }
+          }
+        },
+        {
+          "date": "2025-07-12",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.12/TheEconomist.2025.07.12.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.12/TheEconomist.2025.07.12.epub",
+              "sha": "8a8294ffd3a812727a911c6cca2855cfc7004a3e",
+              "size": 6421550
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.12/TheEconomist.2025.07.12.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.12/TheEconomist.2025.07.12.pdf",
+              "sha": "c7561b3a1e6b74323ea0fc4a1c73e1009910744e",
+              "size": 9092258
+            }
+          }
+        },
+        {
+          "date": "2025-07-05",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.05/TheEconomist.2025.07.05.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.05/TheEconomist.2025.07.05.epub",
+              "sha": "f0436568951e9cc59031f6aa02889cc0bb8441fe",
+              "size": 6031683
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.07.05/TheEconomist.2025.07.05.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.07.05/TheEconomist.2025.07.05.pdf",
+              "sha": "804e35d87ec3b7ca89604152a94b556d67a66067",
+              "size": 8476817
+            }
+          }
+        },
+        {
+          "date": "2025-06-28",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.28/TheEconomist.2025.06.28.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.28/TheEconomist.2025.06.28.epub",
+              "sha": "b6cd030a7fc669ed486bb0b92296f732bd0f1b01",
+              "size": 6185437
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.28/TheEconomist.2025.06.28.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.28/TheEconomist.2025.06.28.pdf",
+              "sha": "a7aea44aac445a164594dc46bf03261dcc673282",
+              "size": 8650027
+            }
+          }
+        },
+        {
+          "date": "2025-06-21",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.21/TheEconomist.2025.06.21.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.21/TheEconomist.2025.06.21.epub",
+              "sha": "86dc5c9ebc285f52f7d27a9d64a4c9e7382f5ac1",
+              "size": 5994510
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.21/TheEconomist.2025.06.21.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.21/TheEconomist.2025.06.21.pdf",
+              "sha": "d59cfec1428b367c4cc03f8c481e265d5f437974",
+              "size": 8466873
+            }
+          }
+        },
+        {
+          "date": "2025-06-14",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.14/TheEconomist.2025.06.14.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.14/TheEconomist.2025.06.14.epub",
+              "sha": "5f39d94bc19cbc73ee15c762f80d6432d5ae97b4",
+              "size": 5774425
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.14/TheEconomist.2025.06.14.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.14/TheEconomist.2025.06.14.pdf",
+              "sha": "8893e08ea816c83cf68911b67d30268d75f8e58b",
+              "size": 8269884
+            }
+          }
+        },
+        {
+          "date": "2025-06-07",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.07/TheEconomist.2025.06.07.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.07/TheEconomist.2025.06.07.epub",
+              "sha": "00856cd9a9531a65efe2a653d3eacc11a89bb110",
+              "size": 6354611
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.06.07/TheEconomist.2025.06.07.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.06.07/TheEconomist.2025.06.07.pdf",
+              "sha": "f06b56e8fe6d28e4f3053bb2217faf4a55bb6ac8",
+              "size": 8806003
+            }
+          }
+        },
+        {
+          "date": "2025-05-31",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.31/TheEconomist.2025.05.31.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.31/TheEconomist.2025.05.31.epub",
+              "sha": "0fd72713a9228214ab76077ea9f7260ec361efe1",
+              "size": 8335812
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.31/TheEconomist.2025.05.31.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.31/TheEconomist.2025.05.31.pdf",
+              "sha": "87311bcc5a0ae881237f3f940861366885f2a601",
+              "size": 10145813
+            }
+          }
+        },
+        {
+          "date": "2025-05-24",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.24/TheEconomist.2025.05.24.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.24/TheEconomist.2025.05.24.epub",
+              "sha": "40cbeb279c3eeb2a2b5a098adcffb30f9d55bddf",
+              "size": 7902509
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.24/TheEconomist.2025.05.24.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.24/TheEconomist.2025.05.24.pdf",
+              "sha": "e20356a40afe23ef3586b48a6d5880bc52035c49",
+              "size": 9499142
+            }
+          }
+        },
+        {
+          "date": "2025-05-17",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.17/TheEconomist.2025.05.17.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.17/TheEconomist.2025.05.17.epub",
+              "sha": "8d8ebac8a81eab6ea27f7696929d4bca3661ffe9",
+              "size": 6583782
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.17/TheEconomist.2025.05.17.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.17/TheEconomist.2025.05.17.pdf",
+              "sha": "6b15bbb380d147f8f539864adf9509733e8fb0a2",
+              "size": 8367238
+            }
+          }
+        },
+        {
+          "date": "2025-05-10",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.10/TheEconomist.2025.05.10.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.10/TheEconomist.2025.05.10.epub",
+              "sha": "1882adac1fcc4974f3b0a3a562bdffa1cdccabd6",
+              "size": 6764848
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.10/TheEconomist.2025.05.10.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.10/TheEconomist.2025.05.10.pdf",
+              "sha": "6678dca997a0b22aad6796557b2adc38c9de89e4",
+              "size": 8578398
+            }
+          }
+        },
+        {
+          "date": "2025-05-03",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.03/TheEconomist.2025.05.03.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.03/TheEconomist.2025.05.03.epub",
+              "sha": "7f411a1cb116ea5f5b047501fcdf17b3bc448dd2",
+              "size": 7020883
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.05.03/TheEconomist.2025.05.03.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.05.03/TheEconomist.2025.05.03.pdf",
+              "sha": "166b4960b2c2d0bcd86228cf85dc64f060b8d492",
+              "size": 8711618
+            }
+          }
+        },
+        {
+          "date": "2025-04-26",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.26/TheEconomist.2025.04.26.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.26/TheEconomist.2025.04.26.epub",
+              "sha": "8ae2e9c4fcfb1271130008a647e2009030d28b2e",
+              "size": 8381575
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.26/TheEconomist.2025.04.26.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.26/TheEconomist.2025.04.26.pdf",
+              "sha": "3d1408fe2c8088a9077bf9a2487a09246c281df2",
+              "size": 7795991
+            }
+          }
+        },
+        {
+          "date": "2025-04-19",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.19/TheEconomist.2025.04.19.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.19/TheEconomist.2025.04.19.epub",
+              "sha": "6fbcdac2ac7056ffeaa90d3d03853df72e8bce53",
+              "size": 8424370
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.19/TheEconomist.2025.04.19.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.19/TheEconomist.2025.04.19.pdf",
+              "sha": "1756c98af611876ddc5d402127f2291dd70a3c60",
+              "size": 7593133
+            }
+          }
+        },
+        {
+          "date": "2025-04-12",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.12/TheEconomist.2025.04.12.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.12/TheEconomist.2025.04.12.epub",
+              "sha": "3f52da63a0ee43277b6e43c5063df684770e8015",
+              "size": 9918126
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.12/TheEconomist.2025.04.12.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.12/TheEconomist.2025.04.12.pdf",
+              "sha": "52dadc810093020b5baa29110f5596aa8ef28390",
+              "size": 12144431
+            }
+          }
+        },
+        {
+          "date": "2025-04-05",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.05/TheEconomist.2025.04.05.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.05/TheEconomist.2025.04.05.epub",
+              "sha": "e19a920e20755904be680c84d471b421b2c206ac",
+              "size": 10384633
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.04.05/TheEconomist.2025.04.05.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.04.05/TheEconomist.2025.04.05.pdf",
+              "sha": "d926bbc51763599e5b99f994c3657e36edafb180",
+              "size": 12480144
+            }
+          }
+        },
+        {
+          "date": "2025-03-29",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.29/TheEconomist.2025.03.29.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.29/TheEconomist.2025.03.29.epub",
+              "sha": "68dcbc84db8e6b1b3e43ad234ad0c07a3fd90647",
+              "size": 10685473
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.29/TheEconomist.2025.03.29.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.29/TheEconomist.2025.03.29.pdf",
+              "sha": "1768bf3c993db38ab736d762dc41d633af5a7c6e",
+              "size": 12874287
+            }
+          }
+        },
+        {
+          "date": "2025-03-22",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.22/TheEconomist.2025.03.22.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.22/TheEconomist.2025.03.22.epub",
+              "sha": "3646e3deb05b0aa005126c7eb21ca1c92ccece9d",
+              "size": 10472525
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.22/TheEconomist.2025.03.22.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.22/TheEconomist.2025.03.22.pdf",
+              "sha": "18ab01307f505be933d4130f0bcba6041809a634",
+              "size": 12360140
+            }
+          }
+        },
+        {
+          "date": "2025-03-15",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.15/TheEconomist.2025.03.15.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.15/TheEconomist.2025.03.15.epub",
+              "sha": "87c34a10f474c53725f586b3dd107b3baf6ec43e",
+              "size": 11002157
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.15/TheEconomist.2025.03.15.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.15/TheEconomist.2025.03.15.pdf",
+              "sha": "459d6af254812943e449869679012bcf70a8566d",
+              "size": 13212428
+            }
+          }
+        },
+        {
+          "date": "2025-03-08",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.08/TheEconomist.2025.03.08.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.08/TheEconomist.2025.03.08.epub",
+              "sha": "4726d936ba767b498d4bb70a3eab595f0d416897",
+              "size": 9939830
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.08/TheEconomist.2025.03.08.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.08/TheEconomist.2025.03.08.pdf",
+              "sha": "3f366293822be9c8ead80f38d560fb0e169ac266",
+              "size": 12427785
+            }
+          }
+        },
+        {
+          "date": "2025-03-01",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.01/TheEconomist.2025.03.01.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.01/TheEconomist.2025.03.01.epub",
+              "sha": "278003563af92614a4703f059ebdea01b94c62e3",
+              "size": 11390862
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.03.01/TheEconomist.2025.03.01.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.03.01/TheEconomist.2025.03.01.pdf",
+              "sha": "195cb69e40a1345946a898da750589b889531e81",
+              "size": 13009380
+            }
+          }
+        },
+        {
+          "date": "2025-02-22",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.22/TheEconomist.2025.02.22.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.22/TheEconomist.2025.02.22.epub",
+              "sha": "a121d3148868b7f153d4c186514f91333e11fe29",
+              "size": 10128426
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.22/TheEconomist.2025.02.22.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.22/TheEconomist.2025.02.22.pdf",
+              "sha": "59e2b41f84fe63b4271de9a7d570b49b94e1b46e",
+              "size": 12188525
+            }
+          }
+        },
+        {
+          "date": "2025-02-15",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.15/TheEconomist.2025.02.15.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.15/TheEconomist.2025.02.15.epub",
+              "sha": "cde7aadac933b5145416744b2ffc8639865e8699",
+              "size": 11504234
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.15/TheEconomist.2025.02.15.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.15/TheEconomist.2025.02.15.pdf",
+              "sha": "ce123effe4ec28f01dd16e6743486211a6d7f138",
+              "size": 13438101
+            }
+          }
+        },
+        {
+          "date": "2025-02-08",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.08/TheEconomist.2025.02.08.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.08/TheEconomist.2025.02.08.epub",
+              "sha": "93b0b19661670def362989247bc01012b577c4be",
+              "size": 10027126
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.08/TheEconomist.2025.02.08.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.08/TheEconomist.2025.02.08.pdf",
+              "sha": "c35761e0836c2da5c7320377b88be3706b1adb1d",
+              "size": 11351865
+            }
+          }
+        },
+        {
+          "date": "2025-02-01",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.01/TheEconomist.2025.02.01.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.01/TheEconomist.2025.02.01.epub",
+              "sha": "1934c64eeaa419b075f69f247fe08416a97cf9fb",
+              "size": 9571813
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.02.01/TheEconomist.2025.02.01.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.02.01/TheEconomist.2025.02.01.pdf",
+              "sha": "22aeb4df8bc154dba343ead05ee1d23f8a3b0dbf",
+              "size": 11726312
+            }
+          }
+        },
+        {
+          "date": "2025-01-25",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.25/TheEconomist.2025.01.25.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.25/TheEconomist.2025.01.25.epub",
+              "sha": "96721caf9d2628e38249ce7ecb6208ce49213211",
+              "size": 10116963
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.25/TheEconomist.2025.01.25.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.25/TheEconomist.2025.01.25.pdf",
+              "sha": "7c65fb4dc6a0592ce31d3b69d2f4cc1e603c544e",
+              "size": 11532100
+            }
+          }
+        },
+        {
+          "date": "2025-01-18",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.18/TheEconomist.2025.01.18.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.18/TheEconomist.2025.01.18.epub",
+              "sha": "e89b952a08d9e78bf463b96c9fdabe548dc581f7",
+              "size": 10085574
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.18/TheEconomist.2025.01.18.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.18/TheEconomist.2025.01.18.pdf",
+              "sha": "485bca5b5fed9b4a1b10b1f379bf7962a89d4b44",
+              "size": 12178198
+            }
+          }
+        },
+        {
+          "date": "2025-01-11",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.11/TheEconomist.2025.01.11.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.11/TheEconomist.2025.01.11.epub",
+              "sha": "e2272e4b92917fa94492a55a2d5d638a9c9c0cf8",
+              "size": 12445508
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.11/TheEconomist.2025.01.11.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.11/TheEconomist.2025.01.11.pdf",
+              "sha": "876f7c7819092626b43c5eb19b46ee65baa8ed6e",
+              "size": 14910463
+            }
+          }
+        },
+        {
+          "date": "2025-01-04",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.04/TheEconomist.2025.01.04.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.04/TheEconomist.2025.01.04.epub",
+              "sha": "ec4195b2ade9491225cf2556ebe952a82964f4b1",
+              "size": 9470784
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/2025/te_2025.01.04/TheEconomist.2025.01.04.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/2025/te_2025.01.04/TheEconomist.2025.01.04.pdf",
+              "sha": "a8aac750cbca3468f490cb8dc448f20b4a0f5075",
+              "size": 11241661
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "name": "📕 时代 · TIME",
+      "repo": "Monkfishare/TIME_magazine",
+      "branch": "main",
+      "prefix": "TM/",
+      "issues": [
+        {
+          "date": "2026-10-26",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
+              "sha": "068c22275bf8d82aecde72f5b583a4e5021133c3",
+              "size": 32891533
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
+              "sha": "124aeabccf5f03efcefbc00f8d16cefc406dd8eb",
+              "size": 34724557
+            }
+          }
+        },
+        {
+          "date": "2026-10-12",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-12/TM_2026-10-12.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-12/TM_2026-10-12.epub",
+              "sha": "233596d65df386b23dcb521f3a103c644703b24a",
+              "size": 28069212
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-12/TM_2026-10-12.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-12/TM_2026-10-12.pdf",
+              "sha": "f5ced0ee9900656531f9fd294b98e1eccd8c6ab2",
+              "size": 29053622
+            }
+          }
+        },
+        {
+          "date": "2026-09-28",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-09-28/TM_2026-09-28.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-09-28/TM_2026-09-28.epub",
+              "sha": "e7eed6ec6c29189ce4952a8b0af890dbde664237",
+              "size": 38978294
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-09-28/TM_2026-09-28.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-09-28/TM_2026-09-28.pdf",
+              "sha": "d8cdd6c1aa1f5592d920863c077048d4e5b1148b",
+              "size": 40571065
+            }
+          }
+        },
+        {
+          "date": "2026-09-07",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-09-07/TM_2026-09-07.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-09-07/TM_2026-09-07.epub",
+              "sha": "5c90602352d324f682029a2a95850f73a7c76763",
+              "size": 33940423
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-09-07/TM_2026-09-07.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-09-07/TM_2026-09-07.pdf",
+              "sha": "a78299f5d98555bb4b6465693353ba282a7aaa1f",
+              "size": 35376813
+            }
+          }
+        },
+        {
+          "date": "2026-08-17",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-08-17/TM_2026-08-17.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-08-17/TM_2026-08-17.epub",
+              "sha": "c120b0f34b1b64be5e0bf357a656e56975125a0c",
+              "size": 43968309
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-08-17/TM_2026-08-17.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-08-17/TM_2026-08-17.pdf",
+              "sha": "1bc5ff81edf1fb604fb6bd172073a30eab77bb70",
+              "size": 46386874
+            }
+          }
+        },
+        {
+          "date": "2026-07-27",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-07-27/TM_2026-07-27.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-07-27/TM_2026-07-27.epub",
+              "sha": "117c267fff2fd5d41d3ea2e515b7487bc5a5080f",
+              "size": 40842017
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-07-27/TM_2026-07-27.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-07-27/TM_2026-07-27.pdf",
+              "sha": "13507c847aede60b89c741daf0fe4764b2a645d8",
+              "size": 43816712
+            }
+          }
+        },
+        {
+          "date": "2026-07-06",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-07-06/TM_2026-07-06.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-07-06/TM_2026-07-06.epub",
+              "sha": "f6b56756b6c79b862630e364a092c3b281558c03",
+              "size": 19399281
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-07-06/TM_2026-07-06.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-07-06/TM_2026-07-06.pdf",
+              "sha": "605abfc4eb3c9653eb473f76dcd59f9bffdc8206",
+              "size": 21907972
+            }
+          }
+        },
+        {
+          "date": "2026-06-22",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-06-22/TM_2026-06-22.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-06-22/TM_2026-06-22.epub",
+              "sha": "278c34380fd9dc7f69c5e9720ca85986a7641252",
+              "size": 34376164
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-06-22/TM_2026-06-22.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-06-22/TM_2026-06-22.pdf",
+              "sha": "082f685b59588fc36b70397de564b7bfb8e3b920",
+              "size": 36516778
+            }
+          }
+        },
+        {
+          "date": "2026-06-08",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-06-08/TM_2026-06-08.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-06-08/TM_2026-06-08.epub",
+              "sha": "ce4804da4d6542f32d1a0823192fb79e604c9d15",
+              "size": 37500691
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-06-08/TM_2026-06-08.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-06-08/TM_2026-06-08.pdf",
+              "sha": "ca30ca11734d7ca217f608c65949f94cefc85b98",
+              "size": 40020498
+            }
+          }
+        },
+        {
+          "date": "2026-05-25",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-05-25/TM_2026-05-25.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-05-25/TM_2026-05-25.epub",
+              "sha": "6eabcef33542eb989548629a7d3ebd58753181e6",
+              "size": 36530771
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-05-25/TM_2026-05-25.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-05-25/TM_2026-05-25.pdf",
+              "sha": "7e6963fb6bfdb6c61e2fce27df236c3a77e74a73",
+              "size": 38634464
+            }
+          }
+        },
+        {
+          "date": "2026-05-11",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-05-11/TM_2026-05-11.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-05-11/TM_2026-05-11.epub",
+              "sha": "d86e2d359ef307cf4f96e7369edcdcfc461c3a18",
+              "size": 40824058
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-05-11/TM_2026-05-11.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-05-11/TM_2026-05-11.pdf",
+              "sha": "785187b354c9f02265381ebecf748670d397f585",
+              "size": 41007802
+            }
+          }
+        },
+        {
+          "date": "2026-04-27",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-04-27/TM_2026-04-27.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-04-27/TM_2026-04-27.epub",
+              "sha": "4b87ecff4b773c9b4f722362947bc53a6fe38867",
+              "size": 26003796
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-04-27/TM_2026-04-27.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-04-27/TM_2026-04-27.pdf",
+              "sha": "a5f25761c5a392e7ae5b420645a14a48cfe4f624",
+              "size": 27998020
+            }
+          }
+        },
+        {
+          "date": "2026-04-06",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-04-06/TM_2026-04-06.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-04-06/TM_2026-04-06.epub",
+              "sha": "b2f4ec61c2eb0513e9315c4f779e6e4246b5f033",
+              "size": 12947854
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-04-06/TM_2026-04-06.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-04-06/TM_2026-04-06.pdf",
+              "sha": "94fbd72558e7bae4a0a5506c25de5152cb5917b8",
+              "size": 14776284
+            }
+          }
+        },
+        {
+          "date": "2026-03-09",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-03-09/TM_2026-03-09.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-03-09/TM_2026-03-09.epub",
+              "sha": "d4ac3f5febcf3b4cb3dd80f747b838401ace1657",
+              "size": 21671533
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-03-09/TM_2026-03-09.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-03-09/TM_2026-03-09.pdf",
+              "sha": "5584e389b90a8115ccc954359d752edb241c0346",
+              "size": 24944423
+            }
+          }
+        },
+        {
+          "date": "2026-02-23",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-02-23/TM_2026-02-23.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-02-23/TM_2026-02-23.epub",
+              "sha": "d35e4464352a9cf4ce2c54c4371e05e15d033485",
+              "size": 12667180
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-02-23/TM_2026-02-23.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-02-23/TM_2026-02-23.pdf",
+              "sha": "07cad71939ab696b931045ed61d04a159cf05d04",
+              "size": 13969221
+            }
+          }
+        },
+        {
+          "date": "2026-02-09",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-02-09/TM_2026-02-09.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-02-09/TM_2026-02-09.epub",
+              "sha": "5f9eacdf6c64ca11beed3d988538bb59ea33c30c",
+              "size": 31688664
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-02-09/TM_2026-02-09.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-02-09/TM_2026-02-09.pdf",
+              "sha": "ac508a66befeafdc16cdea29f591728d003158d2",
+              "size": 35638493
+            }
+          }
+        },
+        {
+          "date": "2026-01-26",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-01-26/TM_2026-01-26.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-01-26/TM_2026-01-26.epub",
+              "sha": "5532337b24e1579d43efe437a1f6ff5efa75fc49",
+              "size": 17875268
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-01-26/TM_2026-01-26.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-01-26/TM_2026-01-26.pdf",
+              "sha": "1d8facb8dec7da59b0fe1ff74995d3d021f7e3dc",
+              "size": 19419452
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
