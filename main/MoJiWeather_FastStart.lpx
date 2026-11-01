@@ -1,0 +1,31 @@
+#!name=墨迹天气去广告·极速启动实验版
+#!desc=基于 2026-11-01 两次 Loon 启动抓包：本地响应开屏推广接口，保留原有去广告效果；请勿与原 MoJiWeatherAds 同时启用
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
+#!tag=MoJiWeather,FastStart,2026-11-01
+
+[Rule]
+# 沿用上游规则。不要扩大到天气、定位、账号等业务域名。
+DOMAIN,adlaunch.moji.com,REJECT
+
+[Rewrite]
+# 1. 启动推广：抓包中两次启动均出现 /operational/novice -> /operational/adnovice，
+#    间隔分别为 4.579s / 4.665s。用本地成功空结果取代网络请求，
+#    不下发会员推广素材 ZIP。此优化不能绕过 App 自带的固定启动动画计时。
+#    抓包所见原始空数据结构：{"p":"操作成功","rc":{"c":0,"p":""},"c":0,"data":{}}
+response if ${url} ~= /^https?:\/\/mcmn\.api\.moji\.com\/operational\/(?:ad)?novice(?:\?|$)/i then response.body.mock("json", `{"p":"操作成功","rc":{"c":0,"p":""},"c":0,"data":{}}`, 200)
+
+# 2. 修正原模块飞卡广告接口返回单个空格（不是有效 JSON）的潜在解析/重试问题。
+#    该接口在启动后约 0-1 秒请求，返回与同服务正常空响应一致的结构。
+response if ${url} ~= /^https?:\/\/fcard\.api\.moji\.com\/flycard\/flyCard(?:Md)?(?:\?|$)/i then response.body.mock("json", `{"p":"操作成功","rc":{"c":0,"p":""},"c":0,"data":{}}`, 200)
+
+# 3. 保留上游针对入口、广告、社区和短视频的处理逻辑。
+response if ${url} ~= /^https?:\/\/.*api\.moji\.com\/json\/entrance\/list/i then response.json.jq(".entrance_region_res_list |= map(select(.region_name | IN(\"工具区\", \"我页面灯泡\", \"banner区\") | not))")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/shortvideo/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/json\/advertising_goods/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/forum/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/user\/dynamic_v\d\/json\/someone_interest/i then reject(200, " ")
+request if ${url} ~= /^https:\/\/tnc.*zijieapi\.com\/get_domains/i then reject(200, " ")
+
+[MITM]
+hostname = *.api.moji.com, tnc*-*.zijieapi.com
