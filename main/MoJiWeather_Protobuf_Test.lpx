@@ -1,0 +1,38 @@
+#!name=墨迹天气去广告·二进制响应排查版
+#!desc=仅供冷启动诊断：放行 flyCard/flyCardMd 原生二进制/JSON响应，其他广告规则与上一诊断版相同，用于排查错误响应格式导致的启动等待
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
+#!tag=MoJiWeather,ProtobufTest,2026-11-01
+
+[Rule]
+# 2026-11-01 两轮冷启动抓包确认的第三方广告 SDK。
+# 实验目标：测试第三方广告 SDK 初始化是否占用了固定约 5 秒的开屏等待。
+# 域名匹配对其他 App 也生效；若其他 App 广告/统计行为异常请关闭本模块。
+DOMAIN,adlaunch.moji.com,REJECT
+DOMAIN,ztoken.uyunad.com,REJECT
+DOMAIN,sdk-config.tanx.com,REJECT
+DOMAIN,et.tanx.com,REJECT
+DOMAIN,janapi.jd.com,REJECT
+
+[Rewrite]
+# 1. 启动推广：抓包中两次启动均出现 /operational/novice -> /operational/adnovice，
+#    间隔分别为 4.579s / 4.665s。用本地成功空结果取代网络请求，
+#    不下发会员推广素材 ZIP。此优化不能绕过 App 自带的固定启动动画计时。
+#    抓包所见原始空数据结构：{"p":"操作成功","rc":{"c":0,"p":""},"c":0,"data":{}}
+response if ${url} ~= /^https?:\/\/mcmn\.api\.moji\.com\/operational\/(?:ad)?novice(?:\?|$)/i then response.body.mock("json", `{"p":"操作成功","rc":{"c":0,"p":""},"c":0,"data":{}}`, 200)
+
+# 2. 不再拦截飞卡接口。
+#    flyCard 返回的是二进制响应；flyCardMd JSON 有 md5 字段。
+#    原来用通用 JSON 替换它们可能触发 App 的解析失败或重试。
+#    本版仅排查该变量，保持其他过滤规则不变。
+
+# 3. 保留上游针对入口、广告、社区和短视频的处理逻辑。
+response if ${url} ~= /^https?:\/\/.*api\.moji\.com\/json\/entrance\/list/i then response.json.jq(".entrance_region_res_list |= map(select(.region_name | IN(\"工具区\", \"我页面灯泡\", \"banner区\") | not))")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/shortvideo/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/json\/advertising_goods/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/forum/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/user\/dynamic_v\d\/json\/someone_interest/i then reject(200, " ")
+request if ${url} ~= /^https:\/\/tnc.*zijieapi\.com\/get_domains/i then reject(200, " ")
+
+[MITM]
+hostname = *.api.moji.com, tnc*-*.zijieapi.com
