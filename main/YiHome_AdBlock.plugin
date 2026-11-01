@@ -1,9 +1,32 @@
 #!name=YI Home 去广告（小蚁摄像机）
-#!desc=去首页/设备页运营横幅与弹窗 + 关闭三方广告；通过重写“广告下发包”实现（新广告链接也显示不出来）
+#!desc=适配 YI Home 7.0.6：清理首页运营入口、弹窗、信息流及第三方广告，保留监控回放功能
 #!author=hahapkpk
 #!homepage=https://github.com/hahapkpk/js
 
 [Rule]
+# === YI Home 7.0.6（2026-11-01）抓包证实的广告网络 ===
+DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com,REJECT
+DOMAIN-SUFFIX,g.doubleclick-cn.net,REJECT
+DOMAIN-SUFFIX,adukwai.com,REJECT
+DOMAIN-SUFFIX,yfanads.com,REJECT
+DOMAIN-SUFFIX,dmrtb.com,REJECT
+DOMAIN-SUFFIX,medproad.com,REJECT
+DOMAIN-SUFFIX,fancyapi.com,REJECT
+DOMAIN-SUFFIX,fancydsp.com,REJECT
+DOMAIN-SUFFIX,66mobi.com,REJECT
+DOMAIN-SUFFIX,ad.gameley.com,REJECT
+DOMAIN-SUFFIX,divms.cn,REJECT
+DOMAIN-SUFFIX,adx.adwangmai.com,REJECT
+DOMAIN-SUFFIX,funlinkads.com,REJECT
+DOMAIN-SUFFIX,adxvip.com,REJECT
+DOMAIN-SUFFIX,zhangyuyidong.cn,REJECT
+DOMAIN,fg.xiawan8.com,REJECT
+DOMAIN,rudder.ydmob.com,REJECT
+DOMAIN,in.vipliangmei.com,REJECT
+DOMAIN,creative.mergex.cn,REJECT
+DOMAIN,adx.ys7.com,REJECT
+DOMAIN,track.vol.ad-link.cn,REJECT
+
 # === 三方广告 SDK（开屏/信息流） ===
 # 字节/穿山甲(Pangle)
 DOMAIN-SUFFIX,pangolin-sdk-toutiao.com,REJECT
@@ -12,10 +35,8 @@ DOMAIN-SUFFIX,pangle.io,REJECT
 DOMAIN-SUFFIX,csjdeveloper.com,REJECT
 
 # 快手广告
-DOMAIN-SUFFIX,kuaishou.cn,REJECT
 DOMAIN-SUFFIX,e.kuaishou.cn,REJECT
 DOMAIN-SUFFIX,adkwai.com,REJECT
-DOMAIN-SUFFIX,kwai.com,REJECT
 
 # 腾讯广点通
 DOMAIN-SUFFIX,e.qq.com,REJECT
@@ -26,7 +47,6 @@ DOMAIN-SUFFIX,adsmind.gdtimg.com,REJECT
 
 # 百度广告
 DOMAIN-SUFFIX,mobads.baidu.com,REJECT
-DOMAIN-SUFFIX,baidustatic.com,REJECT
 
 # （可选）常见统计上报：想更“干净”可以保留；若担心误伤可删
 DOMAIN-SUFFIX,umeng.com,REJECT
@@ -37,6 +57,7 @@ DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
 # 官方“配置/广告/运营下发包”：命中后净化 JSON（推荐，不直接 REJECT）
 response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/(?:v\d+\/app\/config|vas\/v\d+\/equipment\/play\/bannerList02)/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js") with requires_body=true, timeout=10, tag="小蚁配置广告清理"
 response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js") with requires_body=true, timeout=10, tag="小蚁开屏弹窗清理"
+response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/homePagePosition\/valid/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js") with requires_body=true, timeout=10, tag="小蚁首页促销入口清理"
 
 # （可选兜底）后续若冒出启动/开屏/广告相关接口，可按上面的完整 http-response 格式新增匹配规则。
 [MITM]
