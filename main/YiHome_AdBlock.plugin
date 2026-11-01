@@ -1,5 +1,5 @@
 #!name=YI Home 去广告（小蚁摄像机）
-#!desc=适配 YI Home 7.0.6：清理首页运营入口、弹窗、信息流及第三方广告，保留监控回放功能
+#!desc=适配 YI Home 7.0.6：首页仅保留多分屏，清理广告、促销入口和信息流，不影响摄像头核心功能
 #!author=hahapkpk
 #!homepage=https://github.com/hahapkpk/js
 
@@ -56,8 +56,8 @@ DOMAIN-SUFFIX,ctobsnssdk.com,REJECT
 [Script]
 # 官方“配置/广告/运营下发包”：命中后净化 JSON（推荐，不直接 REJECT）
 response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/(?:v\d+\/app\/config|vas\/v\d+\/equipment\/play\/bannerList02)/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/xiaoyi_ad_sanitizer.js") with requires_body=true, timeout=10, tag="小蚁配置广告清理"
-response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js") with requires_body=true, timeout=10, tag="小蚁开屏弹窗清理"
-response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/homePagePosition\/valid/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js") with requires_body=true, timeout=10, tag="小蚁首页促销入口清理"
+response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/banner\/getPopupWindow/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js?v=20261101multi") with requires_body=true, timeout=10, tag="小蚁开屏弹窗清理"
+response if ${url} ~= /^https:\/\/gw\.xiaoyi\.com\/cms\/v\d+\/homePagePosition\/valid/ then script("https://raw.githubusercontent.com/hahapkpk/js/main/scripts/yi_splash_cleaner.js?v=20261101multi") with requires_body=true, timeout=10, tag="小蚁首页只保留多分屏"
 
 # （可选兜底）后续若冒出启动/开屏/广告相关接口，可按上面的完整 http-response 格式新增匹配规则。
 [MITM]
