@@ -1,0 +1,51 @@
+#!name=墨迹天气去广告·开屏204响应诊断版
+#!desc=V7 对照版：在 V6 现有快速启动与 JD/Tanx 去广告规则上，仅为 adlaunch.moji.com 加 HTTPS MITM 与即时 HTTP 204。测试是否有广告服务器请求漏过；可能与证书校验冲突，出现等待请回退 V6。
+#!author=hahapkpk
+#!homepage=https://github.com/hahapkpk/js
+#!tag=MoJiWeather,AdlaunchHTTP204Test,2026-11-01
+
+[Rule]
+# 2026-11-01 两轮冷启动抓包确认的第三方广告 SDK。
+# 实验目标：测试第三方广告 SDK 初始化是否占用了固定约 5 秒的开屏等待。
+# 域名匹配对其他 App 也生效；若其他 App 广告/统计行为异常请关闭本模块。
+# 核心单变量对照：允许原始开屏域名直连（可能出现开屏广告）
+DOMAIN,adlaunch.moji.com,DIRECT
+DOMAIN,ztoken.uyunad.com,REJECT
+DOMAIN,sdk-config.tanx.com,REJECT
+DOMAIN,et.tanx.com,REJECT
+DOMAIN,janapi.jd.com,REJECT
+
+# [Operational endpoints are passed through unchanged]
+# /operational/novice & /operational/adnovice: no rewrite
+
+[Rewrite]
+# V7 单变量测试：保留 Loon DOMAIN,DIRECT，不做 DNS 级别 REJECT。
+# 对 adlaunch.moji.com 的 HTTP(S) 请求秒回空响应，避免连接失败造成的固定等待。
+# 前一份日志未捕获该主机的 HTTPS 明文请求；命中与否需要新日志确认。
+request if ${url} ~= /^https?:\/\/adlaunch\.moji\.com(?:\/|$)/i then reject(204)
+
+# 2026-11-01 日志中京东开屏/竞价链路的实际请求：
+#  - dsp-x.jd.com/adx/sdk    (152 B 编码广告数据)
+#  - opehs.tanx.com/japi     (~13 KB 编码竞价广告数据)
+#  - img1.360buyimg.com/pop/jfs/ (开屏图片素材，约 287 KB)
+# 用 204 无内容模拟“无广告填充”，避免域名级 REJECT 导致 SDK 连不上后等待。
+# 若 SDK 因 204 而重试或显示空白倒计时，请关闭本版并反馈启动截图与日志。
+request if ${url} ~= /^https:\/\/dsp-x\.jd\.com\/adx\/sdk(?:\?|$)/i then reject(204)
+request if ${url} ~= /^https:\/\/opehs\.tanx\.com\/japi(?:\?|$)/i then reject(204)
+request if ${url} ~= /^https:\/\/img1\.360buyimg\.com\/pop\/jfs\//i then reject_img(200)
+
+# 2. 不再拦截飞卡接口。
+#    flyCard 返回的是二进制响应；flyCardMd JSON 有 md5 字段。
+#    原来用通用 JSON 替换它们可能触发 App 的解析失败或重试。
+#    本版仅排查该变量，保持其他过滤规则不变。
+
+# 3. 保留上游针对入口、广告、社区和短视频的处理逻辑。
+response if ${url} ~= /^https?:\/\/.*api\.moji\.com\/json\/entrance\/list/i then response.json.jq(".entrance_region_res_list |= map(select(.region_name | IN(\"工具区\", \"我页面灯泡\", \"banner区\") | not))")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/shortvideo/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/json\/advertising_goods/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/forum/i then reject(200, " ")
+request if ${url} ~= /^https?:\/\/.*api\.moji\.com\/user\/dynamic_v\d\/json\/someone_interest/i then reject(200, " ")
+request if ${url} ~= /^https:\/\/tnc.*zijieapi\.com\/get_domains/i then reject(200, " ")
+
+[MITM]
+hostname = *.api.moji.com, tnc*-*.zijieapi.com, dsp-x.jd.com, opehs.tanx.com, img1.360buyimg.com, adlaunch.moji.com
