@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30 14:01:50",
+  "updated_at": "2026-11-01 14:25:27",
   "sources": [
     {
       "id": "economist",
@@ -1578,19 +1578,36 @@
       "prefix": "TM/",
       "issues": [
         {
+          "date": "2026-11-09",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.epub",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-11-09/TM_2026-11-09.epub",
+              "sha": "336d94d007598f452490e95bd46ef769e4df5681",
+              "size": 20732517
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.pdf",
+              "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-11-09/TM_2026-11-09.pdf",
+              "sha": "2973347934d33cf66e9617744f35cdb0cf2f5028",
+              "size": 22685961
+            }
+          }
+        },
+        {
           "date": "2026-10-26",
           "files": {
             "epub": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
-              "sha": "068c22275bf8d82aecde72f5b583a4e5021133c3",
-              "size": 32891533
+              "sha": "fa6a62fcd02ff6c5f7d86380df20b08827ff1f5f",
+              "size": 32891770
             },
             "pdf": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
-              "sha": "124aeabccf5f03efcefbc00f8d16cefc406dd8eb",
-              "size": 34724557
+              "sha": "11ef6be229b8c1d3f9170c39e96ccd31b61760e4",
+              "size": 34726238
             }
           }
         },
