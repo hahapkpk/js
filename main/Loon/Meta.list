@@ -1,0 +1,29 @@
+# NAME: Meta
+# DESCRIPTION: Meta core services (Meta AI, Facebook, Instagram, Threads, WhatsApp, Messenger)
+# MAINTAINER: hahapkpk
+# UPDATED: 2026-11-02
+# FORMAT: Loon Remote Rule (.list); do not add policy inside this file
+# This is a deliberately concise set, not a comprehensive IP/domain inventory.
+# Meta / Meta AI / auth
+DOMAIN-SUFFIX,meta.com
+DOMAIN-SUFFIX,meta.ai
+# Facebook, common CDNs and authentication
+DOMAIN-SUFFIX,facebook.com
+DOMAIN-SUFFIX,facebook.net
+DOMAIN-SUFFIX,fb.com
+DOMAIN-SUFFIX,fb.me
+DOMAIN-SUFFIX,fbcdn.net
+DOMAIN-SUFFIX,fbsbx.com
+# Instagram / Threads
+DOMAIN-SUFFIX,instagram.com
+DOMAIN-SUFFIX,cdninstagram.com
+DOMAIN-SUFFIX,threads.net
+DOMAIN-SUFFIX,threads.com
+# WhatsApp / Messenger
+DOMAIN-SUFFIX,whatsapp.com
+DOMAIN-SUFFIX,whatsapp.net
+DOMAIN-SUFFIX,messenger.com
+DOMAIN-SUFFIX,m.me
+# VR / Meta Quest (optional but legitimate Meta services)
+DOMAIN-SUFFIX,oculus.com
+DOMAIN-SUFFIX,oculuscdn.com
