@@ -1,0 +1,15 @@
+# NAME: Muse
+# DESCRIPTION: Meta Muse personal AI agent; dedicated endpoints only
+# MAINTAINER: hahapkpk
+# UPDATED: 2026-11-02
+# FORMAT: Loon Remote Rule (.list); do not add policy inside this file
+#
+# Meta confirms Muse web application at https://muse.ai.
+DOMAIN-SUFFIX,muse.ai
+# Muse's encrypted WebSocket gateway / per-user VM hostnames, observed by community projects.
+DOMAIN-SUFFIX,metaaivm.com
+# Observed Muse-specific Meta API and gateway hostnames (community reports).
+DOMAIN,hatch-api.meta.ai
+DOMAIN,edge-metaclaw-http.c10r.facebook.com
+# Shared domains (meta.ai / facebook.com / api.meta.ai) intentionally excluded;
+# put them in Meta.list and route both remote sets to the same node when possible.
