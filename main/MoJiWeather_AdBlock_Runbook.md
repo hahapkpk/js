@@ -1,11 +1,13 @@
 # 墨迹天气（iOS）Loon 去广告与启动提速：故障档案 / 复现手册
 
-> **初版存档：2026-11-01** · **更新：2026-11-03** · **快速启动基线 V7（仍存在漏网广告）** · **新实验 V9（尚未实机验证）**；V8 视频开屏广告间歇复发  
+> **初版存档：2026-11-01** · **更新：2026-11-03** · **快速启动基线 V7（仍存在漏网广告）** · **新实验 V10（尚未实机验证）**；V9 仍有缓存开屏广告  
 > **用途**：墨迹天气 APP 更新后若重新出现开屏广告、首页广告或 4～5 秒启动等待，优先按照本手册复现、抓包、差分定位，再修改插件。  
 > **适用范围**：iOS 墨迹天气 + Loon，使用 Loon **3.5.1（978）及以上**所支持的新版 `[Rewrite]` 语法；旧版本需先核实兼容性。  
 > **证据边界**：网络请求间隔 ≠ 屏幕真实停留时长；SDK 的“成功/展示”上报 ≠ 用户一定实际看到了广告。
 
 ## 0. 一分钟速查（以后遇到故障先看这里）
+
+**新实验 V10**：[MoJiWeather_AdBlock_V10.lpx](https://github.com/hahapkpk/js/blob/main/main/MoJiWeather_AdBlock_V10.lpx)；针对 `content-understand-strategy.sm.cn/hc_antou/` 精确图片替换，尚未经过手机实测。V9/V7 保留供回退。
 
 **新实验 V9**：[`main/MoJiWeather_AdBlock_V9.lpx`](https://github.com/hahapkpk/js/blob/main/main/MoJiWeather_AdBlock_V9.lpx) · 原始链接：`https://raw.githubusercontent.com/hahapkpk/js/main/main/MoJiWeather_AdBlock_V9.lpx`。V9 **待实机验证**，若异常回退 V8/V7。
 
@@ -374,3 +376,36 @@ request if ${url} ~= /^https:\/\/a1\.alibabausercontent\.com\/prod\/feupload\/us
 5. 拦截视频并不能保证 App 不从备用 SDK、缓存或新的 CDN 获取素材。若仍有广告，优先按 `/ad/data2/print` 的 `position=1`、`is_local`、`ad_img_url` 查真实素材 URL，不要封锁 `v2.log.moji.com` 这类**仅用于记录事件**的域名，以免失去诊断证据。
 6. 完整 ZIP 中包含可能敏感的 Cookie、标识符、经纬度或用户信息，**不要提交到公开 GitHub**；只保存脱敏统计与精准规则。
 
+---
+
+## 11. 2026-11-03 第四次复发：194 号抓包与 V10 精准补漏
+
+### 11.1 复现事实和分析
+
+- 用户反馈：启用 V9 连续启动 20 多次，大约有 3 次看到开屏广告；这是肉眼观察，不能与后台事件条数等同。
+- `194_1793712703888.zip`：2026-11-03 21:31:46 至 21:34:22，共 **2,542 条 HTTP 请求**；`/operational/novice` 和 `/operational/adnovice` 各有 **26 条**，约 26 轮启动相关请求。
+- V9 仍在命中：`dsp-x.jd.com/adx/sdk` **97/97** 返回 204，`opehs.tanx.com/japi` **62/62** 返回 204；`ilce.alicdn.com/minolta/` **15/15** 替换图片。不能简单归因于插件未正确安装。
+- `v2.log.moji.com/ad/data2/print` 中有 **4 条 position=1、stat_type=1、is_local=true** 的开屏展示上报：**21:31:47** 是之前的阿里 MP4；**21:33:11 和 21:33:39** 是同一张 `content-understand-strategy.sm.cn/hc_antou/...ColorfulBig.jpg`；**21:34:18** 则是该域另一张 JPG。
+- 日志中找到 **两条真实 JPG 响应主体**，分别 **114,330 B**、**107,118 B**。本地打开后确认为携程旅行推广图片，非正常天气素材，文件 URL 与上述上报一致。
+- 本次没有出现 V9 已拦截的阿里 MP4 新下载请求，但广告展示上报仍写着该视频地址 `is_local=true`，说明先前缓存可能继续使用。阻止后续下载并不能删除已缓存素材。
+- 26 组 `novice`→`adnovice` 请求平均间隔约 **1.145 秒**，其中 **5 组超过 2 秒**，最长约 **4.051 秒**。这是网络请求的间隔，不等同于实际开屏时长。
+
+### 11.2 V10 变更（独立实验版，尚未实机验证）
+
+- 完整插件：[MoJiWeather_AdBlock_V10.lpx](https://github.com/hahapkpk/js/blob/main/main/MoJiWeather_AdBlock_V10.lpx)；固定提交 `63838839620ba44afab1406babf7e8711bd791e5`。
+- 与 V9 相比，**只新增**以下一条精确图片 Rewrite 与一个 MITM 主机名；不改 `adlaunch.moji.com,DIRECT`，保留天气接口和此前所有 JD、Tanx、阿里 CDN 规则。
+
+```ini
+request if ${url} ~= /^https:\/\/content-understand-strategy\.sm\.cn\/hc_antou\/[^?]+\.(?:jpe?g|png|webp)(?:\?|$)/i then reject_img(200)
+# 在现有 [MITM] hostname 列表追加 content-understand-strategy.sm.cn，不覆盖原列表
+```
+
+### 11.3 验收和风险
+
+1. 在 Loon 中只启用 V10，关闭 V1–V9 其他墨迹专用模块；核对 MITM 证书和 Rewrite 正常。
+2. 连续冷启动 10～20 次，分别记录真正出现开屏广告的次数、实际启动耗时、是否有空白广告占位；同时检查首页中部广告。
+3. 查看 `content-understand-strategy.sm.cn/hc_antou/` 是否出现 `reject_img(200)` 命中。没有该请求不能直接断言成功，因为可能是本地缓存。
+4. 若仍出现旧广告，优先在 App 内清理缓存；确认个人设置可以恢复之后，才考虑删除并重装 App。删除应用可能丢失本地数据。
+5. 若启动重新变慢、出现黑屏/白屏、天气/定位/账号异常，立即停用 V10，回退 V9 或 V7。
+6. **后续分析重点**：`v2.log.moji.com/ad/data2/print` 中 `params.position`、`params.stat_type`、`params.is_local`、`params.ad_img_url`；按真实媒体地址做最小范围匹配，避免整域 `REJECT`。
+7. 原始 HTTP ZIP 含 Cookie、token、设备标识和可能的定位数据，不能直接上传公开仓库；本档案只存脱敏统计和路径模板。
