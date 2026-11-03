@@ -1,12 +1,13 @@
 # 墨迹天气（iOS）Loon 去广告与启动提速：故障档案 / 复现手册
 
-> **存档日期：2026-11-01** · **当前推荐：V7** · 状态：在 4 轮冷启动抓包中表现良好，仍需长期观察  
+> **初版存档：2026-11-01** · **更新：2026-11-03** · **快速启动基线 V7（仍存在漏网广告）** · **新实验 V8（尚未实机验证）**  
 > **用途**：墨迹天气 APP 更新后若重新出现开屏广告、首页广告或 4～5 秒启动等待，优先按照本手册复现、抓包、差分定位，再修改插件。  
 > **适用范围**：iOS 墨迹天气 + Loon，使用 Loon **3.5.1（978）及以上**所支持的新版 `[Rewrite]` 语法；旧版本需先核实兼容性。  
 > **证据边界**：网络请求间隔 ≠ 屏幕真实停留时长；SDK 的“成功/展示”上报 ≠ 用户一定实际看到了广告。
 
 ## 0. 一分钟速查（以后遇到故障先看这里）
 
+**新实验 V8（2026-11-03，尚未实机测试）**：[`main/MoJiWeather_AdBlock_V8.lpx`](https://github.com/hahapkpk/js/blob/main/main/MoJiWeather_AdBlock_V8.lpx)；**验证失败立即切回 V7**。  
 **稳定基线 V7**：[`main/MoJiWeather_Adlaunch204_Test.lpx`](https://github.com/hahapkpk/js/blob/main/main/MoJiWeather_Adlaunch204_Test.lpx)  
 **Loon 订阅 URL**：
 
@@ -292,3 +293,44 @@ for i, start in enumerate(starts):
 ---
 
 **本档案后续维护原则：** 只添加经过抓包验证的新端点、对照实验结果与对应 Git SHA；标注“确认 / 疑似 / 尚未验证”，避免以后把相关性误当作因果关系。
+
+---
+
+
+## 9. 2026-11-03 复发记录（192 号）与 V8 精准补漏
+
+### 9.1 发现与证据（已抓包确认）
+
+- 原始日志：`192_1793711468308.zip`（**原文件仅私下存放，不提交 GitHub**）。
+- 时段：2026-11-03 21:11:08～21:11:45（北京时间），共 **544 条 HTTP 请求记录、65 条带响应替换记录**。
+- 同版本交叉核验：`191` 与 `192` 的墨迹 UA 均为 **9.0950.02**；此次广告出现**不以 APP 更新为前提**，可能是投放轮换、预加载、缓存或其他上下文变化，尚不能断定唯一原因。
+- 既有京东竞价接口 `dsp-x.jd.com/adx/sdk` **22/22** 返回 HTTP 204，Tanx `opehs.tanx.com/japi` **18/18** 返回 HTTP 204。V7 的核心拦截仍生效，问题不是原规则全部失效。
+- **真实图片 A**：`img2.360buyimg.com/tgx/jfs/...` 返回 HTTP 200，下载约 **133,938 B** 图片，内容为京东双 11 竖幅开屏素材。V7 只拦截 `img1.360buyimg.com/pop/jfs/`，因域名与路径都不同而漏过。
+- **真实图片 B**：`ilce.alicdn.com/minolta/500411571/0/...` 返回 HTTP 200，下载约 **231,104 B** 的苏泊尔电压力锅横幅素材，**高度疑似 APP 内中间广告**。此前 191 日志亦有 `ilce.alicdn.com/minolta/500411585/0/...` 请求，说明素材域名在 V7 正常时也可能出现。
+- `weather.api.moji.com/data/home` 共 **8 条正常响应**；`mcmn.api.moji.com/operational/adnovice` 的原始 JSON 仍含 `adShow:0`，无法控制所有第三方广告。
+- `adlaunch.moji.com` 本次无单独抓到的 HTTPS 请求，因此**不能证明 V7 的 adlaunch 204 命中了，也不能据此要求恢复整域 REJECT**。
+
+### 9.2 V8 的最小范围改动（待用户实机验收）
+
+新插件：`main/MoJiWeather_AdBlock_V8.lpx`（固定提交 [`c186d500`](https://github.com/hahapkpk/js/blob/c186d50060d4352072ee61a0df92bfe9cac2352c/main/MoJiWeather_AdBlock_V8.lpx)）。基于 V7 **只新增两条定向图片替换及对应 MITM hostname**：
+
+```ini
+[Rewrite]
+request if ${url} ~= /^https:\/\/img2\.360buyimg\.com\/tgx\/jfs\//i then reject_img(200)
+request if ${url} ~= /^https:\/\/ilce\.alicdn\.com\/minolta\/\d+\/\d+\//i then reject_img(200)
+
+[MITM]
+# 在 V7 原 hostname 末尾增补：img2.360buyimg.com, ilce.alicdn.com
+```
+
+以上仅为新增片段，必须使用 V8 **完整插件**订阅，不应将上面的独立 MITM 片段覆盖原列表。**未修改** `adlaunch.moji.com,DIRECT`、京东/Tanx HTTP 204、天气核心接口、飞卡二进制响应或运营接口。
+
+### 9.3 测试与回退
+
+1. 停用 V7 和其他墨迹专用模块，只打开 V8，确认 Loon Rewrite/MITM 加载成功及证书已信任。
+2. 冷启动三次并实际计时，检查开屏是否有广告或空白倒计时；进入首页等待 60 秒、上下滚动，检查是否出现锅具广告或空白广告占位。
+3. 在 Loon 请求记录中，观察 `img2.360buyimg.com/tgx/jfs/`、`ilce.alicdn.com/minolta/` 是否命中 **图片替换 HTTP 200**，而不是正常下载 134 KB / 231 KB。**没请求时也可能是缓存；不能因为没有命中就宣称生效。**
+4. 检查 `/data/home` 数据、城市切换、每小时天气和 15 天预报是否正常。
+5. 如启动重新出现 4～5 秒等待、图片大面积加载异常、空白倒计时，立即停用 V8，**回退固定版本 V7**。原始 ZIP 应脱敏后分析，不要公开上传含 Token、位置、完整请求内容的原件。
+6. **V8 暂无实际验证**：新图片规则理论上匹配 192 日志中的两个素材，但是否解除已经缓存的广告和 SDK 的计时逻辑，须靠下一轮实测确认。
+
