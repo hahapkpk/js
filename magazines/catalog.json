@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-06 15:00:09",
+  "updated_at": "2026-11-09 14:53:19",
   "sources": [
     {
       "id": "economist",
@@ -1600,14 +1600,14 @@
             "epub": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.epub",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-11-09/TM_2026-11-09.epub",
-              "sha": "336d94d007598f452490e95bd46ef769e4df5681",
-              "size": 20732517
+              "sha": "b7fe59ac8083a9246094ecd956197720a8419260",
+              "size": 20732552
             },
             "pdf": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.pdf",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-11-09/TM_2026-11-09.pdf",
-              "sha": "2973347934d33cf66e9617744f35cdb0cf2f5028",
-              "size": 22685961
+              "sha": "aa1e061662016e8b997c3ea3236e132ad8ad31e0",
+              "size": 22685960
             }
           }
         },
@@ -1617,14 +1617,14 @@
             "epub": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
-              "sha": "fa6a62fcd02ff6c5f7d86380df20b08827ff1f5f",
-              "size": 32891770
+              "sha": "3446a401e8e0cdbf264a6f23dc82e62b3264cb72",
+              "size": 32891808
             },
             "pdf": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
-              "sha": "11ef6be229b8c1d3f9170c39e96ccd31b61760e4",
-              "size": 34726238
+              "sha": "e6327948bce416fe23806b19ea39cd6fe5ead09c",
+              "size": 34726227
             }
           }
         },
