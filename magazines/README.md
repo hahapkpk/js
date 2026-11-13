@@ -2,7 +2,7 @@
 
 按杂志、年份、月份分类，刊期从新到旧排列。点击下载直达原仓库；本仓库仅保存链接。
 
-目录最后更新：2026-11-09 14:53:19（北京时间；链接或源文件发生变化时更新）
+目录最后更新：2026-11-13 14:57:16（北京时间；链接或源文件发生变化时更新）
 
 [查看最近检查记录 / 手动刷新](https://github.com/hahapkpk/js/actions/workflows/update-magazines.yml)
 
@@ -12,22 +12,23 @@
 
 | 杂志 | 刊期 | PDF | EPUB |
 |---|---|---|---|
-| 📗 经济学人 · The Economist | 2026-11-07 | [下载 PDF](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.07/TheEconomist.2026.11.07.pdf) | [下载 EPUB](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.07/TheEconomist.2026.11.07.epub) |
+| 📗 经济学人 · The Economist | 2026-11-14 | [下载 PDF](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.14/TheEconomist.2026.11.14.pdf) | [下载 EPUB](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.14/TheEconomist.2026.11.14.epub) |
 | 📕 时代 · TIME | 2026-11-09 | [下载 PDF](https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.pdf) | [下载 EPUB](https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.epub) |
 
 <a id="economist"></a>
 
 ## 📗 经济学人 · The Economist
 
-来源：[hehonghui/awesome-english-ebooks](https://github.com/hehonghui/awesome-english-ebooks) · 共 97 期
+来源：[hehonghui/awesome-english-ebooks](https://github.com/hehonghui/awesome-english-ebooks) · 共 98 期
 
 ### 2026 年
 
 <details open>
-<summary>11 月 · 1 期</summary>
+<summary>11 月 · 2 期</summary>
 
 | 刊期 | PDF | EPUB | 原目录 |
 |---|---|---|---|
+| 2026-11-14 | [下载 PDF](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.14/TheEconomist.2026.11.14.pdf) | [下载 EPUB](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.14/TheEconomist.2026.11.14.epub) | [查看](https://github.com/hehonghui/awesome-english-ebooks/tree/master/01_economist/te_2026.11.14) |
 | 2026-11-07 | [下载 PDF](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.07/TheEconomist.2026.11.07.pdf) | [下载 EPUB](https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.07/TheEconomist.2026.11.07.epub) | [查看](https://github.com/hehonghui/awesome-english-ebooks/tree/master/01_economist/te_2026.11.07) |
 
 </details>
