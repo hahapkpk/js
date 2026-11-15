@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13 14:57:16",
+  "updated_at": "2026-11-15 14:49:36",
   "sources": [
     {
       "id": "economist",
@@ -1617,13 +1617,13 @@
             "epub": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.epub",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-11-09/TM_2026-11-09.epub",
-              "sha": "b7fe59ac8083a9246094ecd956197720a8419260",
-              "size": 20732552
+              "sha": "32a304441c8c47179f3b4344d7ea217ff5ed8378",
+              "size": 20732558
             },
             "pdf": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-11-09/TM_2026-11-09.pdf",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-11-09/TM_2026-11-09.pdf",
-              "sha": "aa1e061662016e8b997c3ea3236e132ad8ad31e0",
+              "sha": "a1a2533f7083dc4abc51a8a60c015578bf19b365",
               "size": 22685960
             }
           }
@@ -1634,13 +1634,13 @@
             "epub": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.epub",
-              "sha": "3446a401e8e0cdbf264a6f23dc82e62b3264cb72",
-              "size": 32891808
+              "sha": "346c34dda452bd9cddfe9874ea5df3e1054683dd",
+              "size": 32891796
             },
             "pdf": {
               "url": "https://raw.githubusercontent.com/Monkfishare/TIME_magazine/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
               "source_url": "https://github.com/Monkfishare/TIME_magazine/blob/main/TM/2026/2026-10-26/TM_2026-10-26.pdf",
-              "sha": "e6327948bce416fe23806b19ea39cd6fe5ead09c",
+              "sha": "2138942fcac63fd86dc18dc6886cf4adc7604088",
               "size": 34726227
             }
           }
