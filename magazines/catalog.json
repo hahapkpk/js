@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22 15:06:49",
+  "updated_at": "2026-11-27 05:44:04",
   "sources": [
     {
       "id": "economist",
@@ -8,6 +8,23 @@
       "branch": "master",
       "prefix": "01_economist/",
       "issues": [
+        {
+          "date": "2026-11-28",
+          "files": {
+            "epub": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.28/TheEconomist.2026.11.28.epub",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.11.28/TheEconomist.2026.11.28.epub",
+              "sha": "6797ae2777188b45888c6c05ea82d5b1225294c4",
+              "size": 5662140
+            },
+            "pdf": {
+              "url": "https://raw.githubusercontent.com/hehonghui/awesome-english-ebooks/master/01_economist/te_2026.11.28/TheEconomist.2026.11.28.pdf",
+              "source_url": "https://github.com/hehonghui/awesome-english-ebooks/blob/master/01_economist/te_2026.11.28/TheEconomist.2026.11.28.pdf",
+              "sha": "f29ad05571be5957d71f49d01fcdc542f016dcb3",
+              "size": 8088634
+            }
+          }
+        },
         {
           "date": "2026-11-21",
           "files": {
